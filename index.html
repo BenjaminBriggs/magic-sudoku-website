@@ -1,34 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pocket Sudoku</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1rem;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    a {
-      color: #007aff;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Sudoku - The Ultimate Sudoku App for iOS</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --secondary-color: #5AC8FA;
+            --dark-color: #1D1D1D;
+            --light-color: #F2F2F7;
+            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            min-height: 80vh;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        p.lead {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        /* Sudoku Puzzle Styles */
+        .puzzle-page {
+            padding: 40px 0;
+        }
+        
+        .puzzle-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .puzzle-board {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: repeat(9, 1fr);
+            gap: 1px;
+            margin: 20px auto;
+            max-width: 450px;
+            aspect-ratio: 1 / 1;
+            border: 2px solid #333;
+        }
+        
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .cell.fixed {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        
+        .section-3x3 {
+            border-right: 2px solid #333;
+            border-bottom: 2px solid #333;
+        }
+        
+        .section-3x3:nth-child(9n) {
+            border-right: none;
+        }
+        
+        .section-3x3:nth-child(n+73) {
+            border-bottom: none;
+        }
+        
+        .puzzle-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Pocket Sudoku</h1>
-  <p><strong>Pocket Sudoku</strong> is a clean, fast, and minimal Sudoku app for iPhone and iPad. Whether you're solving your first puzzle or hunting for a challenge, Pocket Sudoku is your daily companion.</p>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">Magic Sudoku</a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <h2>Support</h2>
-  <p>If you have questions, issues, or feedback, please email us at <a href="mailto:support@pocket-sudoku.com">support@pocket-sudoku.com</a>.</p>
+    <!-- Main landing page content -->
+    <div id="main-content">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>The Best Sudoku Experience on iOS</h1>
+                    <p class="lead">Enjoy beautiful puzzles, smart hints, and a delightful interface designed specifically for iPhone and iPad.</p>
+                    <a href="https://apps.apple.com/app/magic-sudoku/id1234567890" class="cta-button" id="download">Download on the App Store</a>
+                </div>
+                <div class="hero-image">
+                    <img src="/api/placeholder/350/700" alt="Magic Sudoku App Screenshot" />
+                </div>
+            </div>
+        </section>
 
-  <h2>Privacy Policy</h2>
-  <p>Pocket Sudoku does not collect any personal data. No tracking, no ads, no nonsense.</p>
+        <section class="features" id="features">
+            <div class="container">
+                <h2>Why Players Love Magic Sudoku</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧩</div>
+                        <h3>Unlimited Puzzles</h3>
+                        <p>Play thousands of puzzles across multiple difficulty levels, from easy to expert.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Smart Hints</h3>
+                        <p>Get intelligent hints that teach you Sudoku techniques, not just solutions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Sync Across Devices</h3>
+                        <p>Start a puzzle on your iPhone and continue on your iPad with iCloud sync.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Puzzle page (for deeplinks) -->
+    <div id="puzzle-content" style="display: none;">
+        <section class="puzzle-page">
+            <div class="container">
+                <div class="puzzle-container">
+                    <h2>Magic Sudoku Puzzle</h2>
+                    <p>You're viewing puzzle #<span id="puzzle-id"></span></p>
+                    
+                    <div class="puzzle-board" id="sudoku-board"></div>
+                    
+                    <div class="puzzle-actions">
+                        <a href="https://apps.apple.com/app/magic-sudoku/id1234567890" class="cta-button">Open in App</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Magic Sudoku. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if this is a deeplink and render puzzle if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            
+            if (path.startsWith('/puzzle/')) {
+                // This is a puzzle deeplink
+                const puzzleData = path.split('/puzzle/')[1];
+                
+                if (puzzleData && puzzleData.length === 81) {
+                    // Show puzzle view and hide main content
+                    document.getElementById('main-content').style.display = 'none';
+                    document.getElementById('puzzle-content').style.display = 'block';
+                    
+                    // Set puzzle ID
+                    document.getElementById('puzzle-id').textContent = puzzleData;
+                    
+                    // Render the puzzle
+                    renderSudokuPuzzle(puzzleData);
+                    
+                    // Check if app is installed and redirect if possible
+                    tryOpenInApp(puzzleData);
+                }
+            }
+        });
+        
+        function renderSudokuPuzzle(puzzleString) {
+            const board = document.getElementById('sudoku-board');
+            board.innerHTML = '';
+            
+            // Loop through each cell in the 9x9 grid
+            for (let i = 0; i < 81; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                // Add border styling for 3x3 sections
+                if ((i % 9) % 3 === 2 && i % 9 !== 8) {
+                    cell.style.borderRight = '2px solid #333';
+                }
+                if (Math.floor(i / 9) % 3 === 2 && Math.floor(i / 9) !== 8) {
+                    cell.style.borderBottom = '2px solid #333';
+                }
+                
+                // Fill in initial values
+                const value = puzzleString.charAt(i);
+                if (value !== '0') {
+                    cell.textContent = value;
+                    cell.classList.add('fixed');
+                }
+                
+                board.appendChild(cell);
+            }
+        }
+        
+        function tryOpenInApp(puzzleId) {
+            // Create app deep link
+            const appDeepLink = `magic-sudoku://puzzle/${puzzleId}`;
+            
+            // Try to open the app
+            const openApp = () => {
+                // Fallback to app store if app isn't installed
+                setTimeout(() => {
+                    window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
+                }, 500);
+                
+                window.location.href = appDeepLink;
+            };
+            
+            // On iOS, we can try to detect if the app is installed
+            // This is a simple approach - in production you might want more sophisticated detection
+            // or just let the user choose if they want to open the app
+            
+            // For demo purposes, we'll add a button listener instead of auto-redirecting
+            document.querySelector('.puzzle-actions .cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                openApp();
+            });
+        }
+    </script>
 </body>
 </html>
