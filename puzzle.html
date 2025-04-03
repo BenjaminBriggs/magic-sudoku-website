@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,28 +117,32 @@
             margin: 0 auto;
             aspect-ratio: 1 / 1;
         }
-        
+
         @media (max-width: 500px) {
             .puzzle-board {
                 max-width: 100%;
             }
         }
-        
+
         /* Define animation for App Store button */
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
         }
-        
+
         .app-store-button:hover {
             animation: pulse 2s infinite;
         }
     </style>
 </head>
+
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
     <header class="bg-tertiaryBg text-primaryFg sticky top-0 z-10 shadow-md">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,13 +160,15 @@
             <div class="bg-primaryBg rounded-xl shadow-lg p-6 md:p-8">
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Magic Sudoku Puzzle</h2>
                 <p class="text-center text-secondaryFg mb-8"><span id="puzzle-id" class="font-medium"></span></p>
-                
+
                 <div class="puzzle-board mx-auto bg-gridLines p-0.5 rounded-md shadow-md mb-8">
                     <div id="sudoku-board" class="rounded overflow-hidden"></div>
                 </div>
-                
+
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                    <a href="magic-sudoku://puzzle/235001006801700320740032158527006090086504217904270080102460809670008001408015060 " id="open-in-app-btn" class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open in App</a>
+                    <a href="#" id="open-in-app-btn"
+                        class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open
+                        in App</a>
                 </div>
             </div>
         </div>
@@ -175,15 +182,15 @@
 
     <script>
         // Get the puzzle ID from the URL query parameter
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Extract the puzzle ID from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             let puzzleId = urlParams.get('id');
-            
+
             // Debug - log what we found
             console.log("URL search params:", window.location.search);
             console.log("Puzzle ID from params:", puzzleId);
-            
+
             // If no puzzle ID in params, check if it's in the path (for direct visits)
             if (!puzzleId) {
                 const path = window.location.pathname;
@@ -192,23 +199,25 @@
                     console.log("Puzzle ID from path:", puzzleId);
                 }
             }
-            
+
             if (puzzleId) {
-                // Display the puzzle ID
-                const displayId = puzzleId.substring(0, 10) + "...";
+                // Display the puzzle ID (truncated for UI)
+                const displayId = puzzleId.length > 20 ? puzzleId.substring(0, 20) + "..." : puzzleId;
                 document.getElementById('puzzle-id').textContent = displayId;
-                
+
+                // Update page title with puzzle identifier
+                document.title = "Magic Sudoku - Puzzle #" + displayId;
+
                 // Render the puzzle
                 renderSudokuPuzzle(puzzleId);
-                
+
                 // Setup app opening functionality
                 setupAppOpening(puzzleId);
-                
-                // Update page title and meta
-                document.title = "Magic Sudoku - Puzzle View";
+
+                // Update meta description
                 const metaDesc = document.createElement('meta');
                 metaDesc.name = "description";
-                metaDesc.content = "Play this Sudoku puzzle in Magic Sudoku - the ultimate Sudoku app for iOS";
+                metaDesc.content = `Play Sudoku puzzle ${displayId} in Magic Sudoku - the ultimate Sudoku app for iOS`;
                 document.head.appendChild(metaDesc);
             } else {
                 // If no puzzle ID is provided, redirect to the home page
@@ -216,26 +225,26 @@
                 window.location.href = "/";
             }
         });
-        
+
         function renderSudokuPuzzle(puzzleString) {
             try {
                 const board = document.getElementById('sudoku-board');
                 if (!board) return;
-                
+
                 board.innerHTML = '';
                 board.style.display = 'grid';
                 board.style.gridTemplateColumns = 'repeat(9, 1fr)';
                 board.style.gridTemplateRows = 'repeat(9, 1fr)';
                 board.style.gap = '1px';
                 board.style.backgroundColor = '#BABABA'; // gridLines color
-                
+
                 // Validate the puzzle string
                 if (!puzzleString || !/^[0-9]{81}$/.test(puzzleString)) {
                     // If not valid, show an error message
                     board.innerHTML = '<div style="grid-column: span 9; text-align: center; padding: 1rem; background-color: white;">Invalid puzzle format</div>';
                     return;
                 }
-                
+
                 // Loop through each cell in the 9x9 grid
                 for (let i = 0; i < 81; i++) {
                     const cell = document.createElement('div');
@@ -249,10 +258,10 @@
                     cell.style.width = '100%';
                     cell.style.height = '100%';
                     cell.style.aspectRatio = '1 / 1';
-                    
+
                     const row = Math.floor(i / 9);
                     const col = i % 9;
-                    
+
                     // Add subtle styling for 3x3 sections
                     if (col % 3 === 0 && col !== 0) {
                         cell.style.borderLeft = '2px solid #BABABA'; // gridLines color
@@ -260,7 +269,7 @@
                     if (row % 3 === 0 && row !== 0) {
                         cell.style.borderTop = '2px solid #BABABA'; // gridLines color
                     }
-                    
+
                     // Fill in initial values
                     const value = puzzleString.charAt(i);
                     if (value !== '0') {
@@ -269,43 +278,49 @@
                         cell.style.color = '#121212'; // number color
                         cell.style.fontWeight = '700';
                     }
-                    
+
                     board.appendChild(cell);
                 }
             } catch (error) {
                 console.error("Error rendering puzzle:", error);
             }
         }
-        
+
         function setupAppOpening(puzzleId) {
+            // Clean the puzzle ID (remove any whitespace)
+            puzzleId = puzzleId.trim();
+
             // Create app deep link
             const appDeepLink = `magic-sudoku://puzzle/${puzzleId}`;
-            
+
             // Get the button
             const openInAppBtn = document.getElementById('open-in-app-btn');
-            
+
             if (openInAppBtn) {
+                // Set the href attribute directly
+                openInAppBtn.href = appDeepLink;
+
                 // Add click handler
-                openInAppBtn.addEventListener('click', function(e) {
+                openInAppBtn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     // Check if user is on iOS
                     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                    
+
                     if (isIOS) {
                         // iOS: Set a fallback timer to redirect to the App Store if the app isn't installed
                         setTimeout(() => {
-                            window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
+                            window.location.href = 'https://apps.apple.com/app/magic-sudoku/id6742204685';
                         }, 1500); // Longer timeout for better chance at detecting if app opened
-                        
+
                         // Try to launch the app
                         window.location.href = appDeepLink;
                     } else {
                         // Non-iOS: Just redirect to the App Store
-                        window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
+                        window.location.href = 'https://apps.apple.com/app/magic-sudoku/id6742204685';
                     }
                 });
-                
+
                 // Show different messaging based on device
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 if (!isIOS) {
@@ -315,4 +330,5 @@
         }
     </script>
 </body>
+
 </html>

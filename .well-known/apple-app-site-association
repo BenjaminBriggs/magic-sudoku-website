@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "N29LW4SJ55.pro.briggs.sudoku",
+        "paths": [
+          "/puzzle/*"
+        ],
+        "components": [
+          {
+            "/": "/puzzle/*",
+            "comment": "Matches any URL whose path starts with /puzzle/"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [ "N29LW4SJ55.pro.briggs.sudoku" ]
+  }
+}
