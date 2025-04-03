@@ -18,16 +18,18 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://magic-sudoku.com/puzzle/">
     <meta property="og:title" content="Play this Sudoku puzzle in Magic Sudoku">
-    <meta property="og:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
+    <meta property="og:description"
+        content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
     <meta property="og:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://magic-sudoku.com/puzzle/">
     <meta name="twitter:title" content="Play this Sudoku puzzle in Magic Sudoku">
-    <meta name="twitter:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
+    <meta name="twitter:description"
+        content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
     <meta name="twitter:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -163,12 +165,10 @@
 </head>
 
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
-    <header class="bg-tertiaryBg text-primaryFg sticky top-0 z-10 shadow-md">
+    <header class="bg-highlight-blue text-primaryFg sticky top-0 z-10 shadow-md">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex justify-between items-center py-4">
-                <a href="/" class="text-2xl font-bold text-primaryFg hover:text-accent transition">Magic Sudoku</a>
-                <div class="space-x-6">
-                </div>
+                <a href="/" class="text-2xl font-bold text-primaryBg hover:text-accent transition">Magic Sudoku</a>
             </nav>
         </div>
     </header>
@@ -176,19 +176,16 @@
     <!-- Puzzle content -->
     <section class="py-12 md:py-16">
         <div class="max-w-2xl mx-auto px-4 sm:px-6">
-            <div class="bg-primaryBg rounded-xl shadow-lg p-6 md:p-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Magic Sudoku Puzzle</h2>
-                <p class="text-center text-secondaryFg mb-8"><span id="puzzle-id" class="font-medium"></span></p>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Magic Sudoku Puzzle</h2>
 
-                <div class="puzzle-board mx-auto bg-gridLines p-0.5 rounded-md shadow-md mb-8">
-                    <div id="sudoku-board" class="rounded overflow-hidden"></div>
-                </div>
+            <div class="puzzle-board mx-auto bg-gridLines p-0.5 rounded-md shadow-md mb-8">
+                <div id="sudoku-board" class="rounded overflow-hidden"></div>
+            </div>
 
-                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                    <a href="#" id="open-in-app-btn"
-                        class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open
-                        in App</a>
-                </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                <a href="#" id="open-in-app-btn"
+                    class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open
+                    in App</a>
             </div>
         </div>
     </section>
