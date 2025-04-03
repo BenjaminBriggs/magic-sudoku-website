@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Sudoku - Puzzle View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // From AccentColor.colorset
+                        accent: {
+                            DEFAULT: '#526270',
+                            dark: '#BFD7C9'
+                        },
+                        // From Grid/Cell Primary Background.colorset
+                        cellPrimary: {
+                            DEFAULT: '#F5F3F0',
+                            dark: '#262626'
+                        },
+                        // From Grid/Cell Alternate Background.colorset
+                        cellAlternate: {
+                            DEFAULT: '#F5F3F0',
+                            dark: '#262626'
+                        },
+                        // From Grid/Cell Prefilled Background.colorset
+                        cellPrefilled: {
+                            DEFAULT: '#EBEAE6',
+                            dark: '#000000'
+                        },
+                        // From Grid/Number.colorset
+                        number: {
+                            DEFAULT: '#121212',
+                            dark: '#F6F6F6'
+                        },
+                        // From Grid/Lines.colorset
+                        gridLines: {
+                            DEFAULT: '#BABABA',
+                            dark: '#7F7F7F'
+                        },
+                        // From Primary Background Color.colorset
+                        primaryBg: {
+                            DEFAULT: '#F9F9F7',
+                            dark: '#424242'
+                        },
+                        // From Secondary Background Color.colorset
+                        secondaryBg: {
+                            DEFAULT: '#F1F1ED',
+                            dark: '#000000'
+                        },
+                        // From Tertiary Background Color.colorset
+                        tertiaryBg: {
+                            DEFAULT: '#E5E3E0',
+                            dark: '#212121'
+                        },
+                        // From Primary Foreground Color.colorset
+                        primaryFg: {
+                            DEFAULT: '#212121',
+                            dark: '#FEFEFF'
+                        },
+                        // From Secondary Foreground Color.colorset
+                        secondaryFg: {
+                            DEFAULT: '#797979',
+                            dark: '#EAEAEA'
+                        },
+                        // From Input/Pen Color.colorset
+                        pen: {
+                            DEFAULT: '#5F717F',
+                            dark: '#DAF1F1'
+                        },
+                        // From Input/Pencil Color.colorset
+                        pencil: {
+                            DEFAULT: '#424242',
+                            dark: '#F1F1F1'
+                        },
+                        // Highlight colors from Highlight folder
+                        highlight: {
+                            blue: {
+                                DEFAULT: '#BFD7C9',
+                                dark: '#BFD7C9'
+                            },
+                            green: {
+                                DEFAULT: '#B4BD55',
+                                dark: '#B4BD55'
+                            },
+                            orange: {
+                                DEFAULT: '#F4C070',
+                                dark: '#F4C070'
+                            },
+                            red: {
+                                DEFAULT: '#F69B7B',
+                                dark: '#F69B7B'
+                            },
+                            yellow: {
+                                DEFAULT: '#F4D968',
+                                dark: '#F4D968'
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        'rubik': ['Rubik', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .puzzle-board {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+        }
+        
+        @media (max-width: 500px) {
+            .puzzle-board {
+                max-width: 100%;
+            }
+        }
+        
+        /* Define animation for App Store button */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .app-store-button:hover {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+    <header class="bg-tertiaryBg text-primaryFg sticky top-0 z-10 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex justify-between items-center py-4">
+                <a href="/" class="text-2xl font-bold text-primaryFg hover:text-accent transition">Magic Sudoku</a>
+                <div class="space-x-6">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Puzzle content -->
+    <section class="py-12 md:py-16">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <div class="bg-primaryBg rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Magic Sudoku Puzzle</h2>
+                <p class="text-center text-secondaryFg mb-8"><span id="puzzle-id" class="font-medium"></span></p>
+                
+                <div class="puzzle-board mx-auto bg-gridLines p-0.5 rounded-md shadow-md mb-8">
+                    <div id="sudoku-board" class="rounded overflow-hidden"></div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                    <a href="magic-sudoku://puzzle/235001006801700320740032158527006090086504217904270080102460809670008001408015060 " id="open-in-app-btn" class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open in App</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-tertiaryBg text-secondaryFg py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Magic Sudoku. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the puzzle ID from the URL query parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            // Extract the puzzle ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            let puzzleId = urlParams.get('id');
+            
+            // Debug - log what we found
+            console.log("URL search params:", window.location.search);
+            console.log("Puzzle ID from params:", puzzleId);
+            
+            // If no puzzle ID in params, check if it's in the path (for direct visits)
+            if (!puzzleId) {
+                const path = window.location.pathname;
+                if (path.startsWith('/puzzle/')) {
+                    puzzleId = path.split('/puzzle/')[1];
+                    console.log("Puzzle ID from path:", puzzleId);
+                }
+            }
+            
+            if (puzzleId) {
+                // Display the puzzle ID
+                const displayId = puzzleId.substring(0, 10) + "...";
+                document.getElementById('puzzle-id').textContent = displayId;
+                
+                // Render the puzzle
+                renderSudokuPuzzle(puzzleId);
+                
+                // Setup app opening functionality
+                setupAppOpening(puzzleId);
+                
+                // Update page title and meta
+                document.title = "Magic Sudoku - Puzzle View";
+                const metaDesc = document.createElement('meta');
+                metaDesc.name = "description";
+                metaDesc.content = "Play this Sudoku puzzle in Magic Sudoku - the ultimate Sudoku app for iOS";
+                document.head.appendChild(metaDesc);
+            } else {
+                // If no puzzle ID is provided, redirect to the home page
+                console.log("No puzzle ID found, redirecting to home");
+                window.location.href = "/";
+            }
+        });
+        
+        function renderSudokuPuzzle(puzzleString) {
+            try {
+                const board = document.getElementById('sudoku-board');
+                if (!board) return;
+                
+                board.innerHTML = '';
+                board.style.display = 'grid';
+                board.style.gridTemplateColumns = 'repeat(9, 1fr)';
+                board.style.gridTemplateRows = 'repeat(9, 1fr)';
+                board.style.gap = '1px';
+                board.style.backgroundColor = '#BABABA'; // gridLines color
+                
+                // Validate the puzzle string
+                if (!puzzleString || !/^[0-9]{81}$/.test(puzzleString)) {
+                    // If not valid, show an error message
+                    board.innerHTML = '<div style="grid-column: span 9; text-align: center; padding: 1rem; background-color: white;">Invalid puzzle format</div>';
+                    return;
+                }
+                
+                // Loop through each cell in the 9x9 grid
+                for (let i = 0; i < 81; i++) {
+                    const cell = document.createElement('div');
+                    cell.style.backgroundColor = '#F5F3F0'; // cellPrimary color
+                    cell.style.display = 'flex';
+                    cell.style.justifyContent = 'center';
+                    cell.style.alignItems = 'center';
+                    cell.style.fontFamily = "'Rubik', sans-serif";
+                    cell.style.fontWeight = '600';
+                    cell.style.fontSize = '1.75rem';
+                    cell.style.width = '100%';
+                    cell.style.height = '100%';
+                    cell.style.aspectRatio = '1 / 1';
+                    
+                    const row = Math.floor(i / 9);
+                    const col = i % 9;
+                    
+                    // Add subtle styling for 3x3 sections
+                    if (col % 3 === 0 && col !== 0) {
+                        cell.style.borderLeft = '2px solid #BABABA'; // gridLines color
+                    }
+                    if (row % 3 === 0 && row !== 0) {
+                        cell.style.borderTop = '2px solid #BABABA'; // gridLines color
+                    }
+                    
+                    // Fill in initial values
+                    const value = puzzleString.charAt(i);
+                    if (value !== '0') {
+                        cell.textContent = value;
+                        cell.style.backgroundColor = '#EBEAE6'; // cellPrefilled color
+                        cell.style.color = '#121212'; // number color
+                        cell.style.fontWeight = '700';
+                    }
+                    
+                    board.appendChild(cell);
+                }
+            } catch (error) {
+                console.error("Error rendering puzzle:", error);
+            }
+        }
+        
+        function setupAppOpening(puzzleId) {
+            // Create app deep link
+            const appDeepLink = `magic-sudoku://puzzle/${puzzleId}`;
+            
+            // Get the button
+            const openInAppBtn = document.getElementById('open-in-app-btn');
+            
+            if (openInAppBtn) {
+                // Add click handler
+                openInAppBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Check if user is on iOS
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                    
+                    if (isIOS) {
+                        // iOS: Set a fallback timer to redirect to the App Store if the app isn't installed
+                        setTimeout(() => {
+                            window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
+                        }, 1500); // Longer timeout for better chance at detecting if app opened
+                        
+                        // Try to launch the app
+                        window.location.href = appDeepLink;
+                    } else {
+                        // Non-iOS: Just redirect to the App Store
+                        window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
+                    }
+                });
+                
+                // Show different messaging based on device
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                if (!isIOS) {
+                    openInAppBtn.textContent = 'View in App Store';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
