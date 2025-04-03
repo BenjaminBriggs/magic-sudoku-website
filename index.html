@@ -190,26 +190,91 @@
     <section class="py-16 md:py-24 bg-primaryBg" id="features">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Why Players Love Magic Sudoku</h2>
-        <div class="grid md:grid-cols-3 gap-8 md:gap-12">
-          <div
-            class="bg-cellPrimary rounded-xl p-8 shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-            <div class="text-5xl mb-6">🧩</div>
-            <h3 class="text-xl font-semibold mb-4">Unlimited Puzzles</h3>
-            <p class="text-secondaryFg">Play thousands of puzzles across multiple difficulty levels, from easy to
-              expert.</p>
+        
+        <!-- Bento Box Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+          
+          <!-- Feature 1: Large Card (3x2) -->
+          <div class="md:col-span-3 md:row-span-2 bg-highlight-blue rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="text-6xl">✨</div>
+              <h3 class="text-2xl font-bold">Magic Mode</h3>
+              <p class="text-primaryFg/80 text-lg">A revolutionary input mode that assists without solving for you. Builds confidence in new players while helping experienced solvers tackle challenging puzzles with greater efficiency.</p>
+            </div>
           </div>
-          <div
-            class="bg-cellPrimary rounded-xl p-8 shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-            <div class="text-5xl mb-6">💡</div>
-            <h3 class="text-xl font-semibold mb-4">Smart Hints</h3>
-            <p class="text-secondaryFg">Get intelligent hints that teach you Sudoku techniques, not just solutions.</p>
+          
+          <!-- Feature 2: Medium Card with Keyboard Graphic -->
+          <div class="md:col-span-3 md:row-span-2 bg-highlight-green rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden relative">
+            <div class="flex justify-between">
+              <div class="z-10">
+                <div class="text-6xl">⌨️</div>
+                <h3 class="text-xl font-bold mb-2">Ultimate Configurability</h3>
+                <p class="text-primaryFg/80 max-w-xs">Create your perfect input scheme by configuring up to three inputs with custom primary and secondary actions.</p>
+              </div>
+              <div class="absolute right-0 bottom-0 opacity-20">
+                <div class="text-9xl">⌘</div>
+              </div>
+            </div>
           </div>
-          <div
-            class="bg-cellPrimary rounded-xl p-8 shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-            <div class="text-5xl mb-6">🔄</div>
-            <h3 class="text-xl font-semibold mb-4">Sync Across Devices</h3>
-            <p class="text-secondaryFg">Start a puzzle on your iPhone and continue on your iPad with iCloud sync.</p>
+          
+          <!-- Feature 3: Medium Card with Puzzle Graphic -->
+          <div class="md:col-span-2 bg-highlight-yellow rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+            <div class="text-4xl mb-3">🎮</div>
+            <h3 class="text-xl font-bold mb-2">Easy to Expert Puzzles</h3>
+            <p class="text-primaryFg/80">Thousands of handcrafted puzzles across multiple difficulty levels to challenge and engage players at every stage.</p>
           </div>
+          
+          <!-- Feature 4: Small Card -->
+          <div class="md:col-span-2 bg-highlight-orange rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+            <div class="text-4xl mb-3">🌐</div>
+            <h3 class="text-xl font-bold mb-2">Wide Numeral Support</h3>
+            <p class="text-primaryFg/80">Beyond Western digits — express yourself with a vast array of numeral styles from around the world.</p>
+          </div>
+          
+          <!-- Feature 5: Small Card -->
+          <div class="md:col-span-2 bg-highlight-red rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+            <div class="text-4xl mb-3">💡</div>
+            <h3 class="text-xl font-bold mb-2">Intelligent Hints</h3>
+            <p class="text-primaryFg/80">Learn advanced techniques through contextual explanations that teach rather than just solve.</p>
+          </div>
+          
+          <!-- Feature 6: Wide Card (3 cols) with Device Icons -->
+          <div class="md:col-span-3 bg-accent rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-4xl mb-3">🔄</div>
+                <h3 class="text-xl font-bold text-primaryBg mb-2">iCloud Sync</h3>
+                <p class="text-primaryBg/80 max-w-xs">Seamlessly continue your puzzles across iPhone, iPad, Mac, and Vision Pro.</p>
+              </div>
+              <div class="flex gap-2 text-4xl text-primaryBg/70">
+                <span>📱</span>
+                <span>💻</span>
+                <span>👓</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Feature 7: Wide Card (3 cols) with Trophy Icon -->
+          <div class="md:col-span-3 bg-tertiaryBg rounded-3xl p-6 shadow-lg hover:shadow-xl transition duration-300">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-4xl mb-3">🏆</div>
+                <h3 class="text-xl font-bold mb-2">Leaderboards & Achievements</h3>
+                <p class="text-primaryFg/80 max-w-xs">Compete with friends or globally and unlock achievements that showcase your Sudoku mastery.</p>
+              </div>
+              <div class="text-6xl opacity-50">
+                ⭐
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Small feature pills at the bottom -->
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+          <span class="bg-tertiaryBg px-4 py-2 rounded-full text-sm font-medium">SwiftUI Native</span>
+          <span class="bg-tertiaryBg px-4 py-2 rounded-full text-sm font-medium">Dark Mode Support</span>
+          <span class="bg-tertiaryBg px-4 py-2 rounded-full text-sm font-medium">No Ads</span>
+          <span class="bg-tertiaryBg px-4 py-2 rounded-full text-sm font-medium">Privacy Focused</span>
         </div>
       </div>
     </section>
