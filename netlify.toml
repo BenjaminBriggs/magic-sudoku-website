@@ -3,3 +3,22 @@
   [headers.values]
     Content-Type = "application/json"
     Access-Control-Allow-Origin = "*"
+
+# Don't redirect .well-known files
+[[redirects]]
+  from = "/.well-known/*"
+  to = "/.well-known/:splat"
+  status = 200
+
+# Puzzle page redirects
+[[redirects]]
+  from = "/puzzle/*"
+  to = "/puzzle.html?id=:splat"
+  status = 200
+  force = true
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
