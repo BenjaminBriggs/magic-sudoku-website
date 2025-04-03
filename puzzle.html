@@ -9,6 +9,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="apple-itunes-app" content="app-id=6742204685, app-argument=magic-sudoku://puzzle">
+
+    <meta name="description" content="Try this Sudoku puzzle in Magic Sudoku - the elegant way to play on iOS">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://magic-sudoku.com/puzzle/">
+    <meta property="og:title" content="Play this Sudoku puzzle in Magic Sudoku">
+    <meta property="og:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
+    <meta property="og:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://magic-sudoku.com/puzzle/">
+    <meta name="twitter:title" content="Play this Sudoku puzzle in Magic Sudoku">
+    <meta name="twitter:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
+    <meta name="twitter:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -201,12 +220,8 @@
             }
 
             if (puzzleId) {
-                // Display the puzzle ID (truncated for UI)
-                const displayId = puzzleId.length > 20 ? puzzleId.substring(0, 20) + "..." : puzzleId;
-                document.getElementById('puzzle-id').textContent = displayId;
-
                 // Update page title with puzzle identifier
-                document.title = "Magic Sudoku - Puzzle #" + displayId;
+                document.title = "Magic Sudoku - Puzzle";
 
                 // Render the puzzle
                 renderSudokuPuzzle(puzzleId);
@@ -214,15 +229,19 @@
                 // Setup app opening functionality
                 setupAppOpening(puzzleId);
 
-                // Update meta description
-                const metaDesc = document.createElement('meta');
-                metaDesc.name = "description";
-                metaDesc.content = `Play Sudoku puzzle ${displayId} in Magic Sudoku - the ultimate Sudoku app for iOS`;
-                document.head.appendChild(metaDesc);
+                const metaTag = document.createElement('meta');
+                metaTag.name = 'apple-itunes-app';
+                metaTag.content = `app-id=6742204685, app-argument=magic-sudoku://puzzle/${puzzleId}`;
+                document.head.appendChild(metaTag);
             } else {
                 // If no puzzle ID is provided, redirect to the home page
                 console.log("No puzzle ID found, redirecting to home");
                 window.location.href = "/";
+
+                const metaTag = document.createElement('meta');
+                metaTag.name = 'apple-itunes-app';
+                metaTag.content = 'app-id=6742204685';
+                document.head.appendChild(metaTag);
             }
         });
 
