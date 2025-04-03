@@ -110,26 +110,6 @@
         }
     </script>
     <style>
-        /* Custom styles that can't be done with Tailwind */
-        .puzzle-board {
-            width: 100%;
-            max-width: 450px;
-            margin: 0 auto;
-            aspect-ratio: 1 / 1;
-        }
-        
-        @media (max-width: 500px) {
-            .puzzle-board {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .puzzle-board {
-                max-width: 100%;
-            }
-        }
-        
         /* Define animation for App Store button */
         @keyframes pulse {
             0%, 100% {
@@ -165,8 +145,8 @@
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
                         <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">The Best Sudoku Experience on iOS</h1>
-                        <p class="text-xl text-gray-600 mb-8">Enjoy beautiful puzzles, smart hints, and a delightful interface designed specifically for iPhone and iPad.</p>
-                        <a href="https://apps.apple.com/app/magic-sudoku/id1234567890" id="download" class="app-store-button inline-block bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full transition duration-300">Download on the App Store</a>
+                        <p class="text-xl text-secondaryFg mb-8">Enjoy beautiful puzzles, smart hints, and a delightful interface designed specifically for iPhone and iPad.</p>
+                        <a href="https://apps.apple.com/app/magic-sudoku/id1234567890" class="app-store-button inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-8 rounded-full transition duration-300" id="download">Download on the App Store</a>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
                         <div class="rounded-3xl shadow-2xl overflow-hidden">
@@ -209,186 +189,15 @@
         </section>
     </div>
 
-            <!-- Puzzle page (for deeplinks) -->
-    <div id="puzzle-content" style="display: none;">
-        <section class="py-12 md:py-16">
-            <div class="max-w-2xl mx-auto px-4 sm:px-6">
-                <div class="bg-primaryBg rounded-xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Magic Sudoku Puzzle</h2>
-                    <p class="text-center text-secondaryFg mb-8">You're viewing puzzle #<span id="puzzle-id" class="font-medium"></span></p>
-                    
-                    <div class="puzzle-board mx-auto bg-gridLines p-0.5 rounded-md shadow-md mb-8">
-                        <div id="sudoku-board" class="rounded overflow-hidden"></div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                        <a href="#" id="open-in-app-btn" class="bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">Open in App</a>
-                        <a href="/" class="bg-highlight-blue hover:bg-highlight-green text-primaryBg font-bold py-3 px-6 rounded-full text-center transition">View More Puzzles</a>
-                    </div>
-                    
-                    <div class="text-center border-t border-gridLines pt-6">
-                        <p class="text-secondaryFg mb-4">For the best experience, download the full app:</p>
-                        <a href="https://apps.apple.com/app/magic-sudoku/id1234567890" class="app-store-button inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full transition duration-300">Download on App Store</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <footer class="bg-tertiaryBg text-secondaryFg py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; 2025 Magic Sudoku. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- No redirects from the landing page - we'll let the Netlify redirect rules handle this -->
     <script>
-        // Check if this is a deeplink and render puzzle if needed
-        document.addEventListener('DOMContentLoaded', function() {
-            try {
-                const path = window.location.pathname;
-                
-                if (path.startsWith('/puzzle/')) {
-                    // This is a puzzle deeplink
-                    const puzzleData = path.split('/puzzle/')[1];
-                    
-                    // Show puzzle view and hide main content
-                    const mainContent = document.getElementById('main-content');
-                    const puzzleContent = document.getElementById('puzzle-content');
-                    
-                    if (mainContent && puzzleContent) {
-                        mainContent.style.display = 'none';
-                        puzzleContent.style.display = 'block';
-                        
-                        // Set puzzle ID (use a shortened version for display)
-                        const puzzleIdElement = document.getElementById('puzzle-id');
-                        if (puzzleIdElement) {
-                            const displayId = puzzleData.substring(0, 10) + "...";
-                            puzzleIdElement.textContent = displayId;
-                        }
-                        
-                        // Update page title
-                        document.title = "Magic Sudoku - Puzzle View";
-                        
-                        // Render the puzzle
-                        renderSudokuPuzzle(puzzleData);
-                        
-                        // Setup app opening functionality
-                        tryOpenInApp(puzzleData);
-                        
-                        // Update meta tags for better sharing
-                        const metaDesc = document.createElement('meta');
-                        metaDesc.name = "description";
-                        metaDesc.content = "Play this Sudoku puzzle in Magic Sudoku - the ultimate Sudoku app for iOS";
-                        document.head.appendChild(metaDesc);
-                    }
-                }
-            } catch (error) {
-                console.error("Error in deeplink handling:", error);
-            }
-        });
-        
-        function renderSudokuPuzzle(puzzleString) {
-            try {
-                const board = document.getElementById('sudoku-board');
-                if (!board) return;
-                
-                board.innerHTML = '';
-                board.style.display = 'grid';
-                board.style.gridTemplateColumns = 'repeat(9, 1fr)';
-                board.style.gridTemplateRows = 'repeat(9, 1fr)';
-                board.style.gap = '1px';
-                board.style.backgroundColor = '#BABABA'; // gridLines color
-                
-                // Validate the puzzle string
-                if (!puzzleString || !/^[0-9]{81}$/.test(puzzleString)) {
-                    // If not valid, show an error message
-                    board.innerHTML = '<div style="grid-column: span 9; text-align: center; padding: 1rem; background-color: white;">Invalid puzzle format</div>';
-                    return;
-                }
-                
-                // Loop through each cell in the 9x9 grid
-                for (let i = 0; i < 81; i++) {
-                    const cell = document.createElement('div');
-                    cell.style.backgroundColor = '#F5F3F0'; // cellPrimary color
-                    cell.style.display = 'flex';
-                    cell.style.justifyContent = 'center';
-                    cell.style.alignItems = 'center';
-                    cell.style.fontFamily = "'Rubik', sans-serif";
-                    cell.style.fontWeight = '600';
-                    cell.style.fontSize = '1.25rem';
-                    cell.style.width = '100%';
-                    cell.style.height = '100%';
-                    cell.style.aspectRatio = '1 / 1';
-                    
-                    const row = Math.floor(i / 9);
-                    const col = i % 9;
-                    
-                    // Add subtle styling for 3x3 sections
-                    if (col % 3 === 0 && col !== 0) {
-                        cell.style.borderLeft = '2px solid #a0aec0';
-                    }
-                    if (row % 3 === 0 && row !== 0) {
-                        cell.style.borderTop = '2px solid #a0aec0';
-                    }
-                    
-                    // Fill in initial values
-                    const value = puzzleString.charAt(i);
-                    if (value !== '0') {
-                        cell.textContent = value;
-                        cell.style.backgroundColor = '#EBEAE6'; // cellPrefilled color
-                        cell.style.color = '#121212'; // number color
-                        cell.style.fontWeight = '700';
-                    }
-                    
-                    board.appendChild(cell);
-                }
-            } catch (error) {
-                console.error("Error rendering puzzle:", error);
-            }
-        }
-        
-        function tryOpenInApp(puzzleId) {
-            try {
-                // Create app deep link
-                const appDeepLink = `magic-sudoku://puzzle/${puzzleId}`;
-                
-                // Try to open the app
-                const openApp = () => {
-                    // Check if user is on iOS
-                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                    
-                    if (isIOS) {
-                        // iOS: Set a fallback timer to redirect to the App Store if the app isn't installed
-                        setTimeout(() => {
-                            window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
-                        }, 1500); // Longer timeout for better chance at detecting if app opened
-                        
-                        // Try to launch the app
-                        window.location.href = appDeepLink;
-                    } else {
-                        // Non-iOS: Just redirect to the App Store
-                        window.location.href = 'https://apps.apple.com/app/magic-sudoku/id1234567890';
-                    }
-                };
-                
-                // Add button listener for opening the app
-                const openInAppBtn = document.getElementById('open-in-app-btn');
-                if (openInAppBtn) {
-                    openInAppBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        openApp();
-                    });
-                    
-                    // Show different messaging based on device
-                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                    if (!isIOS) {
-                        openInAppBtn.textContent = 'View in App Store';
-                    }
-                }
-            } catch (error) {
-                console.error("Error setting up app opener:", error);
-            }
-        }
+        console.log("Landing page loaded");
     </script>
 </body>
 </html>
