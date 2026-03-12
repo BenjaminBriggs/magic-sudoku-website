@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Glossary - Essential Terms and Definitions - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Complete Sudoku glossary with essential terms and definitions. Reference guide for grid elements, solving methods, and technique terminology.">
+  <meta name="keywords" content="sudoku glossary, sudoku terms, sudoku definitions, candidates, pencil marks, houses, boxes, elimination">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/glossary.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/glossary.html">
+  <meta property="og:title" content="Sudoku Glossary - Essential Terms and Definitions">
+  <meta property="og:description" content="Complete reference guide for Sudoku terminology and solving concepts.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/glossary.html">
+  <meta name="twitter:title" content="Sudoku Glossary - Essential Terms and Definitions">
+  <meta name="twitter:description" content="Complete reference guide for Sudoku terminology and solving concepts.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              DEFAULT: '#526270',
+              dark: '#BFD7C9'
+            },
+            primaryBg: {
+              DEFAULT: '#F9F9F7',
+              dark: '#424242'
+            },
+            secondaryBg: {
+              DEFAULT: '#F1F1ED',
+              dark: '#000000'
+            },
+            tertiaryBg: {
+              DEFAULT: '#E5E3E0',
+              dark: '#212121'
+            },
+            primaryFg: {
+              DEFAULT: '#212121',
+              dark: '#FEFEFF'
+            },
+            secondaryFg: {
+              DEFAULT: '#797979',
+              dark: '#EAEAEA'
+            },
+            highlight: {
+              blue: {
+                DEFAULT: '#BFD7C9',
+                dark: '#BFD7C9'
+              },
+              green: {
+                DEFAULT: '#B4BD55',
+                dark: '#B4BD55'
+              },
+              orange: {
+                DEFAULT: '#F4C070',
+                dark: '#F4C070'
+              },
+              red: {
+                DEFAULT: '#F69B7B',
+                dark: '#F69B7B'
+              }
+            }
+          },
+          fontFamily: {
+            'rubik': ['Rubik', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <span include-html="/includes/header.html"></span>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <ol class="flex items-center space-x-2 text-sm text-secondaryFg">
+        <li><a href="/learn.html" class="hover:text-accent transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Glossary</li>
+      </ol>
+    </nav>
+
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">📚</span>
+        <h1 class="text-3xl font-bold">Sudoku Glossary</h1>
+      </div>
+      <p class="text-lg text-secondaryFg">Essential terms and definitions for understanding Sudoku solving techniques. Bookmark this page for quick reference while learning!</p>
+    </div>
+
+    <!-- Grid Structure Terms -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 flex items-center">
+        <span class="w-8 h-8 bg-highlight-blue rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">🏗️</span>
+        Grid Structure
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">House</h3>
+          <p class="text-secondaryFg mb-3">Any row, column, or box that must contain each digit 1-9 exactly once. Houses are the fundamental constraint units in Sudoku.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: unit, constraint group</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Box</h3>
+          <p class="text-secondaryFg mb-3">A 3×3 square region within the Sudoku grid. There are nine boxes in total, and each must contain digits 1-9 exactly once.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: block, nonet, square</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Line</h3>
+          <p class="text-secondaryFg mb-3">A row or column spanning the entire 9×9 grid. Each line must contain digits 1-9 exactly once.</p>
+          <p class="text-sm text-secondaryFg italic">Lines can be horizontal (rows) or vertical (columns)</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Cell</h3>
+          <p class="text-secondaryFg mb-3">An individual square within the 9×9 grid where a single digit will be placed. Each cell belongs to exactly one row, one column, and one box.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: square, position</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solving Methods -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 flex items-center">
+        <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">🧩</span>
+        Solving Methods
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Candidates</h3>
+          <p class="text-secondaryFg mb-3">The possible numbers that could be placed in a cell based on current constraints. As the puzzle progresses, candidates are eliminated until only one remains.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: possibilities, options</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Pencil Marks</h3>
+          <p class="text-secondaryFg mb-3">Small notation showing which candidates are possible in each cell. Essential for tracking possibilities and applying advanced techniques.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: notation, candidate marks</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Elimination</h3>
+          <p class="text-secondaryFg mb-3">The process of removing impossible candidates from cells based on Sudoku constraints and logical deductions.</p>
+          <p class="text-sm text-secondaryFg italic">The core mechanism of most solving techniques</p>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Given</h3>
+          <p class="text-secondaryFg mb-3">A number that is already placed in the puzzle at the start. Givens provide the initial constraints that make the puzzle solvable.</p>
+          <p class="text-sm text-secondaryFg italic">Also called: clue, starting number</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technique Categories -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 flex items-center">
+        <span class="w-8 h-8 bg-highlight-orange rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">⚙️</span>
+        Technique Categories
+      </h2>
+
+      <div class="space-y-6">
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Singles</h3>
+          <p class="text-secondaryFg mb-3">Techniques that identify cells where only one number can be placed. The foundation of all Sudoku solving.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><strong>Naked Single:</strong> A cell with only one candidate remaining</div>
+            <div><strong>Hidden Single:</strong> A number that can only go in one place within a house</div>
+          </div>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Intersection</h3>
+          <p class="text-secondaryFg mb-3">Techniques that use the overlap between different houses to make eliminations.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><strong>Locked Candidates:</strong> When candidates are confined to specific intersections</div>
+            <div><strong>Pointing/Claiming:</strong> Specific types of locked candidate patterns</div>
+          </div>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Sets</h3>
+          <p class="text-secondaryFg mb-3">Techniques based on groups of cells that share the same limited candidates.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><strong>Naked Sets:</strong> When cells contain the same visible candidates</div>
+            <div><strong>Hidden Sets:</strong> When numbers are confined to the same group of cells</div>
+          </div>
+        </div>
+
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-accent">Fish Patterns</h3>
+          <p class="text-secondaryFg mb-3">Advanced techniques based on rectangular arrangements of candidates.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><strong>X-Wing:</strong> 2×2 fish pattern</div>
+            <div><strong>Swordfish:</strong> 3×3 fish pattern</div>
+            <div><strong>Jellyfish:</strong> 4×4 fish pattern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="bg-tertiaryBg p-8 rounded-xl mb-12">
+      <h2 class="text-2xl font-bold mb-6">Quick Reference</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-bold mb-3">Common Abbreviations</h3>
+          <dl class="space-y-2">
+            <div class="flex justify-between">
+              <dt class="font-medium">R1C1</dt>
+              <dd class="text-secondaryFg">Row 1, Column 1</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="font-medium">B1</dt>
+              <dd class="text-secondaryFg">Box 1 (top-left)</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="font-medium">{1,2,3}</dt>
+              <dd class="text-secondaryFg">Candidate set notation</dd>
+            </div>
+          </dl>
+        </div>
+        <div>
+          <h3 class="font-bold mb-3">Grid Numbering</h3>
+          <div class="text-secondaryFg space-y-2">
+            <div>• Rows numbered 1-9 from top to bottom</div>
+            <div>• Columns numbered 1-9 from left to right</div>
+            <div>• Boxes numbered 1-9 from top-left to bottom-right</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="bg-primaryBg p-6 rounded-xl">
+      <h3 class="font-bold mb-4">Start Learning</h3>
+      <p class="text-secondaryFg mb-4">Ready to apply these terms? Begin your Sudoku journey with our structured lessons:</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/learn/singles.html" class="inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full transition duration-300 text-center">
+          Start with Basic Singles
+        </a>
+        <a href="/learn.html" class="inline-block bg-tertiaryBg hover:bg-primaryBg text-primaryFg font-medium py-3 px-6 rounded-full transition duration-300 text-center">
+          ← Back to All Lessons
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+</body>
+
+</html>

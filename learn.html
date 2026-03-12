@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Learn Sudoku - Magic Sudoku</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Favicons and App Icons -->
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/images/apple-touch-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/images/apple-touch-icon-120x120.png"
+        />
+
+        <meta
+            name="description"
+            content="Learn essential Sudoku solving techniques and strategies. From basic rules to advanced methods, discover how to improve your puzzle-solving skills."
+        />
+        <meta
+            name="keywords"
+            content="learn sudoku, sudoku strategies, sudoku techniques, sudoku rules, how to solve sudoku"
+        />
+        <link rel="canonical" href="https://magic-sudoku.com/learn.html" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://magic-sudoku.com/learn.html" />
+        <meta
+            property="og:title"
+            content="Learn Sudoku - Essential Strategies and Techniques"
+        />
+        <meta
+            property="og:description"
+            content="Master Sudoku with essential solving techniques and strategies. From basic rules to advanced methods."
+        />
+        <meta
+            property="og:image"
+            content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg"
+        />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:url"
+            content="https://magic-sudoku.com/learn.html"
+        />
+        <meta
+            name="twitter:title"
+            content="Learn Sudoku - Essential Strategies and Techniques"
+        />
+        <meta
+            name="twitter:description"
+            content="Master Sudoku with essential solving techniques and strategies. From basic rules to advanced methods."
+        />
+        <meta
+            name="twitter:image"
+            content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            accent: {
+                                DEFAULT: "#526270",
+                                dark: "#BFD7C9",
+                            },
+                            primaryBg: {
+                                DEFAULT: "#F9F9F7",
+                                dark: "#424242",
+                            },
+                            secondaryBg: {
+                                DEFAULT: "#F1F1ED",
+                                dark: "#000000",
+                            },
+                            tertiaryBg: {
+                                DEFAULT: "#E5E3E0",
+                                dark: "#212121",
+                            },
+                            primaryFg: {
+                                DEFAULT: "#212121",
+                                dark: "#FEFEFF",
+                            },
+                            secondaryFg: {
+                                DEFAULT: "#797979",
+                                dark: "#EAEAEA",
+                            },
+                            highlight: {
+                                blue: {
+                                    DEFAULT: "#BFD7C9",
+                                    dark: "#BFD7C9",
+                                },
+                                green: {
+                                    DEFAULT: "#B4BD55",
+                                    dark: "#B4BD55",
+                                },
+                                orange: {
+                                    DEFAULT: "#F4C070",
+                                    dark: "#F4C070",
+                                },
+                                red: {
+                                    DEFAULT: "#F69B7B",
+                                    dark: "#F69B7B",
+                                },
+                            },
+                        },
+                        fontFamily: {
+                            rubik: ["Rubik", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+
+    <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+        <span include-html="/includes/header.html"></span>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">Learn Sudoku</h1>
+                <p class="text-xl text-secondaryFg max-w-3xl mx-auto">
+                    Master the art of logical reasoning with these essential
+                    solving techniques. Progress from beginner to expert at your
+                    own pace.
+                </p>
+            </div>
+
+            <!-- Glossary Link -->
+            <div class="bg-primaryBg p-6 rounded-xl mb-16 border-l-4 border-accent">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="text-3xl">📚</span>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">Sudoku Glossary</h3>
+                            <p class="text-secondaryFg text-sm">Essential terms and definitions for all solving techniques</p>
+                        </div>
+                    </div>
+                    <a href="/learn/glossary.html" class="bg-accent hover:bg-highlight-blue text-primaryBg font-medium py-2 px-4 rounded-lg transition-colors">
+                        View Glossary →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Beginner Strategies -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <span
+                        class="bg-highlight-green text-primaryFg px-3 py-1 rounded-full text-sm font-medium mr-4"
+                        >Beginner</span
+                    >
+                    <h2 class="text-2xl font-bold">Essential Techniques</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a
+                        href="/learn/singles.html"
+                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-green"
+                    >
+                        <h3 class="text-xl font-bold mb-3">Basic Singles</h3>
+                        <p class="text-secondaryFg mb-4">
+                            Master naked singles and hidden singles - the
+                            foundation of all Sudoku solving. Essential for
+                            every player.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="inline-block bg-highlight-green/20 text-accent px-3 py-1 rounded-full text-sm font-medium"
+                                >Start Here</span
+                            >
+                            <span class="text-accent">Learn More →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Intermediate Strategies -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <span
+                        class="bg-highlight-blue text-primaryFg px-3 py-1 rounded-full text-sm font-medium mr-4"
+                        >Intermediate</span
+                    >
+                    <h2 class="text-2xl font-bold">Pattern Recognition</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a
+                        href="/learn/locked-candidates.html"
+                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-blue"
+                    >
+                        <h3 class="text-lg font-bold mb-3">
+                            Locked Candidates
+                        </h3>
+                        <p class="text-secondaryFg text-sm mb-4">
+                            Master pointing and claiming techniques that use the
+                            intersection of boxes and lines to eliminate
+                            possibilities.
+                        </p>
+                        <span class="text-accent text-sm">Learn More →</span>
+                    </a>
+
+                    <a
+                        href="/learn/naked-sets.html"
+                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-blue"
+                    >
+                        <h3 class="text-lg font-bold mb-3">Naked Sets</h3>
+                        <p class="text-secondaryFg text-sm mb-4">
+                            When groups of cells contain the same limited
+                            candidates, eliminate those numbers from other cells
+                            in the unit.
+                        </p>
+                        <span class="text-accent text-sm">Learn More →</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Learning Resources -->
+            <div class="mb-16">
+                <h2 class="text-2xl font-bold text-center mb-8">
+                    Want to Dive Deeper?
+                </h2>
+                <p
+                    class="text-lg text-secondaryFg text-center mb-8 max-w-3xl mx-auto"
+                >
+                    These fundamentals will get you started, but there's so much
+                    more to discover. For comprehensive tutorials and advanced
+                    techniques, check out these excellent learning resources:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <a
+                        href="https://sudoku.coach/"
+                        target="_blank"
+                        class="group bg-primaryBg p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-highlight-blue"
+                    >
+                        <div class="flex items-start justify-between mb-4">
+                            <h3
+                                class="text-xl font-bold group-hover:text-accent transition-colors"
+                            >
+                                Sudoku.coach
+                            </h3>
+                            <span
+                                class="text-2xl group-hover:scale-110 transition-transform"
+                                >🎯</span
+                            >
+                        </div>
+                        <p class="text-secondaryFg mb-4">
+                            Interactive tutorials covering dozens of solving
+                            techniques with visual examples and practice
+                            puzzles.
+                        </p>
+                        <div class="flex items-center text-accent font-medium">
+                            <span>Visit Sudoku.coach</span>
+                            <span
+                                class="ml-2 group-hover:translate-x-1 transition-transform"
+                                >→</span
+                            >
+                        </div>
+                    </a>
+
+                    <a
+                        href="https://www.learn-sudoku.com/"
+                        target="_blank"
+                        class="group bg-primaryBg p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-highlight-green"
+                    >
+                        <div class="flex items-start justify-between mb-4">
+                            <h3
+                                class="text-xl font-bold group-hover:text-accent transition-colors"
+                            >
+                                Learn-Sudoku.com
+                            </h3>
+                            <span
+                                class="text-2xl group-hover:scale-110 transition-transform"
+                                >📚</span
+                            >
+                        </div>
+                        <p class="text-secondaryFg mb-4">
+                            Structured learning path from absolute beginner to
+                            expert with clear explanations and progressive
+                            difficulty.
+                        </p>
+                        <div class="flex items-center text-accent font-medium">
+                            <span>Visit Learn-Sudoku.com</span>
+                            <span
+                                class="ml-2 group-hover:translate-x-1 transition-transform"
+                                >→</span
+                            >
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-tertiaryBg p-12 rounded-2xl text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Practice?</h2>
+                <p class="text-lg text-secondaryFg mb-8 max-w-2xl mx-auto">
+                    Put these techniques into action with thousands of carefully
+                    crafted puzzles. Magic Mode will guide you through each step
+                    of your learning journey.
+                </p>
+                <a
+                    href="https://apps.apple.com/app/magic-sudoku/id6742204685"
+                    class="inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-4 px-10 rounded-full transition duration-300 text-lg"
+                >
+                    Start Learning with Magic Sudoku
+                </a>
+            </div>
+        </div>
+
+        <footer class="bg-tertiaryBg text-secondaryFg py-12">
+            <div include-html="/includes/footer.html"></div>
+        </footer>
+
+        <!-- Include the shared JavaScript -->
+        <script src="/js/includes.js"></script>
+    </body>
+</html>

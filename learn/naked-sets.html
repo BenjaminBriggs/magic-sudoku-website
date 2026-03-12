@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Naked Sets - Learn Sudoku Strategies - Magic Sudoku</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Favicons and App Icons -->
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/images/apple-touch-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/images/apple-touch-icon-120x120.png"
+        />
+
+        <meta
+            name="description"
+            content="Learn Naked Sets techniques in Sudoku - including Naked Pairs, Naked Triples, and Naked Quads. Master these intermediate pattern recognition strategies."
+        />
+        <meta
+            name="keywords"
+            content="naked sets, naked pairs, naked triples, naked quads, sudoku strategy, sudoku techniques, intermediate sudoku"
+        />
+        <link
+            rel="canonical"
+            href="https://magic-sudoku.com/learn/naked-sets.html"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://magic-sudoku.com/learn/naked-sets.html"
+        />
+        <meta
+            property="og:title"
+            content="Naked Sets - Learn Sudoku Strategies"
+        />
+        <meta
+            property="og:description"
+            content="Master Naked Sets techniques in Sudoku including Naked Pairs, Naked Triples, and Naked Quads."
+        />
+        <meta
+            property="og:image"
+            content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg"
+        />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:url"
+            content="https://magic-sudoku.com/learn/naked-sets.html"
+        />
+        <meta
+            name="twitter:title"
+            content="Naked Sets - Learn Sudoku Strategies"
+        />
+        <meta
+            name="twitter:description"
+            content="Master Naked Sets techniques in Sudoku including Naked Pairs, Naked Triples, and Naked Quads."
+        />
+        <meta
+            name="twitter:image"
+            content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            accent: {
+                                DEFAULT: "#526270",
+                                dark: "#BFD7C9",
+                            },
+                            primaryBg: {
+                                DEFAULT: "#F9F9F7",
+                                dark: "#424242",
+                            },
+                            secondaryBg: {
+                                DEFAULT: "#F1F1ED",
+                                dark: "#000000",
+                            },
+                            tertiaryBg: {
+                                DEFAULT: "#E5E3E0",
+                                dark: "#212121",
+                            },
+                            primaryFg: {
+                                DEFAULT: "#212121",
+                                dark: "#FEFEFF",
+                            },
+                            secondaryFg: {
+                                DEFAULT: "#797979",
+                                dark: "#EAEAEA",
+                            },
+                            highlight: {
+                                blue: {
+                                    DEFAULT: "#BFD7C9",
+                                    dark: "#BFD7C9",
+                                },
+                                green: {
+                                    DEFAULT: "#B4BD55",
+                                    dark: "#B4BD55",
+                                },
+                                orange: {
+                                    DEFAULT: "#F4C070",
+                                    dark: "#F4C070",
+                                },
+                                red: {
+                                    DEFAULT: "#F69B7B",
+                                    dark: "#F69B7B",
+                                },
+                            },
+                        },
+                        fontFamily: {
+                            rubik: ["Rubik", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+
+    <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+        <span include-html="/includes/header.html"></span>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <!-- Header -->
+            <div class="mb-12">
+                <nav class="flex items-center text-sm text-secondaryFg mb-4">
+                    <a href="/learn.html" class="hover:text-accent">Learn</a>
+                    <span class="mx-2">›</span>
+                    <span>Naked Sets</span>
+                </nav>
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-highlight-blue text-primaryFg px-3 py-1 rounded-full text-sm font-medium mr-4"
+                        >Intermediate</span
+                    >
+                    <h1 class="text-4xl font-bold">Naked Sets</h1>
+                </div>
+                <p class="text-xl text-secondaryFg max-w-3xl">
+                    When groups of cells contain the same limited candidates,
+                    you can eliminate those numbers from other cells in the same
+                    unit. Master these powerful intermediate elimination
+                    techniques.
+                </p>
+            </div>
+
+            <!-- Glossary Reference -->
+            <div class="bg-highlight-blue/10 p-4 rounded-lg mb-8 border border-highlight-blue/20">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-lg">📚</span>
+                        <div>
+                            <p class="font-medium text-sm">Unfamiliar with Sudoku terminology?</p>
+                            <p class="text-sm text-secondaryFg">Visit our glossary to understand <em>candidates</em>, <em>elimination</em>, and other key terms.</p>
+                        </div>
+                    </div>
+                    <a href="/learn/glossary.html" class="text-accent hover:underline text-sm font-medium whitespace-nowrap">
+                        View Glossary →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <div class="bg-primaryBg p-8 rounded-xl mb-12">
+                <h2 class="text-2xl font-bold mb-4">What Are Naked Sets?</h2>
+                <p class="text-lg text-secondaryFg mb-6">
+                    Naked Sets occur when a group of cells (2, 3, or 4) in the
+                    same unit contain only the same limited set of candidates.
+                    Since these numbers must go in these cells, they can be
+                    eliminated from all other cells in that unit.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-highlight-blue/20 p-4 rounded-lg">
+                        <h3 class="font-bold mb-2">Naked Pairs</h3>
+                        <p class="text-sm text-secondaryFg">
+                            Two cells with the same two candidates
+                        </p>
+                    </div>
+                    <div class="bg-highlight-orange/20 p-4 rounded-lg">
+                        <h3 class="font-bold mb-2">Naked Triples</h3>
+                        <p class="text-sm text-secondaryFg">
+                            Three cells sharing the same three candidates
+                        </p>
+                    </div>
+                    <div class="bg-highlight-red/20 p-4 rounded-lg">
+                        <h3 class="font-bold mb-2">Naked Quads</h3>
+                        <p class="text-sm text-secondaryFg">
+                            Four cells containing the same four candidates
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Naked Pairs Examples -->
+            <div class="mb-16">
+                <div class="bg-primaryBg rounded-xl p-8 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold">Examples</h3>
+                        <div class="flex items-center gap-4">
+                            <div class="flex gap-1" id="pairs-indicators">
+                                <button
+                                    class="w-3 h-3 rounded-full bg-accent"
+                                    data-step="0"
+                                ></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-secondaryFg/30"
+                                    data-step="1"
+                                ></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-secondaryFg/30"
+                                    data-step="2"
+                                ></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-secondaryFg/30"
+                                    data-step="3"
+                                ></button>
+                            </div>
+                            <button
+                                id="pairs-next"
+                                class="bg-accent text-primaryBg px-4 py-2 rounded-lg font-medium hover:bg-highlight-blue transition-colors"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                    <div id="pairs-carousel" class="text-center">
+                        <div class="carousel-slide" data-step="0">
+                            <img
+                                src="/images/examples/naked-pairs-step1.png"
+                                alt="Naked Pairs - Initial State"
+                                class="w-full max-w-md mx-auto mb-4"
+                            />
+                            <h4 class="text-lg font-bold mb-2">
+                                Identifying the Pattern
+                            </h4>
+                            <p class="text-secondaryFg">
+                                Look for two cells in the same unit that contain
+                                exactly the same two candidates. In this
+                                example, these cells both contain only
+                                candidates 1 and 8.
+                            </p>
+                        </div>
+                        <div class="carousel-slide hidden" data-step="1">
+                            <img
+                                src="/images/examples/naked-pairs-step2.png"
+                                alt="Naked Pairs - Pattern Highlighted"
+                                class="w-full max-w-md mx-auto mb-4"
+                            />
+                            <h4 class="text-lg font-bold mb-2">
+                                Understanding the Logic
+                            </h4>
+                            <p class="text-secondaryFg">
+                                Since these two cells can only contain 1 and 8,
+                                and there are exactly two cells, each number
+                                must go in one of these cells. This means 1 and
+                                8 cannot appear anywhere else in that row.
+                            </p>
+                        </div>
+                        <div class="carousel-slide hidden" data-step="2">
+                            <img
+                                src="/images/examples/naked-pairs-step3.png"
+                                alt="Naked Pairs - Candidates to Remove"
+                                class="w-full max-w-md mx-auto mb-4"
+                            />
+                            <h4 class="text-lg font-bold mb-2">
+                                Candidates to Remove
+                            </h4>
+                            <p class="text-secondaryFg">
+                                All other cells in row 1 that contain candidates
+                                1 or 6 can have these numbers eliminated. The
+                                highlighted candidates show what will be
+                                removed.
+                            </p>
+                        </div>
+                        <div class="carousel-slide hidden" data-step="3">
+                            <img
+                                src="/images/examples/naked-pairs-step4.png"
+                                alt="Naked Pairs - After Elimination"
+                                class="w-full max-w-md mx-auto mb-4"
+                            />
+                            <h4 class="text-lg font-bold mb-2">
+                                After Elimination
+                            </h4>
+                            <p class="text-secondaryFg">
+                                After removing candidates 1 and 6 from other
+                                cells in the row, new solving opportunities may
+                                emerge. Notice how some cells now have fewer
+                                candidates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How Larger Sets Work -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">
+                        How Larger Sets Work
+                    </h2>
+                    <p class="text-lg text-secondaryFg mb-6">
+                        The same principle applies to larger naked sets - the
+                        key is that the number of cells equals the number of
+                        candidates they collectively contain.
+                    </p>
+
+                    <!-- Worked Naked Triple Example -->
+                    <div class="bg-highlight-orange/10 p-8 rounded-2xl border border-highlight-orange/20 mb-8">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <span class="w-8 h-8 bg-highlight-orange rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">📐</span>
+                            Worked Example: Naked Triple
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div class="bg-primaryBg p-6 rounded-xl">
+                                <h4 class="font-bold mb-3">Step 1: Identify the Pattern</h4>
+                                <p class="text-secondaryFg mb-4">In column 3, we have three cells with these candidates:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm font-mono bg-tertiaryBg p-4 rounded max-w-md">
+                                    <div class="text-center">
+                                        <div class="font-bold">R2C3</div>
+                                        <div class="text-highlight-orange-DEFAULT">{2, 5}</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="font-bold">R7C3</div>
+                                        <div class="text-highlight-orange-DEFAULT">{5, 8}</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="font-bold">R9C3</div>
+                                        <div class="text-highlight-orange-DEFAULT">{2, 8}</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-secondaryFg mt-3">
+                                    <strong>Key insight:</strong> These three cells collectively contain exactly three unique numbers: {2, 5, 8}
+                                </p>
+                            </div>
+
+                            <div class="bg-primaryBg p-6 rounded-xl">
+                                <h4 class="font-bold mb-3">Step 2: Apply the Logic</h4>
+                                <p class="text-secondaryFg mb-3">
+                                    Since we have 3 cells that can only contain the numbers {2, 5, 8}, these three numbers must be distributed among these three cells:
+                                </p>
+                                <ul class="list-disc list-inside text-sm text-secondaryFg space-y-1 ml-4">
+                                    <li>R2C3 will be either 2 or 5</li>
+                                    <li>R7C3 will be either 5 or 8</li>
+                                    <li>R9C3 will be either 2 or 8</li>
+                                </ul>
+                                <p class="text-sm text-secondaryFg mt-3">
+                                    <strong>Therefore:</strong> Numbers 2, 5, and 8 cannot appear anywhere else in column 3!
+                                </p>
+                            </div>
+
+                            <div class="bg-primaryBg p-6 rounded-xl">
+                                <h4 class="font-bold mb-3">Step 3: Eliminate Candidates</h4>
+                                <p class="text-secondaryFg mb-3">Remove candidates 2, 5, and 8 from all other cells in column 3:</p>
+                                <div class="text-sm bg-tertiaryBg p-4 rounded">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <strong>Before elimination:</strong>
+                                            <div class="font-mono text-xs mt-2 space-y-1">
+                                                <div>R1C3: {1, 3, 5, 7}</div>
+                                                <div>R4C3: {2, 4, 6}</div>
+                                                <div>R6C3: {1, 2, 8, 9}</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <strong>After elimination:</strong>
+                                            <div class="font-mono text-xs mt-2 space-y-1">
+                                                <div>R1C3: {1, 3, 7}</div>
+                                                <div>R4C3: {4, 6}</div>
+                                                <div>R6C3: {1, 9}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-secondaryFg mt-3">
+                                    <strong>Result:</strong> R4C3 now becomes a naked pair {4, 6}, creating even more elimination opportunities!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-highlight-orange/20 p-6 rounded-xl">
+                            <h3 class="text-lg font-bold mb-3">
+                                Naked Triples
+                            </h3>
+                            <p class="text-secondaryFg mb-3">
+                                Three cells sharing exactly three candidates
+                                (like 2, 5, 8). Each cell might contain
+                                different combinations:
+                            </p>
+                            <div
+                                class="text-sm font-mono bg-primaryBg p-3 rounded"
+                            >
+                                Cell A: {2,5}<br />
+                                Cell B: {5,8}<br />
+                                Cell C: {2,8}
+                            </div>
+                        </div>
+
+                        <div class="bg-highlight-red/20 p-6 rounded-xl">
+                            <h3 class="text-lg font-bold mb-3">Naked Quads</h3>
+                            <p class="text-secondaryFg mb-3">
+                                Four cells containing exactly four candidates
+                                (like 1, 4, 6, 9). More complex but same logic:
+                            </p>
+                            <div
+                                class="text-sm font-mono bg-primaryBg p-3 rounded"
+                            >
+                                Cell A: {1,4}<br />
+                                Cell B: {4,6,9}<br />
+                                Cell C: {1,6}<br />
+                                Cell D: {1,9}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Tips -->
+            <div class="bg-tertiaryBg p-8 rounded-xl mb-12">
+                <h2 class="text-2xl font-bold mb-6">Key Tips for Naked Sets</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 text-accent">
+                            Recognition Patterns
+                        </h3>
+                        <ul class="space-y-2 text-secondaryFg">
+                            <li>
+                                • Look for cells with very few candidates (2-4)
+                            </li>
+                            <li>
+                                • Check if multiple cells share the same
+                                candidates
+                            </li>
+                            <li>
+                                • Count the total unique candidates across the
+                                cells
+                            </li>
+                            <li>
+                                • The number of cells should equal the number of
+                                candidates
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 text-accent">
+                            Application Strategy
+                        </h3>
+                        <ul class="space-y-2 text-secondaryFg">
+                            <li>
+                                • Start with naked pairs - they're easiest to
+                                spot
+                            </li>
+                            <li>
+                                • Focus on units with many candidates filled in
+                            </li>
+                            <li>
+                                • Check all three unit types: rows, columns, and
+                                boxes
+                            </li>
+                            <li>• Apply eliminations immediately when found</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="bg-tertiaryBg p-12 rounded-2xl text-center">
+                <h2 class="text-3xl font-bold mb-4">Master Naked Sets</h2>
+                <p class="text-lg text-secondaryFg mb-8 max-w-2xl mx-auto">
+                    Practice identifying and applying naked sets in Magic
+                    Sudoku. The app will highlight these patterns and guide you
+                    through the elimination process.
+                </p>
+                <a
+                    href="https://apps.apple.com/app/magic-sudoku/id6742204685"
+                    class="inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-4 px-10 rounded-full transition duration-300 text-lg"
+                >
+                    Practice with Magic Sudoku
+                </a>
+            </div>
+        </div>
+
+        <footer class="bg-tertiaryBg text-secondaryFg py-12">
+            <div include-html="/includes/footer.html"></div>
+        </footer>
+
+        <!-- Include the shared JavaScript -->
+        <script src="/js/includes.js"></script>
+
+        <script>
+            function initCarousel(carouselId, nextButtonId, indicatorClass) {
+                const carousel = document.getElementById(carouselId);
+                const nextButton = document.getElementById(nextButtonId);
+                const indicators = document.querySelectorAll(
+                    `#${indicatorClass} button`,
+                );
+                const slides = carousel.querySelectorAll(".carousel-slide");
+                let currentStep = 0;
+                const totalSteps = slides.length;
+
+                function updateCarousel() {
+                    slides.forEach((slide, index) => {
+                        if (index === currentStep) {
+                            slide.classList.remove("hidden");
+                        } else {
+                            slide.classList.add("hidden");
+                        }
+                    });
+
+                    indicators.forEach((indicator, index) => {
+                        if (index === currentStep) {
+                            indicator.classList.remove("bg-secondaryFg/30");
+                            indicator.classList.add("bg-accent");
+                        } else {
+                            indicator.classList.remove("bg-accent");
+                            indicator.classList.add("bg-secondaryFg/30");
+                        }
+                    });
+
+                    if (currentStep === totalSteps - 1) {
+                        nextButton.textContent = "Restart";
+                    } else {
+                        nextButton.textContent = "Next";
+                    }
+                }
+
+                nextButton.addEventListener("click", () => {
+                    if (currentStep === totalSteps - 1) {
+                        currentStep = 0;
+                    } else {
+                        currentStep++;
+                    }
+                    updateCarousel();
+                });
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener("click", () => {
+                        currentStep = index;
+                        updateCarousel();
+                    });
+                });
+
+                updateCarousel();
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                initCarousel(
+                    "pairs-carousel",
+                    "pairs-next",
+                    "pairs-indicators",
+                );
+            });
+        </script>
+    </body>
+</html>

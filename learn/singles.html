@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Singles - Learn Sudoku Strategies - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques. Learn when and how to apply these essential strategies.">
+  <meta name="keywords" content="naked singles, hidden singles, sudoku basics, sudoku techniques, beginner sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/singles.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/singles.html">
+  <meta property="og:title" content="Basic Singles - Essential Sudoku Techniques">
+  <meta property="og:description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/singles.html">
+  <meta name="twitter:title" content="Basic Singles - Essential Sudoku Techniques">
+  <meta name="twitter:description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              DEFAULT: '#526270',
+              dark: '#BFD7C9'
+            },
+            primaryBg: {
+              DEFAULT: '#F9F9F7',
+              dark: '#424242'
+            },
+            secondaryBg: {
+              DEFAULT: '#F1F1ED',
+              dark: '#000000'
+            },
+            tertiaryBg: {
+              DEFAULT: '#E5E3E0',
+              dark: '#212121'
+            },
+            primaryFg: {
+              DEFAULT: '#212121',
+              dark: '#FEFEFF'
+            },
+            secondaryFg: {
+              DEFAULT: '#797979',
+              dark: '#EAEAEA'
+            },
+            highlight: {
+              blue: {
+                DEFAULT: '#BFD7C9',
+                dark: '#BFD7C9'
+              },
+              green: {
+                DEFAULT: '#B4BD55',
+                dark: '#B4BD55'
+              },
+              orange: {
+                DEFAULT: '#F4C070',
+                dark: '#F4C070'
+              },
+              red: {
+                DEFAULT: '#F69B7B',
+                dark: '#F69B7B'
+              }
+            }
+          },
+          fontFamily: {
+            'rubik': ['Rubik', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <span include-html="/includes/header.html"></span>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <ol class="flex items-center space-x-2 text-sm text-secondaryFg">
+        <li><a href="/learn.html" class="hover:text-accent transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Basic Singles</li>
+      </ol>
+    </nav>
+
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="bg-highlight-green text-primaryFg px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+        <h1 class="text-3xl font-bold">Basic Singles</h1>
+      </div>
+      <p class="text-lg text-secondaryFg">The foundation of all Sudoku solving. Master these two essential techniques and you'll be able to solve many easy and medium puzzles.</p>
+    </div>
+
+    <!-- Glossary Reference -->
+    <div class="bg-highlight-blue/10 p-4 rounded-lg mb-8 border border-highlight-blue/20">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-lg">📚</span>
+          <div>
+            <p class="font-medium text-sm">New to Sudoku terminology?</p>
+            <p class="text-sm text-secondaryFg">Check our glossary for definitions of <em>candidates</em>, <em>houses</em>, and other key terms.</p>
+          </div>
+        </div>
+        <a href="/learn/glossary.html" class="text-accent hover:underline text-sm font-medium whitespace-nowrap">
+          View Glossary →
+        </a>
+      </div>
+    </div>
+
+    <!-- Naked Singles -->
+    <div class="mb-16">
+      <div class="bg-gradient-to-br from-highlight-blue/10 to-highlight-blue/5 p-8 rounded-2xl border border-highlight-blue/20 mb-8">
+        <h2 class="text-2xl font-bold mb-4 flex items-center">
+          <span class="w-8 h-8 bg-highlight-blue rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">1</span>
+          Naked Singles
+        </h2>
+        <p class="text-lg mb-6">A naked single occurs when a cell has only one possible candidate remaining. This is the most basic and important solving technique.</p>
+
+        <div class="bg-primaryBg p-6 rounded-xl mb-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-bold">Example: Naked Single in Action</h3>
+
+            <!-- Page Controls -->
+            <div class="flex items-center gap-4">
+              <!-- Step indicators -->
+              <div class="flex gap-2">
+                <button class="step-indicator active w-3 h-3 rounded-full bg-highlight-blue" data-step="1"></button>
+                <button class="step-indicator w-3 h-3 rounded-full bg-tertiaryBg" data-step="2"></button>
+                <button class="step-indicator w-3 h-3 rounded-full bg-tertiaryBg" data-step="3"></button>
+              </div>
+
+              <button id="naked-next" class="px-4 py-2 bg-accent hover:bg-highlight-blue text-white text-sm rounded-lg transition-colors">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- Carousel Container -->
+          <div class="relative">
+            <!-- Carousel Content -->
+            <div id="naked-single-carousel" class="overflow-hidden rounded-lg">
+              <!-- Step 1 -->
+              <div class="carousel-slide active" data-step="1">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/naked-single-step1.png" alt="Naked Single Step 1" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-blue rounded-full flex items-center justify-center text-white text-sm font-bold">1</span>
+                      <h4 class="font-bold">Cell Identification</h4>
+                    </div>
+                    <p class="font-medium mb-2">"This cell only has one candidate"</p>
+                    <p class="text-sm text-secondaryFg">Magic Sudoku highlights the cell that can only contain one number based on the current pencil marks.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="carousel-slide" data-step="2">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/naked-single-step2.png" alt="Naked Single Step 2" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-blue rounded-full flex items-center justify-center text-white text-sm font-bold">2</span>
+                      <h4 class="font-bold">Constraint Analysis</h4>
+                    </div>
+                    <p class="font-medium mb-2">"We can rule out every other number by looking at the row, column, or box"</p>
+                    <p class="text-sm text-secondaryFg">Shows you exactly which placed numbers eliminate the other possibilities, leaving only one valid option.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="carousel-slide" data-step="3">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/naked-single-step3.png" alt="Naked Single Step 3" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-white text-sm font-bold">3</span>
+                      <h4 class="font-bold">Solution</h4>
+                    </div>
+                    <p class="font-medium mb-2">"Therefore, this cell must be [number]"</p>
+                    <p class="text-sm text-secondaryFg">Places the number and automatically updates pencil marks throughout the grid.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bg-tertiaryBg p-6 rounded-xl">
+          <h3 class="font-bold mb-3">When to Use:</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-blue rounded-full mt-2 mr-3"></span>
+              <span>Look for cells with only one <em>candidate</em> remaining</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-blue rounded-full mt-2 mr-3"></span>
+              <span>Check cells where 8 out of 9 numbers are already placed in the same <em>house</em> (row, column, or box)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-blue rounded-full mt-2 mr-3"></span>
+              <span>Always start with this technique—it's the most straightforward</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-highlight-blue/10 p-4 rounded-lg mt-6 border border-highlight-blue/20">
+          <div class="flex items-start gap-3">
+            <span class="text-lg">💡</span>
+            <div>
+              <p class="font-medium text-sm">Vocabulary Tip</p>
+              <p class="text-sm text-secondaryFg">Notice how we use <em>candidates</em> and <em>houses</em>? These key terms from our glossary above help describe exactly what's happening in each technique. Familiarizing yourself with these terms makes learning advanced strategies much easier!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden Singles -->
+    <div class="mb-16">
+      <div class="bg-gradient-to-br from-highlight-green/10 to-highlight-green/5 p-8 rounded-2xl border border-highlight-green/20 mb-8">
+        <h2 class="text-2xl font-bold mb-4 flex items-center">
+          <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-primaryFg font-bold text-sm mr-3">2</span>
+          Hidden Singles
+        </h2>
+        <p class="text-lg mb-6">A hidden single occurs when a number can only go in one place within a row, column, or box, even if that cell has multiple candidates.</p>
+
+        <div class="bg-primaryBg p-6 rounded-xl mb-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-bold">Example: Hidden Single in Action</h3>
+
+            <!-- Page Controls -->
+            <div class="flex items-center gap-4">
+              <!-- Step indicators -->
+              <div class="flex gap-2">
+                <button class="step-indicator-hidden active w-3 h-3 rounded-full bg-highlight-green" data-step="1"></button>
+                <button class="step-indicator-hidden w-3 h-3 rounded-full bg-tertiaryBg" data-step="2"></button>
+                <button class="step-indicator-hidden w-3 h-3 rounded-full bg-tertiaryBg" data-step="3"></button>
+                <button class="step-indicator-hidden w-3 h-3 rounded-full bg-tertiaryBg" data-step="4"></button>
+              </div>
+
+              <button id="hidden-next" class="px-4 py-2 bg-accent hover:bg-highlight-blue text-white text-sm rounded-lg transition-colors">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- Carousel Container -->
+          <div class="relative">
+            <!-- Carousel Content -->
+            <div id="hidden-single-carousel" class="overflow-hidden rounded-lg">
+              <!-- Step 1 -->
+              <div class="carousel-slide active" data-step="1">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/hidden-single-step1.png" alt="Hidden Single Step 1" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-white text-sm font-bold">1</span>
+                      <h4 class="font-bold">Missing Number</h4>
+                    </div>
+                    <p class="font-medium mb-2">"We are missing a 9 in this row"</p>
+                    <p class="text-sm text-secondaryFg">Magic Sudoku highlights the entire unit that needs the missing number.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="carousel-slide" data-step="2">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/hidden-single-step2.png" alt="Hidden Single Step 2" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-white text-sm font-bold">2</span>
+                      <h4 class="font-bold">Restriction Analysis</h4>
+                    </div>
+                    <p class="font-medium mb-2">"These 9's affect this row"</p>
+                    <p class="text-sm text-secondaryFg">Shows which placed numbers restrict where the missing number can go.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="carousel-slide" data-step="3">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/hidden-single-step3.png" alt="Hidden Single Step 3" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-orange rounded-full flex items-center justify-center text-white text-sm font-bold">3</span>
+                      <h4 class="font-bold">Elimination</h4>
+                    </div>
+                    <p class="font-medium mb-2">"So, these cells cannot be 9"</p>
+                    <p class="text-sm text-secondaryFg">Eliminates the impossible locations, leaving only one option.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="carousel-slide" data-step="4">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                  <div class="md:w-1/2">
+                    <img src="/images/examples/hidden-single-step4.png" alt="Hidden Single Step 4" class="w-full">
+                  </div>
+                  <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="w-8 h-8 bg-highlight-green rounded-full flex items-center justify-center text-white text-sm font-bold">4</span>
+                      <h4 class="font-bold">Solution</h4>
+                    </div>
+                    <p class="font-medium mb-2">"Therefore, this cell must be 9"</p>
+                    <p class="text-sm text-secondaryFg">Places the number in the only remaining valid position.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bg-tertiaryBg p-6 rounded-xl">
+          <h3 class="font-bold mb-3">When to Use:</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-green rounded-full mt-2 mr-3"></span>
+              <span>Scan each row, column, and box for missing numbers</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-green rounded-full mt-2 mr-3"></span>
+              <span>Check if a missing number can only fit in one cell of that unit</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-highlight-green rounded-full mt-2 mr-3"></span>
+              <span>Often more powerful than naked singles in advanced puzzles</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategy Comparison -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Key Differences</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-highlight-blue-DEFAULT">Naked Singles</h3>
+          <ul class="space-y-2 text-sm">
+            <li>• Focus on individual cells</li>
+            <li>• Look for cells with one candidate</li>
+            <li>• Usually easier to spot</li>
+            <li>• Bottom-up approach</li>
+          </ul>
+        </div>
+        <div class="bg-primaryBg p-6 rounded-xl">
+          <h3 class="text-lg font-bold mb-3 text-highlight-green-DEFAULT">Hidden Singles</h3>
+          <ul class="space-y-2 text-sm">
+            <li>• Focus on missing numbers</li>
+            <li>• Look for numbers with one location</li>
+            <li>• Requires systematic scanning</li>
+            <li>• Top-down approach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Practice Section -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Ready to Practice?</h2>
+      <p class="text-lg text-secondaryFg mb-8">These two techniques form the foundation of all Sudoku solving. Master them, and you'll be ready to tackle more advanced strategies.</p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-6 rounded-full transition duration-300 text-center">
+          Practice with Magic Sudoku
+        </a>
+        <a href="/learn.html" class="inline-block bg-tertiaryBg hover:bg-primaryBg text-primaryFg font-medium py-3 px-6 rounded-full transition duration-300 text-center">
+          ← Back to All Strategies
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="bg-primaryBg p-6 rounded-xl">
+      <h3 class="font-bold mb-4">Next Steps</h3>
+      <p class="text-secondaryFg mb-4">Once you've mastered basic singles, you're ready for intermediate techniques:</p>
+      <div class="space-y-2">
+        <a href="/learn/locked-candidates.html" class="block text-accent hover:underline">→ Locked Candidates (Pointing & Claiming)</a>
+        <a href="/learn/naked-sets.html" class="block text-accent hover:underline">→ Naked Pairs & Sets</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+
+  <!-- Carousel Functionality -->
+  <script>
+    // Carousel functionality
+    function initCarousel(carouselId, nextButtonId, indicatorClass) {
+      const carousel = document.getElementById(carouselId);
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const nextButton = document.getElementById(nextButtonId);
+      const indicators = document.querySelectorAll(`.${indicatorClass}`);
+
+      let currentStep = 1;
+      const totalSteps = slides.length;
+
+      function updateCarousel() {
+        // Hide all slides
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+          slide.style.display = 'none';
+        });
+
+        // Show current slide
+        const currentSlide = carousel.querySelector(`[data-step="${currentStep}"]`);
+        if (currentSlide) {
+          currentSlide.classList.add('active');
+          currentSlide.style.display = 'block';
+        }
+
+        // Update indicators
+        indicators.forEach(indicator => {
+          indicator.classList.remove('active');
+          if (indicator.classList.contains('bg-highlight-blue')) {
+            indicator.classList.remove('bg-highlight-blue');
+            indicator.classList.add('bg-tertiaryBg');
+          } else if (indicator.classList.contains('bg-highlight-green')) {
+            indicator.classList.remove('bg-highlight-green');
+            indicator.classList.add('bg-tertiaryBg');
+          }
+        });
+
+        const currentIndicator = Array.from(indicators).find(indicator =>
+          parseInt(indicator.dataset.step) === currentStep
+        );
+        if (currentIndicator) {
+          currentIndicator.classList.add('active');
+          currentIndicator.classList.remove('bg-tertiaryBg');
+          if (indicatorClass === 'step-indicator') {
+            currentIndicator.classList.add('bg-highlight-blue');
+          } else {
+            currentIndicator.classList.add('bg-highlight-green');
+          }
+        }
+
+        // Update button text and behavior
+        if (currentStep === totalSteps) {
+          nextButton.textContent = 'Restart';
+        } else {
+          nextButton.textContent = 'Next';
+        }
+      }
+
+      // Next/Restart button click
+      nextButton.addEventListener('click', () => {
+        if (currentStep === totalSteps) {
+          // Restart - go to first step
+          currentStep = 1;
+        } else {
+          // Next step
+          currentStep++;
+        }
+        updateCarousel();
+      });
+
+      // Indicator clicks
+      indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+          currentStep = parseInt(indicator.dataset.step);
+          updateCarousel();
+        });
+      });
+
+      // Initialize
+      updateCarousel();
+    }
+
+    // Initialize both carousels when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      initCarousel('naked-single-carousel', 'naked-next', 'step-indicator');
+      initCarousel('hidden-single-carousel', 'hidden-next', 'step-indicator-hidden');
+    });
+  </script>
+
+  <style>
+    .carousel-slide {
+      display: none;
+    }
+    .carousel-slide.active {
+      display: block;
+    }
+    .step-indicator, .step-indicator-hidden {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .step-indicator:hover, .step-indicator-hidden:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</body>
+
+</html>

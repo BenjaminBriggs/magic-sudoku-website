@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Favicons and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
     <meta name="apple-itunes-app" content="app-id=6742204685, app-argument=magic-sudoku://puzzle">
 
     <meta name="description" content="Try this Sudoku puzzle in Magic Sudoku - the elegant way to play on iOS">
@@ -165,13 +173,7 @@
 </head>
 
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
-    <header class="bg-highlight-blue text-primaryFg sticky top-0 z-10 shadow-md">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex justify-between items-center py-4">
-                <a href="/" class="text-2xl font-bold text-primaryBg hover:text-accent transition">Magic Sudoku</a>
-            </nav>
-        </div>
-    </header>
+    <span include-html="/includes/header.html"></span>
 
     <!-- Puzzle content -->
     <section class="py-12 md:py-16">
@@ -191,10 +193,11 @@
     </section>
 
     <footer class="bg-tertiaryBg text-secondaryFg py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2025 Magic Sudoku. All rights reserved.</p>
-        </div>
+        <div include-html="/includes/footer.html"></div>
     </footer>
+
+    <!-- Include the shared JavaScript -->
+    <script src="/js/includes.js"></script>
 
     <script>
         // Get the puzzle ID from the URL query parameter
@@ -203,16 +206,11 @@
             const urlParams = new URLSearchParams(window.location.search);
             let puzzleId = urlParams.get('id');
 
-            // Debug - log what we found
-            console.log("URL search params:", window.location.search);
-            console.log("Puzzle ID from params:", puzzleId);
-
             // If no puzzle ID in params, check if it's in the path (for direct visits)
             if (!puzzleId) {
                 const path = window.location.pathname;
                 if (path.startsWith('/puzzle/')) {
                     puzzleId = path.split('/puzzle/')[1];
-                    console.log("Puzzle ID from path:", puzzleId);
                 }
             }
 
@@ -232,7 +230,6 @@
                 document.head.appendChild(metaTag);
             } else {
                 // If no puzzle ID is provided, redirect to the home page
-                console.log("No puzzle ID found, redirecting to home");
                 window.location.href = "/";
 
                 const metaTag = document.createElement('meta');
