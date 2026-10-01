@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Magic Sudoku</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              DEFAULT: '#526270',
+              dark: '#BFD7C9'
+            },
+            primaryBg: {
+              DEFAULT: '#F9F9F7',
+              dark: '#424242'
+            },
+            secondaryBg: {
+              DEFAULT: '#F1F1ED',
+              dark: '#000000'
+            },
+            tertiaryBg: {
+              DEFAULT: '#E5E3E0',
+              dark: '#212121'
+            },
+            primaryFg: {
+              DEFAULT: '#212121',
+              dark: '#FEFEFF'
+            },
+            secondaryFg: {
+              DEFAULT: '#797979',
+              dark: '#EAEAEA'
+            },
+            highlight: {
+              blue: {
+                DEFAULT: '#BFD7C9',
+                dark: '#BFD7C9'
+              }
+            }
+          },
+          fontFamily: {
+            'rubik': ['Rubik', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <span include-html="/includes/header.html"></span>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <h1 class="text-4xl font-bold mb-4">Page Not Found</h1>
+    <p class="text-xl text-secondaryFg mb-8">This page doesn't exist. It may have moved, or the link may be mistyped.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/" class="inline-block bg-accent hover:bg-highlight-blue hover:text-primaryFg text-primaryBg font-bold py-3 px-6 rounded-full transition duration-300">Go to Home</a>
+      <a href="/learn.html" class="inline-block bg-tertiaryBg hover:bg-primaryBg text-primaryFg font-medium py-3 px-6 rounded-full transition duration-300">Learn Sudoku</a>
+    </div>
+  </div>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+</body>
+
+</html>

@@ -4,44 +4,64 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-This is a static website for Magic Sudoku, an iOS Sudoku app. The site uses:
+Static marketing website for Magic Sudoku, an iOS/iPad/Mac/Vision Pro Sudoku app. No build process — edit HTML/CSS/JS directly.
 
-- **Static HTML pages** with shared components via includes
-- **TailwindCSS** (CDN) for styling with custom color theme matching the iOS app
-- **Vanilla JavaScript** for interactive functionality
-- **Netlify** for hosting with redirect rules
+- **TailwindCSS** via CDN with custom color theme matching the iOS app
+- **Vanilla JavaScript** for interactivity
+- **Netlify** for hosting
+- **Client-side includes** (`js/includes.js`) — elements with `include-html="/includes/foo.html"` attributes get their content fetched and injected at DOMContentLoaded
 
-### Key Files
+### Pages
 
-- `index.html` - Main landing page showcasing app features
-- `puzzle.html` - Interactive puzzle viewer with deep linking to iOS app
-- `js/includes.js` - Client-side HTML partial inclusion system
-- `includes/footer.html` - Shared footer component
-- `netlify.toml` - Netlify configuration with redirect rules
-- `_redirects` - Additional Netlify redirect configuration
+- `index.html` — Landing page with feature bento grid
+- `puzzle.html` — Puzzle viewer with deep linking to iOS app via `magic-sudoku://puzzle/{id}`
+- `learn.html` — Hub linking to technique guides in `learn/` subdirectory
+- `learn/*.html` — Individual technique pages with step-by-step image carousels
+- `privacy.html`, `support.html` — Standard pages
+
+### Shared Components
+
+Header and footer are in `includes/` and loaded client-side. Every page must include:
+```html
+<span include-html="/includes/header.html"></span>
+<!-- page content -->
+<footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+</footer>
+<script src="/js/includes.js"></script>
+```
 
 ### Color System
 
-The site uses a comprehensive color system that mirrors the iOS app's design:
-- Accent colors, grid colors, highlight colors (blue, green, orange, red, yellow)
-- Background colors (primary, secondary, tertiary)
-- Foreground colors and input colors (pen, pencil)
-- Dark mode variants for all colors
+Tailwind config is defined inline in each page's `<head>`. Colors mirror the iOS app's asset catalog:
+- `accent`, `primaryBg`, `secondaryBg`, `tertiaryBg`, `primaryFg`, `secondaryFg`
+- `highlight.blue`, `highlight.green`, `highlight.orange`, `highlight.red`, `highlight.yellow`
+- `index.html` has the most complete config including `cellPrimary`, `cellAlternate`, `pen`, `pencil`
 
-### Routing
+### Routing (Netlify)
 
-- `/puzzle/*` routes to `puzzle.html?id=:splat` for puzzle deep linking
-- SPA fallback routes everything else to `index.html`
-- `.well-known/*` files served directly for app association
+- `/.well-known/*` — served directly (app association files)
+- `/puzzle/*` — rewritten to `puzzle.html?id=:splat`
+- `/*` — SPA fallback to `index.html`
+
+Configured in both `netlify.toml` and `_redirects` (Netlify uses both).
 
 ## Development
 
-No build process required - this is a static site using CDN resources. Simply edit HTML/CSS/JS files directly.
+```bash
+python3 -m http.server 8080
+```
 
-### Testing Locally
+Note: the include system uses `fetch()`, so you need an HTTP server (not `file://`).
 
-Use any static file server (e.g., `python -m http.server` or VS Code Live Server).
+### App Store ID
 
-### Deployment
+`id6742204685` — used in App Store links and `apple-itunes-app` meta tags.
 
-Deployed automatically to Netlify when changes are pushed to the repository.
+### iOS App Repo
+
+The companion iOS app is at `../magic-sudoku`. Useful for referencing color assets, feature descriptions, and marketing copy.
+
+## Deployment
+
+Automatic via Netlify on push to repository.

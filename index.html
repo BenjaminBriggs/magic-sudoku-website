@@ -20,8 +20,8 @@
   <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
 
   <meta name="description"
-    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No ads, privacy-focused.">
-  <meta name="keywords" content="sudoku, puzzle game, iOS app, iPhone, iPad, magic mode, hints, sudoku solver, no ads, privacy">
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
+  <meta name="keywords" content="sudoku, puzzle game, iOS app, iPhone, iPad, magic mode, hints, sudoku solver, no tracking, privacy">
   <meta name="author" content="Magic Sudoku">
   <meta name="publisher" content="Magic Sudoku">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -32,7 +32,7 @@
   <meta property="og:url" content="https://magic-sudoku.com/">
   <meta property="og:title" content="Magic Sudoku - The Ultimate Sudoku App for iOS">
   <meta property="og:description"
-    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No ads, privacy-focused.">
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
   <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
   <meta property="og:site_name" content="Magic Sudoku">
   <meta property="og:locale" content="en_US">
@@ -43,7 +43,7 @@
   <meta name="twitter:url" content="https://magic-sudoku.com/">
   <meta name="twitter:title" content="Magic Sudoku - The Ultimate Sudoku App for iOS">
   <meta name="twitter:description"
-    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No ads, privacy-focused.">
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
   <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
 
   <!-- Apple-specific -->
@@ -152,24 +152,7 @@
       }
     }
   </script>
-  <style>
-    /* Define animation for App Store button */
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    .app-store-button:hover {
-      animation: pulse 2s infinite;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/site.css">
 </head>
 
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
@@ -181,16 +164,16 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row items-center">
           <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">The Best Sudoku Experience on iOS</h1>
-            <p class="text-xl text-secondaryFg mb-8">Enjoy beautiful puzzles, smart hints, and a delightful interface
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] text-balance mb-6">The Best Sudoku Experience on iOS</h1>
+            <p class="text-lg md:text-xl text-primaryFg/70 mb-9">Enjoy beautiful puzzles, smart hints, and a delightful interface
               designed for iPhone, iPad, Mac, and Vision Pro.</p>
             <a href="https://apps.apple.com/app/magic-sudoku/id6742204685"
-              class="app-store-button inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-8 rounded-full transition duration-300"
+              class="btn-primary px-8 py-3"
               id="download">Download on the App Store</a>
           </div>
           <div class="md:w-1/2 flex justify-center">
-            <div class="overflow-hidden max-w-xs md:max-w-sm">
-              <img src="/images/phone.png" alt="Magic Sudoku App Screenshot" class="w-full h-auto" />
+            <div class="overflow-hidden max-w-sm md:max-w-lg">
+              <img src="/images/hero-devices.png" alt="Magic Sudoku App Screenshot" class="w-full h-auto" />
             </div>
           </div>
         </div>
@@ -199,7 +182,7 @@
 
     <section class="py-16 md:py-24 bg-primaryBg" id="features">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Why Players Love Magic Sudoku</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16">Why Players Love Magic Sudoku</h2>
 
         <!-- Bento Box Grid Layout -->
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
@@ -233,7 +216,7 @@
             <img src="/images/feature-puzzles.png" alt="Easy to Expert Puzzles" class="w-full object-cover" />
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2">Easy to Expert Puzzles</h3>
-              <p class="text-primaryFg/80">Thousands of handcrafted puzzles across multiple difficulty levels to
+              <p class="text-primaryFg/80">Thousands of puzzles graded across multiple difficulty levels to
                 challenge and engage players at every stage.</p>
             </div>
           </div>
@@ -295,7 +278,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Native Experience</span>
           <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Dark Mode Support</span>
-          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">No Ads</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">No Intrusive Ads</span>
           <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Privacy Focused</span>
           <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Accessibility</span>
           <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Beautiful</span>
@@ -305,11 +288,12 @@
 
     <section class="py-16 md:py-24 bg-gradient-to-b from-secondaryBg to-primaryBg">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Solve Some Puzzles?</h2>
-        <p class="text-xl text-secondaryFg mb-8 max-w-2xl mx-auto">Download Magic Sudoku today and experience the most
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">Ready to Solve Some Puzzles?</h2>
+        <p class="text-lg md:text-xl text-primaryFg/70 mb-8 max-w-2xl mx-auto"
+          data-coming-soon="Magic Sudoku is coming soon: the most elegant way to solve Sudoku puzzles on your iOS device.">Download Magic Sudoku today and experience the most
           elegant way to solve Sudoku puzzles on your iOS device.</p>
         <a href="https://apps.apple.com/app/magic-sudoku/id6742204685"
-          class="app-store-button inline-block bg-highlight-green hover:bg-highlight-blue text-primaryBg font-bold py-3 px-8 rounded-full transition duration-300">Get
+          class="btn-primary px-8 py-3">Get
           Started</a>
       </div>
     </section>
@@ -321,6 +305,7 @@
 
   <!-- Include the shared JavaScript -->
   <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
 
   <!-- No redirects from the landing page - we'll let the Netlify redirect rules handle this -->
 </body>

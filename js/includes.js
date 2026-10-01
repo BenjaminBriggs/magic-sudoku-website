@@ -41,5 +41,8 @@ async function includeHTML() {
     }
   }
   
-  // Run the include function when the DOM is loaded
-  document.addEventListener('DOMContentLoaded', includeHTML);
+  // Run the include function when the DOM is loaded, then let other scripts know the partials are in place
+  document.addEventListener('DOMContentLoaded', async () => {
+    await includeHTML();
+    document.dispatchEvent(new Event('includes-loaded'));
+  });

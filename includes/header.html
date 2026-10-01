@@ -1,13 +1,16 @@
 <header class="sticky top-0 z-10 py-4">
   <div class="bg-white/20 backdrop-blur-sm rounded-full shadow-lg mx-4 sm:mx-6 lg:mx-8">
-    <nav class="flex justify-between items-center px-6 py-3">
+    <nav class="flex justify-between items-center gap-3 px-4 sm:px-6 py-3">
       <a href="/" class="inline-flex items-center gap-2 text-black hover:opacity-80 transition-opacity">
         <img src="/images/header-icon.png" alt="Magic Sudoku" class="w-6 h-6">
-        <span class="text-xl font-bold">Magic Sudoku</span>
+        <span class="text-base min-[400px]:text-lg sm:text-xl font-bold whitespace-nowrap max-[374px]:hidden">Magic Sudoku</span>
       </a>
-      <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="bg-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
-        Download
-      </a>
+      <div class="flex items-center gap-3 sm:gap-5">
+        <a href="/learn.html" class="text-sm font-medium text-black/70 hover:text-black transition-colors">Learn</a>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" data-coming-soon="Coming soon" class="bg-black text-white px-3 sm:px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap hover:bg-gray-800 transition-colors">
+          Download
+        </a>
+      </div>
     </nav>
   </div>
 </header>

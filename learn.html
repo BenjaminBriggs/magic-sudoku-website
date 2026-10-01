@@ -11,6 +11,9 @@
             rel="stylesheet"
         />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/js/tailwind-theme.js"></script>
+        <link rel="stylesheet" href="/css/site.css" />
+        <link rel="stylesheet" href="/css/learn.css" />
 
         <!-- Favicons and App Icons -->
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -86,258 +89,228 @@
             name="twitter:image"
             content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg"
         />
-
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            accent: {
-                                DEFAULT: "#526270",
-                                dark: "#BFD7C9",
-                            },
-                            primaryBg: {
-                                DEFAULT: "#F9F9F7",
-                                dark: "#424242",
-                            },
-                            secondaryBg: {
-                                DEFAULT: "#F1F1ED",
-                                dark: "#000000",
-                            },
-                            tertiaryBg: {
-                                DEFAULT: "#E5E3E0",
-                                dark: "#212121",
-                            },
-                            primaryFg: {
-                                DEFAULT: "#212121",
-                                dark: "#FEFEFF",
-                            },
-                            secondaryFg: {
-                                DEFAULT: "#797979",
-                                dark: "#EAEAEA",
-                            },
-                            highlight: {
-                                blue: {
-                                    DEFAULT: "#BFD7C9",
-                                    dark: "#BFD7C9",
-                                },
-                                green: {
-                                    DEFAULT: "#B4BD55",
-                                    dark: "#B4BD55",
-                                },
-                                orange: {
-                                    DEFAULT: "#F4C070",
-                                    dark: "#F4C070",
-                                },
-                                red: {
-                                    DEFAULT: "#F69B7B",
-                                    dark: "#F69B7B",
-                                },
-                            },
-                        },
-                        fontFamily: {
-                            rubik: ["Rubik", "sans-serif"],
-                        },
-                    },
-                },
-            };
-        </script>
     </head>
 
     <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+        <div class="board"></div>
         <span include-html="/includes/header.html"></span>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold mb-4">Learn Sudoku</h1>
-                <p class="text-xl text-secondaryFg max-w-3xl mx-auto">
-                    Master the art of logical reasoning with these essential
-                    solving techniques. Progress from beginner to expert at your
-                    own pace.
-                </p>
-            </div>
-
-            <!-- Glossary Link -->
-            <div class="bg-primaryBg p-6 rounded-xl mb-16 border-l-4 border-accent">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <span class="text-3xl">📚</span>
-                        <div>
-                            <h3 class="text-lg font-bold mb-1">Sudoku Glossary</h3>
-                            <p class="text-secondaryFg text-sm">Essential terms and definitions for all solving techniques</p>
-                        </div>
+        <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-24">
+            <!-- Hero -->
+            <section class="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-14 md:gap-12 items-center mb-24 md:mb-32">
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02]">
+                        Learn Sudoku, one technique at a time.
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl text-primaryFg/70 max-w-xl">
+                        Master the art of logical reasoning with these essential
+                        solving techniques. Progress from beginner to expert at
+                        your own pace.
+                    </p>
+                    <div class="mt-9 flex flex-wrap gap-3">
+                        <a href="/learn/how-to-play.html" class="btn-primary">Start with the Basics →</a>
+                        <a href="/learn/glossary.html" class="btn-glass">Browse the glossary</a>
                     </div>
-                    <a href="/learn/glossary.html" class="bg-accent hover:bg-highlight-blue text-primaryBg font-medium py-2 px-4 rounded-lg transition-colors">
-                        View Glossary →
+                </div>
+
+                <!-- A single box showing a naked single -->
+                <div class="relative mx-auto w-full max-w-[300px] md:max-w-[340px]">
+                    <div class="sudoku-box relative">
+                        <div class="given">5</div>
+                        <div><div class="pencil"><span>1</span><span></span><span>3</span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+                        <div class="given">9</div>
+                        <div><div class="pencil"><span>1</span><span></span><span>3</span><span>4</span><span></span><span></span><span></span><span></span><span></span></div></div>
+                        <div class="focus">
+                            <div class="pencil"><span></span><span></span><span></span><span></span><span></span><span></span><span>7</span><span></span><span></span></div>
+                            <span class="pen">7</span>
+                        </div>
+                        <div class="given">2</div>
+                        <div class="given">8</div>
+                        <div><div class="pencil"><span></span><span></span><span>3</span><span>4</span><span></span><span></span><span></span><span></span><span></span></div></div>
+                        <div class="given">6</div>
+                    </div>
+                    <div class="glass glass-strong absolute -bottom-14 -left-4 md:-left-14 rounded-2xl px-4 py-3 max-w-[15rem]">
+                        <p class="eyebrow mb-1">Naked single</p>
+                        <p class="text-sm font-medium">"This cell only has one candidate"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning path -->
+            <section class="mb-24 md:mb-32">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <a href="/learn/how-to-play.html" class="glass glass-hover group flex flex-col rounded-[28px] p-3">
+                        <div class="demo-board"
+                            data-givens="009010030050009000000004020901000702030000100280060000020300609000090000000157004"
+                            data-highlight="row:5"></div>
+                        <div class="flex flex-col flex-grow p-4 pt-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="cell-num cell-num-sm">1</span>
+                                <span class="badge"><span class="dot bg-highlight-green"></span>Beginner</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">How to Play</h3>
+                            <p class="text-primaryFg/70 flex-grow">
+                                The three rules of Sudoku, explained step by
+                                step for complete beginners.
+                            </p>
+                            <span class="mt-6 font-semibold">
+                                Start here
+                                <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
+                            </span>
+                        </div>
                     </a>
-                </div>
-            </div>
 
-            <!-- Beginner Strategies -->
-            <div class="mb-16">
-                <div class="flex items-center mb-8">
-                    <span
-                        class="bg-highlight-green text-primaryFg px-3 py-1 rounded-full text-sm font-medium mr-4"
-                        >Beginner</span
-                    >
-                    <h2 class="text-2xl font-bold">Essential Techniques</h2>
-                </div>
+                    <a href="/learn/singles.html" class="glass glass-hover group flex flex-col rounded-[28px] p-3">
+                        <div class="demo-board"
+                          data-givens="800000000400200008005090000000000010002106300600003497000530700790000002000600000"
+                          data-roles=".w..w..w..w..w..w..w..s..w..w..w.wwwpwwwwwwww.w..w.wsw.w..w..w..s..w..w..w..w..w."></div>
+                        <div class="flex flex-col flex-grow p-4 pt-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="cell-num cell-num-sm">2</span>
+                                <span class="badge"><span class="dot bg-highlight-green"></span>Beginner</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Basic Singles</h3>
+                            <p class="text-primaryFg/70 flex-grow">
+                                Master naked singles and hidden singles, the
+                                foundation of all Sudoku solving.
+                            </p>
+                            <span class="mt-6 font-semibold">
+                                Open lesson
+                                <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
+                            </span>
+                        </div>
+                    </a>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <a
-                        href="/learn/singles.html"
-                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-green"
-                    >
-                        <h3 class="text-xl font-bold mb-3">Basic Singles</h3>
-                        <p class="text-secondaryFg mb-4">
-                            Master naked singles and hidden singles - the
-                            foundation of all Sudoku solving. Essential for
-                            every player.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="inline-block bg-highlight-green/20 text-accent px-3 py-1 rounded-full text-sm font-medium"
-                                >Start Here</span
-                            >
-                            <span class="text-accent">Learn More →</span>
+                    <a href="/learn/locked-candidates.html" class="glass glass-hover group flex flex-col rounded-[28px] p-3">
+                        <div class="demo-board"
+                          data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+                          data-added="000000000000200000000000000000000000000000000000000000000000000000000000000000000"
+                          data-marks="1589|1458|14579||5789||159||1579|125689||12579||5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+                          data-roles=".........wwwpwwwww..............................................................."></div>
+                        <div class="flex flex-col flex-grow p-4 pt-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="cell-num cell-num-sm">3</span>
+                                <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Locked Candidates</h3>
+                            <p class="text-primaryFg/70 flex-grow">
+                                Pointing and claiming: use the intersection of
+                                boxes and lines to eliminate possibilities.
+                            </p>
+                            <span class="mt-6 font-semibold">
+                                Open lesson
+                                <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="/learn/naked-sets.html" class="glass glass-hover group flex flex-col rounded-[28px] p-3">
+                        <div class="demo-board"
+                          data-givens="004000700007400005000002300000093506000800072000000004000009000506070000012048000"
+                          data-marks="123689|235689||13569|13568|156||12689|189|123689|23689|||1368|16|12689|12689||1689|5689|1589|15679|1568|||14689|189|12478|2478|18|127||||18||13469|34569|1359||156|1456|19|||1236789|2356789|13589|12567|1256|1567|189|1389||3478|3478|38|12356|12356||12468|1234568|1378||3489||123||1|12489|123489|1389|379|||356|||69|3569|379"
+                          data-roles="...........................wwaw...a.............................................."></div>
+                        <div class="flex flex-col flex-grow p-4 pt-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="cell-num cell-num-sm">4</span>
+                                <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Naked Sets</h3>
+                            <p class="text-primaryFg/70 flex-grow">
+                                When groups of cells share the same limited
+                                candidates, clear those numbers from the rest of
+                                the row, column, or house.
+                            </p>
+                            <span class="mt-6 font-semibold">
+                                Open lesson
+                                <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
+                            </span>
                         </div>
                     </a>
                 </div>
-            </div>
+            </section>
 
-            <!-- Intermediate Strategies -->
-            <div class="mb-16">
-                <div class="flex items-center mb-8">
-                    <span
-                        class="bg-highlight-blue text-primaryFg px-3 py-1 rounded-full text-sm font-medium mr-4"
-                        >Intermediate</span
-                    >
-                    <h2 class="text-2xl font-bold">Pattern Recognition</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <a
-                        href="/learn/locked-candidates.html"
-                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-blue"
-                    >
-                        <h3 class="text-lg font-bold mb-3">
-                            Locked Candidates
-                        </h3>
-                        <p class="text-secondaryFg text-sm mb-4">
-                            Master pointing and claiming techniques that use the
-                            intersection of boxes and lines to eliminate
-                            possibilities.
+            <!-- Glossary -->
+            <section class="glass rounded-[32px] p-8 md:p-12 mb-24 md:mb-32">
+                <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+                    <div>
+                        <p class="eyebrow mb-3">Reference</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Sudoku Glossary</h2>
+                        <p class="text-primaryFg/70 mb-8">
+                            Essential terms and definitions for all solving
+                            techniques. Keep it open while you learn.
                         </p>
-                        <span class="text-accent text-sm">Learn More →</span>
-                    </a>
-
-                    <a
-                        href="/learn/naked-sets.html"
-                        class="block bg-primaryBg p-6 rounded-xl hover:shadow-lg transition-shadow border-2 border-transparent hover:border-highlight-blue"
-                    >
-                        <h3 class="text-lg font-bold mb-3">Naked Sets</h3>
-                        <p class="text-secondaryFg text-sm mb-4">
-                            When groups of cells contain the same limited
-                            candidates, eliminate those numbers from other cells
-                            in the unit.
-                        </p>
-                        <span class="text-accent text-sm">Learn More →</span>
-                    </a>
+                        <a href="/learn/glossary.html" class="btn-primary">View Glossary →</a>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <a href="/learn/glossary.html#house" class="chip">House</a>
+                        <a href="/learn/glossary.html#line" class="chip">Line</a>
+                        <a href="/learn/glossary.html#cell" class="chip">Cell</a>
+                        <a href="/learn/glossary.html#candidates" class="chip">Candidates</a>
+                        <a href="/learn/glossary.html#pencil-marks" class="chip">Pencil Marks</a>
+                        <a href="/learn/glossary.html#elimination" class="chip">Elimination</a>
+                        <a href="/learn/glossary.html#given" class="chip">Given</a>
+                        <a href="/learn/glossary.html#singles" class="chip">Singles</a>
+                        <a href="/learn/glossary.html#intersection" class="chip">Intersection</a>
+                        <a href="/learn/glossary.html#sets" class="chip">Sets</a>
+                        <a href="/learn/glossary.html#fish" class="chip">Fish Patterns</a>
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <!-- Learning Resources -->
-            <div class="mb-16">
-                <h2 class="text-2xl font-bold text-center mb-8">
-                    Want to Dive Deeper?
-                </h2>
-                <p
-                    class="text-lg text-secondaryFg text-center mb-8 max-w-3xl mx-auto"
-                >
-                    These fundamentals will get you started, but there's so much
-                    more to discover. For comprehensive tutorials and advanced
-                    techniques, check out these excellent learning resources:
-                </p>
+            <section class="mb-24 md:mb-32">
+                <div class="text-center mb-10">
+                    <p class="eyebrow mb-3">Go further</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Want to Dive Deeper?</h2>
+                    <p class="text-lg text-primaryFg/70 max-w-2xl mx-auto">
+                        These fundamentals will get you started, but there's so
+                        much more to discover. For comprehensive tutorials and
+                        advanced techniques, check out these excellent resources.
+                    </p>
+                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <a
-                        href="https://sudoku.coach/"
-                        target="_blank"
-                        class="group bg-primaryBg p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-highlight-blue"
-                    >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a href="https://sudoku.coach/" target="_blank" class="glass glass-hover group rounded-[28px] p-8">
                         <div class="flex items-start justify-between mb-4">
-                            <h3
-                                class="text-xl font-bold group-hover:text-accent transition-colors"
-                            >
-                                Sudoku.coach
-                            </h3>
-                            <span
-                                class="text-2xl group-hover:scale-110 transition-transform"
-                                >🎯</span
-                            >
+                            <h3 class="text-xl font-bold">Sudoku.coach</h3>
+                            <span class="text-xl text-primaryFg/40 transition-all group-hover:text-primaryFg group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                         </div>
-                        <p class="text-secondaryFg mb-4">
+                        <p class="text-primaryFg/70">
                             Interactive tutorials covering dozens of solving
-                            techniques with visual examples and practice
-                            puzzles.
+                            techniques with visual examples and practice puzzles.
                         </p>
-                        <div class="flex items-center text-accent font-medium">
-                            <span>Visit Sudoku.coach</span>
-                            <span
-                                class="ml-2 group-hover:translate-x-1 transition-transform"
-                                >→</span
-                            >
-                        </div>
                     </a>
 
-                    <a
-                        href="https://www.learn-sudoku.com/"
-                        target="_blank"
-                        class="group bg-primaryBg p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-highlight-green"
-                    >
+                    <a href="https://www.learn-sudoku.com/" target="_blank" class="glass glass-hover group rounded-[28px] p-8">
                         <div class="flex items-start justify-between mb-4">
-                            <h3
-                                class="text-xl font-bold group-hover:text-accent transition-colors"
-                            >
-                                Learn-Sudoku.com
-                            </h3>
-                            <span
-                                class="text-2xl group-hover:scale-110 transition-transform"
-                                >📚</span
-                            >
+                            <h3 class="text-xl font-bold">Learn-Sudoku.com</h3>
+                            <span class="text-xl text-primaryFg/40 transition-all group-hover:text-primaryFg group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                         </div>
-                        <p class="text-secondaryFg mb-4">
+                        <p class="text-primaryFg/70">
                             Structured learning path from absolute beginner to
                             expert with clear explanations and progressive
                             difficulty.
                         </p>
-                        <div class="flex items-center text-accent font-medium">
-                            <span>Visit Learn-Sudoku.com</span>
-                            <span
-                                class="ml-2 group-hover:translate-x-1 transition-transform"
-                                >→</span
-                            >
-                        </div>
                     </a>
                 </div>
-            </div>
+            </section>
 
             <!-- Call to Action -->
-            <div class="bg-tertiaryBg p-12 rounded-2xl text-center">
-                <h2 class="text-3xl font-bold mb-4">Ready to Practice?</h2>
-                <p class="text-lg text-secondaryFg mb-8 max-w-2xl mx-auto">
-                    Put these techniques into action with thousands of carefully
-                    crafted puzzles. Magic Mode will guide you through each step
-                    of your learning journey.
-                </p>
-                <a
-                    href="https://apps.apple.com/app/magic-sudoku/id6742204685"
-                    class="inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-4 px-10 rounded-full transition duration-300 text-lg"
-                >
-                    Start Learning with Magic Sudoku
-                </a>
-            </div>
-        </div>
+            <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-8 py-14 md:py-20 text-center">
+                <div class="relative">
+                    <img src="/images/header-icon.png" alt="Magic Sudoku" class="w-14 h-14 mx-auto mb-6" />
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Ready to Practice?</h2>
+                    <p class="text-lg text-primaryFg/70 mb-9 max-w-2xl mx-auto">
+                        Put these techniques into action with thousands of graded
+                        puzzles. Intelligent hints will guide you through each
+                        step of your learning journey.
+                    </p>
+                    <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary text-lg px-8 py-4">
+                        Start Learning with Magic Sudoku
+                    </a>
+                </div>
+            </section>
+        </main>
 
         <footer class="bg-tertiaryBg text-secondaryFg py-12">
             <div include-html="/includes/footer.html"></div>
@@ -345,5 +318,7 @@
 
         <!-- Include the shared JavaScript -->
         <script src="/js/includes.js"></script>
+        <script src="/js/app-store.js"></script>
+        <script src="/js/learn.js"></script>
     </body>
 </html>

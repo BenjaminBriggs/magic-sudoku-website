@@ -1,3 +1,10 @@
+/CLAUDE.md /404.html 404!
+/docs/* /404.html 404!
+/Assets/* /404.html 404!
+/.specify/* /404.html 404!
+/.claude/* /404.html 404!
 /.well-known/* /.well-known/:splat 200
+/privacy /privacy.html 200
+/terms /terms.html 200
+/support /support.html 200
 /puzzle/* /puzzle.html?id=:splat 200!
-/* /index.html 200
