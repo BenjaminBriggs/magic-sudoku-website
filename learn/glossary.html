@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Glossary - Essential Terms and Definitions - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Complete Sudoku glossary with essential terms and definitions. Reference guide for grid elements, solving methods, and technique terminology.">
+  <meta name="keywords" content="sudoku glossary, sudoku terms, sudoku definitions, candidates, pencil marks, houses, boxes, elimination">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/glossary.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/glossary.html">
+  <meta property="og:title" content="Sudoku Glossary - Essential Terms and Definitions">
+  <meta property="og:description" content="Complete reference guide for Sudoku terminology and solving concepts.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/glossary.html">
+  <meta name="twitter:title" content="Sudoku Glossary - Essential Terms and Definitions">
+  <meta name="twitter:description" content="Complete reference guide for Sudoku terminology and solving concepts.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Glossary</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-20 md:mb-24">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-yellow"></span>Reference</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Sudoku Glossary</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-2xl">Essential terms and definitions for understanding Sudoku solving techniques. Bookmark this page for quick reference while learning!</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#grid-structure" class="chip"><span class="chip-num">01</span>Grid Structure</a>
+        <a href="#solving-methods" class="chip"><span class="chip-num">02</span>Solving Methods</a>
+        <a href="#technique-categories" class="chip"><span class="chip-num">03</span>Technique Categories</a>
+        <a href="#quick-reference" class="chip">Quick Reference</a>
+      </div>
+    </header>
+
+    <!-- Grid Structure Terms -->
+    <section id="grid-structure" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="cell-num">1</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Grid Structure</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <article id="house" class="scroll-mt-28 glass rounded-[28px] p-6">
+          <span id="box" class="block scroll-mt-28"></span>
+          <div class="grid-diagram w-28 mb-6" data-strong="box:5"></div>
+          <h3 class="text-xl font-bold mb-2">House</h3>
+          <p class="text-primaryFg/70 mb-4">One of the nine 3×3 boxes in the grid. Each house must contain digits 1-9 exactly once. Rows, columns, and houses together are called units.</p>
+          <p class="text-sm text-primaryFg/60">Also called: box, block, nonet</p>
+        </article>
+
+        <article id="line" class="scroll-mt-28 glass rounded-[28px] p-6">
+          <div class="grid-diagram w-28 mb-6" data-strong="row:4 col:7"></div>
+          <h3 class="text-xl font-bold mb-2">Line</h3>
+          <p class="text-primaryFg/70 mb-4">A row or column spanning the entire 9×9 grid. Each line must contain digits 1-9 exactly once.</p>
+          <p class="text-sm text-primaryFg/60">Lines can be horizontal (rows) or vertical (columns)</p>
+        </article>
+
+        <article id="cell" class="scroll-mt-28 glass rounded-[28px] p-6">
+          <div class="grid-diagram w-28 mb-6" data-strong="cell:5,5"></div>
+          <h3 class="text-xl font-bold mb-2">Cell</h3>
+          <p class="text-primaryFg/70 mb-4">An individual square within the 9×9 grid where a single digit will be placed. Each cell belongs to exactly one row, one column, and one house.</p>
+          <p class="text-sm text-primaryFg/60">Also called: square, position</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Solving Methods -->
+    <section id="solving-methods" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="cell-num">2</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Solving Methods</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article id="candidates" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-2">Candidates</h3>
+          <p class="text-primaryFg/70 mb-4">The possible numbers that could be placed in a cell based on current constraints. As the puzzle progresses, candidates are eliminated until only one remains.</p>
+          <p class="text-sm text-primaryFg/60">Also called: possibilities, options</p>
+        </article>
+
+        <article id="pencil-marks" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-2">Pencil Marks</h3>
+          <p class="text-primaryFg/70 mb-4">Small notation showing which candidates are possible in each cell. Essential for tracking possibilities and applying advanced techniques.</p>
+          <p class="text-sm text-primaryFg/60">Also called: notation, candidate marks</p>
+        </article>
+
+        <article id="elimination" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-2">Elimination</h3>
+          <p class="text-primaryFg/70 mb-4">The process of removing impossible candidates from cells based on Sudoku constraints and logical deductions.</p>
+          <p class="text-sm text-primaryFg/60">The core mechanism of most solving techniques</p>
+        </article>
+
+        <article id="given" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-2">Given</h3>
+          <p class="text-primaryFg/70 mb-4">A number that is already placed in the puzzle at the start. Givens provide the initial constraints that make the puzzle solvable.</p>
+          <p class="text-sm text-primaryFg/60">Also called: clue, starting number</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Technique Categories -->
+    <section id="technique-categories" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="cell-num">3</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Technique Categories</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article id="singles" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Singles</h3>
+          <p class="text-primaryFg/70 mb-5">Techniques that identify cells where only one number can be placed. The foundation of all Sudoku solving.</p>
+          <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
+            <div class="py-3"><dt class="font-semibold">Naked Single</dt><dd class="text-primaryFg/70">A cell with only one candidate remaining</dd></div>
+            <div class="py-3"><dt class="font-semibold">Hidden Single</dt><dd class="text-primaryFg/70">A number that can only go in one place within a row, column, or house</dd></div>
+          </dl>
+          <a href="/learn/singles.html" class="text-link self-start mt-5">Basic Singles lesson</a>
+        </article>
+
+        <article id="intersection" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Intersection</h3>
+          <p class="text-primaryFg/70 mb-5">Techniques that use the overlap between a house and a row or column to make eliminations.</p>
+          <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
+            <div class="py-3"><dt class="font-semibold">Locked Candidates</dt><dd class="text-primaryFg/70">When candidates are confined to specific intersections</dd></div>
+            <div class="py-3"><dt class="font-semibold">Pointing/Claiming</dt><dd class="text-primaryFg/70">Specific types of locked candidate patterns</dd></div>
+          </dl>
+          <a href="/learn/locked-candidates.html" class="text-link self-start mt-5">Locked Candidates lesson</a>
+        </article>
+
+        <article id="sets" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Sets</h3>
+          <p class="text-primaryFg/70 mb-5">Techniques based on groups of cells that share the same limited candidates.</p>
+          <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
+            <div class="py-3"><dt class="font-semibold">Naked Sets</dt><dd class="text-primaryFg/70">When cells contain the same visible candidates</dd></div>
+            <div class="py-3"><dt class="font-semibold">Hidden Sets</dt><dd class="text-primaryFg/70">When numbers are confined to the same group of cells</dd></div>
+          </dl>
+          <a href="/learn/naked-sets.html" class="text-link self-start mt-5">Naked Sets lesson</a>
+        </article>
+
+        <article id="fish" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Fish Patterns</h3>
+          <p class="text-primaryFg/70 mb-5">Advanced techniques based on rectangular arrangements of candidates.</p>
+          <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
+            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">X-Wing</dt><dd class="text-primaryFg/70">2×2 fish pattern</dd></div>
+            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">Swordfish</dt><dd class="text-primaryFg/70">3×3 fish pattern</dd></div>
+            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">Jellyfish</dt><dd class="text-primaryFg/70">4×4 fish pattern</dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- Quick Reference -->
+    <section id="quick-reference" class="scroll-mt-28 glass glass-strong rounded-[32px] p-6 md:p-10 mb-6">
+      <p class="eyebrow mb-3">Notation</p>
+      <h2 class="text-3xl font-bold tracking-tight mb-8">Quick Reference</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <h3 class="font-semibold mb-3">Common Abbreviations</h3>
+          <dl class="divide-y divide-primaryFg/10">
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="font-mono font-semibold">R1C1</dt>
+              <dd class="text-primaryFg/70">Row 1, Column 1</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="font-mono font-semibold">B1</dt>
+              <dd class="text-primaryFg/70">Box 1 (top-left)</dd>
+            </div>
+            <div class="flex justify-between gap-4 py-3">
+              <dt class="font-mono font-semibold">{1,2,3}</dt>
+              <dd class="text-primaryFg/70">Candidate set notation</dd>
+            </div>
+          </dl>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-3">Grid Numbering</h3>
+          <ul class="check-list space-y-3 pt-3">
+            <li>Rows numbered 1-9 from top to bottom</li>
+            <li>Columns numbered 1-9 from left to right</li>
+            <li>Boxes numbered 1-9 from top-left to bottom-right</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Start Learning -->
+    <section class="glass rounded-[32px] p-6 md:p-10 md:flex md:items-center md:justify-between gap-10">
+      <div class="max-w-xl">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Start Learning</h2>
+        <p class="text-primaryFg/70">Ready to apply these terms? Begin your Sudoku journey with our structured lessons.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
+        <a href="/learn/how-to-play.html" class="btn-primary">Start with the Basics</a>
+        <a href="/learn.html" class="btn-glass">← Back to All Lessons</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

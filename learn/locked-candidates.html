@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locked Candidates - Learn Sudoku Strategies - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Master Locked Candidates techniques - Pointing and Claiming. Learn when and how to apply these intermediate Sudoku solving strategies.">
+  <meta name="keywords" content="locked candidates, pointing, claiming, sudoku intermediate, sudoku techniques, box line reduction">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/locked-candidates.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/locked-candidates.html">
+  <meta property="og:title" content="Locked Candidates - Intermediate Sudoku Techniques">
+  <meta property="og:description" content="Master Locked Candidates techniques - Pointing and Claiming strategies.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/locked-candidates.html">
+  <meta name="twitter:title" content="Locked Candidates - Intermediate Sudoku Techniques">
+  <meta name="twitter:description" content="Master Locked Candidates techniques - Pointing and Claiming strategies.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Locked Candidates</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+        <span class="text-sm text-primaryFg/60">Lesson 3 of 4</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Locked Candidates</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-2xl">Use the intersection of boxes and lines to eliminate candidates. These techniques leverage the constraint that numbers must appear exactly once in each row, column, and box.</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#constraints" class="chip">Constraints Primer</a>
+        <a href="#pointing" class="chip"><span class="chip-num">01</span>Pointing</a>
+        <a href="#claiming" class="chip"><span class="chip-num">02</span>Claiming</a>
+        <a href="#difference" class="chip">The Difference</a>
+      </div>
+    </header>
+
+    <!-- Glossary Reference -->
+    <aside class="glass rounded-2xl px-5 py-4 mb-20 md:mb-24 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <p class="font-semibold">Need a refresher on Sudoku terms?</p>
+        <p class="text-sm text-primaryFg/70">Our glossary explains <em>houses</em>, <em>constraints</em>, and other essential concepts.</p>
+      </div>
+      <a href="/learn/glossary.html" class="btn-glass btn-sm whitespace-nowrap self-start sm:self-auto">View Glossary →</a>
+    </aside>
+
+    <!-- Constraint Primer -->
+    <section id="constraints" class="scroll-mt-28 mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Before you start</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Understanding Sudoku Constraints</h2>
+      <p class="text-lg text-primaryFg/70 max-w-3xl mb-8">Before diving into locked candidates, let's review how Sudoku constraints work:</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="glass rounded-[28px] p-6">
+          <div class="grid-diagram w-28 mb-6" data-strong="row:5"></div>
+          <h3 class="text-lg font-bold mb-1">Row Constraint</h3>
+          <p class="text-primaryFg/70">Each horizontal line must contain digits 1-9 exactly once</p>
+        </div>
+        <div class="glass rounded-[28px] p-6">
+          <div class="grid-diagram w-28 mb-6" data-strong="col:5"></div>
+          <h3 class="text-lg font-bold mb-1">Column Constraint</h3>
+          <p class="text-primaryFg/70">Each vertical line must contain digits 1-9 exactly once</p>
+        </div>
+        <div class="glass rounded-[28px] p-6">
+          <div class="grid-diagram w-28 mb-6" data-strong="box:5"></div>
+          <h3 class="text-lg font-bold mb-1">Box Constraint</h3>
+          <p class="text-primaryFg/70">Each 3×3 box must contain digits 1-9 exactly once</p>
+        </div>
+      </div>
+
+      <div class="callout mt-5">
+        <strong>Key Insight:</strong> Locked candidates work by using conflicts between these constraints. When a number's placement in a house forces restrictions in a row or column (or the other way round), we can eliminate candidates.
+      </div>
+    </section>
+
+    <!-- Pointing Technique -->
+    <section id="pointing" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="cell-num">1</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Locked Candidates Pointing</h2>
+      </div>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When a number can only appear in one row or column within a box, eliminate that number from the rest of that row or column. This technique uses the intersection between box and line constraints.</p>
+
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Pointing in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+            data-marks="1589|1458|14579||5789||159||1579|125689||12579|2579|5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+            data-roles="............p...................................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Box Analysis</h4>
+            </div>
+            <p class="hint mb-4">"In this house, 2 can only be in cells in one row"</p>
+            <p class="text-primaryFg/70">Magic Sudoku identifies when a number is restricted to a single row or column within a box.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+            data-marks="1589|1458|14579||5789||159||1579|125689||12579|2579|5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+            data-roles="...sss......pss......sss........................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Box Constraint</h4>
+            </div>
+            <p class="hint mb-4">"Because this house must contain a 2, we know that it has to be one of these cells"</p>
+            <p class="text-primaryFg/70">Shows how the box constraint forces the number into specific cells.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+            data-added="000000000000200000000000000000000000000000000000000000000000000000000000000000000"
+            data-marks="1589|1458|14579||5789||159||1579|125689||12579||5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+            data-roles=".........wwwpwwwww..............................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">Row/Column Impact</h4>
+            </div>
+            <p class="hint mb-4">"Since 2 must be in one of these cells, it can't appear elsewhere in this row"</p>
+            <p class="text-primaryFg/70">Extends the constraint to eliminate candidates in the same row or column outside the box.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+            data-marks="1589|1458|14579||5789||159||1579|2||2|2|5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+            data-roles=".........w.wp...................................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">4</span>
+              <h4 class="text-xl font-semibold">Candidates to Remove</h4>
+            </div>
+            <p class="hint mb-4">"In this row, only these cells contain a 2 as a candidate"</p>
+            <p class="text-primaryFg/70">Shows which specific candidates will be eliminated outside the box.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000306020030004000000100408408000600000005000076820000000001002700000060090002700"
+            data-marks="1589|1458|14579||5789||159||1579|2||2|2579|5789||159|1579|15679|2569|256|2579||579|79||3579|||125||79|1379|379||13579|13579|1239|12|1239|4679|134679||12389|134789|13479|1359|||||39|1359|13459|13459|3568|4568|345|45679|3456789||3589|34589|||12458|12345|459|34589|389|13589||13459|13568||1345|456|34568|||13458|1345"
+            data-roles=".........w.w....................................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">5</span>
+              <h4 class="text-xl font-semibold">Elimination</h4>
+            </div>
+            <p class="hint mb-4">"Therefore we can rule out 2 as a candidate from these cells"</p>
+            <p class="text-primaryFg/70">Removes the impossible candidates, potentially creating new solving opportunities.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="glass rounded-[28px] p-6 md:p-8 mt-5">
+        <h3 class="eyebrow mb-5">When to use pointing</h3>
+        <ul class="check-list grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3">
+          <li>Look for numbers that can only appear in one row or column within a box</li>
+          <li>Check if that same number appears as a candidate elsewhere in that row/column</li>
+          <li>Most effective after placing several numbers to create constraints</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Claiming Technique -->
+    <section id="claiming" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="cell-num">2</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Locked Candidates Claiming</h2>
+      </div>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When all candidates for a number in a row or column are confined to a single box, eliminate that number from other cells in the box.</p>
+
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Claiming in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000005000020009003534062000000000900050400010603500204200000730080000060100020400"
+            data-marks="789|1679|16789|1378|13478||168|24789|126789|78||1678|178|1478||1568|4578|||||178|||18|9|9|478|147|1278|123678|1378|13678||578|5678|789||2789||3789|3678|368||678||179|||1789|178||78|||469|569|1689|14589|1468|||1589|3479||579|1379|134579|1347|15||1259||679|5679|36789||3678||589|589"
+            data-roles=".........................pp......................................................"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Row/Column Analysis</h4>
+            </div>
+            <p class="hint mb-4">"In this row, all candidates for digit 9 are in the same house"</p>
+            <p class="text-primaryFg/70">Magic Sudoku identifies when all instances of a number in a line are within one box.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000005000020009003534062000000000900050400010603500204200000730080000060100020400"
+            data-marks="789|1679|16789|1378|13478||168|9|9|78||1678|178|1478||1568|4578|||||178|||18|9|9|478|147|1278|123678|1378|13678||578|5678|789||2789||3789|3678|368||678||179|||1789|178||78|||469|569|1689|14589|1468|||1589|3479||579|1379|134579|1347|15||1259||679|5679|36789||3678||589|589"
+            data-roles=".......ww................pp......................................................"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Line Constraint</h4>
+            </div>
+            <p class="hint mb-4">"Since 9 must be in one of these cells, it can't appear elsewhere in this house"</p>
+            <p class="text-primaryFg/70">The row/column constraint forces the number into specific cells within the box.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000005000020009003534062000000000900050400010603500204200000730080000060100020400"
+            data-marks="789|1679|16789|1378|13478||168|9|9|78||1678|178|1478||1568|4578|||||178|||18|789|1789|478|147|1278|123678|1378|13678||578|5678|789||2789||3789|3678|368||678||179|||1789|178||78|||469|569|1689|14589|1468|||1589|3479||579|1379|134579|1347|15||1259||679|5679|36789||3678||589|589"
+            data-roles=".......ww........................................................................"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">Box Elimination</h4>
+            </div>
+            <p class="hint mb-4">"Remove 9 as a candidate from these cells in the same house"</p>
+            <p class="text-primaryFg/70">Eliminates the number from other cells in the box, creating new solving opportunities.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="glass rounded-[28px] p-6 md:p-8 mt-5">
+        <h3 class="eyebrow mb-5">When to use claiming</h3>
+        <ul class="check-list grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3">
+          <li>Scan rows and columns for numbers that appear only within one box</li>
+          <li>Check if that number appears elsewhere in the same box</li>
+          <li>Often reveals hidden singles after eliminating candidates</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Differences -->
+    <section id="difference" class="scroll-mt-28 mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Side by side</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Understanding the Difference</h2>
+      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-4">Pointing</h3>
+          <dl class="divide-y divide-primaryFg/10">
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Start with</dt><dd class="font-medium text-right">A box constraint</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Pattern</dt><dd class="font-medium text-right">Number restricted to one row/column in box</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Eliminate from</dt><dd class="font-medium text-right">Rest of that row/column</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Direction</dt><dd class="font-medium text-right">Box → Line</dd></div>
+          </dl>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-4">Claiming</h3>
+          <dl class="divide-y divide-primaryFg/10">
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Start with</dt><dd class="font-medium text-right">A line constraint</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Pattern</dt><dd class="font-medium text-right">All candidates in line are in one box</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Eliminate from</dt><dd class="font-medium text-right">Rest of that box</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Direction</dt><dd class="font-medium text-right">Line → Box</dd></div>
+          </dl>
+        </div>
+        <div class="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
+          <span class="cell-num rounded-full text-base">vs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6 md:flex md:items-center md:justify-between gap-10">
+      <div class="max-w-xl">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+        <p class="text-lg text-primaryFg/70">Locked candidates are powerful intermediate techniques that unlock many puzzles. Practice identifying the key patterns with Magic Sudoku's intelligent hints.</p>
+      </div>
+      <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/singles.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">Basic Singles</p>
+      </a>
+      <a href="/learn/naked-sets.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">Naked Sets</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

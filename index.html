@@ -1,132 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Sudoku - Coming Soon to iOS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // From AccentColor.colorset
-                        accent: {
-                            DEFAULT: '#526270',
-                            dark: '#BFD7C9'
-                        },
-                        // From Primary Background Color.colorset
-                        primaryBg: {
-                            DEFAULT: '#F9F9F7',
-                            dark: '#424242'
-                        },
-                        // From Secondary Background Color.colorset
-                        secondaryBg: {
-                            DEFAULT: '#F1F1ED',
-                            dark: '#000000'
-                        },
-                        // From Tertiary Background Color.colorset
-                        tertiaryBg: {
-                            DEFAULT: '#E5E3E0',
-                            dark: '#212121'
-                        },
-                        // From Primary Foreground Color.colorset
-                        primaryFg: {
-                            DEFAULT: '#212121',
-                            dark: '#FEFEFF'
-                        },
-                        // From Secondary Foreground Color.colorset
-                        secondaryFg: {
-                            DEFAULT: '#797979',
-                            dark: '#EAEAEA'
-                        },
-                        // Highlight colors from Highlight folder
-                        highlight: {
-                            blue: {
-                                DEFAULT: '#BFD7C9',
-                                dark: '#BFD7C9'
-                            },
-                            green: {
-                                DEFAULT: '#B4BD55',
-                                dark: '#B4BD55'
-                            }
-                        }
-                    },
-                    fontFamily: {
-                        'rubik': ['Rubik', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Define animation for buttons */
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-        
-        .animated-button:hover {
-            animation: pulse 2s infinite;
-        }
-    </style>
-    
-    <!-- Basic Meta Tags -->
-    <meta name="description" content="Magic Sudoku - A beautiful, intuitive sudoku game coming soon to iOS.">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <meta property="og:title" content="Magic Sudoku - Coming Soon to iOS">
-    <meta property="og:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
-    <meta property="og:image" content="https://yourdomain.com/images/puzzle-preview.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://yourdomain.com/">
-    <meta name="twitter:title" content="Magic Sudoku - Coming Soon to iOS">
-    <meta name="twitter:description" content="Magic Sudoku offers beautiful puzzles, smart hints, and a delightful experience on iPhone and iPad.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/puzzle-preview.jpg">
-    
-    <!-- Apple-specific -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-itunes-app" content="app-id=6742204685, app-argument=magic-sudoku://puzzle">
-</head>
-<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
-    <div class="min-h-screen flex flex-col">
-        <main class="flex-grow flex items-center">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-                <div class="max-w-3xl mx-auto">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Magic Sudoku is Coming Soon</h1>
-                    <p class="text-xl text-secondaryFg mb-10">Experience the most elegant way to solve Sudoku puzzles on your iOS device. Join our TestFlight beta to get early access.</p>
-                    
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                        <a href="https://testflight.apple.com/join/f5hQdtmP" class="animated-button inline-block bg-accent hover:bg-highlight-blue text-primaryBg font-bold py-3 px-8 rounded-full transition duration-300">
-                            Join TestFlight Beta
-                        </a>
-                    </div>
-                    
-                    <div class="overflow-hidden max-w-xs mx-auto">
-                        <img src="/images/phone.png" alt="Magic Sudoku App Preview" class="w-full" />
-                    </div>
-                </div>
-            </div>
-        </main>
 
-        <footer class="bg-tertiaryBg text-secondaryFg py-8">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <p>&copy; 2025 Magic Sudoku. All rights reserved.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-itunes-app" content="app-id=6742204685, app-argument=magic-sudoku://">
+  <title>Magic Sudoku - The Ultimate Sudoku App for iOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description"
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
+  <meta name="keywords" content="sudoku, puzzle game, iOS app, iPhone, iPad, magic mode, hints, sudoku solver, no tracking, privacy">
+  <meta name="author" content="Magic Sudoku">
+  <meta name="publisher" content="Magic Sudoku">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://magic-sudoku.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://magic-sudoku.com/">
+  <meta property="og:title" content="Magic Sudoku - The Ultimate Sudoku App for iOS">
+  <meta property="og:description"
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+  <meta property="og:site_name" content="Magic Sudoku">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:author" content="Magic Sudoku">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/">
+  <meta name="twitter:title" content="Magic Sudoku - The Ultimate Sudoku App for iOS">
+  <meta name="twitter:description"
+    content="Download Magic Sudoku - the ultimate iOS puzzle game with intelligent hints, beautiful design, and Magic Mode. Perfect for iPhone, iPad, Mac & Vision Pro. No tracking, no intrusive ads.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Apple-specific -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // From AccentColor.colorset
+            accent: {
+              DEFAULT: '#526270',
+              dark: '#BFD7C9'
+            },
+            // From Grid/Cell Primary Background.colorset
+            cellPrimary: {
+              DEFAULT: '#F5F3F0',
+              dark: '#262626'
+            },
+            // From Grid/Cell Alternate Background.colorset
+            cellAlternate: {
+              DEFAULT: '#F5F3F0',
+              dark: '#262626'
+            },
+            // From Grid/Cell Prefilled Background.colorset
+            cellPrefilled: {
+              DEFAULT: '#EBEAE6',
+              dark: '#000000'
+            },
+            // From Grid/Number.colorset
+            number: {
+              DEFAULT: '#121212',
+              dark: '#F6F6F6'
+            },
+            // From Grid/Lines.colorset
+            gridLines: {
+              DEFAULT: '#BABABA',
+              dark: '#7F7F7F'
+            },
+            // From Primary Background Color.colorset
+            primaryBg: {
+              DEFAULT: '#F9F9F7',
+              dark: '#424242'
+            },
+            // From Secondary Background Color.colorset
+            secondaryBg: {
+              DEFAULT: '#F1F1ED',
+              dark: '#000000'
+            },
+            // From Tertiary Background Color.colorset
+            tertiaryBg: {
+              DEFAULT: '#E5E3E0',
+              dark: '#212121'
+            },
+            // From Primary Foreground Color.colorset
+            primaryFg: {
+              DEFAULT: '#212121',
+              dark: '#FEFEFF'
+            },
+            // From Secondary Foreground Color.colorset
+            secondaryFg: {
+              DEFAULT: '#797979',
+              dark: '#EAEAEA'
+            },
+            // From Input/Pen Color.colorset
+            pen: {
+              DEFAULT: '#5F717F',
+              dark: '#DAF1F1'
+            },
+            // From Input/Pencil Color.colorset
+            pencil: {
+              DEFAULT: '#424242',
+              dark: '#F1F1F1'
+            },
+            // Highlight colors from Highlight folder
+            highlight: {
+              blue: {
+                DEFAULT: '#BFD7C9',
+                dark: '#BFD7C9'
+              },
+              green: {
+                DEFAULT: '#B4BD55',
+                dark: '#B4BD55'
+              },
+              orange: {
+                DEFAULT: '#F4C070',
+                dark: '#F4C070'
+              },
+              red: {
+                DEFAULT: '#F69B7B',
+                dark: '#F69B7B'
+              },
+              yellow: {
+                DEFAULT: '#F4D968',
+                dark: '#F4D968'
+              }
+            }
+          },
+          fontFamily: {
+            'rubik': ['Rubik', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <span include-html="/includes/header.html"></span>
+
+  <!-- Main landing page content -->
+  <div id="main-content">
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] text-balance mb-6">The Best Sudoku Experience on iOS</h1>
+            <p class="text-lg md:text-xl text-primaryFg/70 mb-9">Enjoy beautiful puzzles, smart hints, and a delightful interface
+              designed for iPhone, iPad, Mac, and Vision Pro.</p>
+            <a href="https://apps.apple.com/app/magic-sudoku/id6742204685"
+              class="btn-primary px-8 py-3"
+              id="download">Download on the App Store</a>
+          </div>
+          <div class="md:w-1/2 flex justify-center">
+            <div class="overflow-hidden max-w-sm md:max-w-lg">
+              <img src="/images/hero-devices.png" alt="Magic Sudoku App Screenshot" class="w-full h-auto" />
             </div>
-        </footer>
-    </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-primaryBg" id="features">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16">Why Players Love Magic Sudoku</h2>
+
+        <!-- Bento Box Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+
+          <!-- Feature 1: Large Card (3x2) - Magic Mode -->
+          <div
+            class="md:col-span-3 md:row-span-2 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 flex flex-col overflow-hidden">
+            <img src="/images/feature-magic.png" alt="Magic Mode" class="w-full object-cover" />
+            <div class="p-8 space-y-4 flex-grow">
+              <h3 class="text-2xl font-bold">Magic Mode</h3>
+              <p class="text-primaryFg/80 text-lg">A revolutionary input mode that assists without solving for you.
+                Builds confidence in new players while helping experienced solvers tackle challenging puzzles with
+                greater efficiency.</p>
+            </div>
+          </div>
+
+          <!-- Feature 2: Medium Card with Keyboard Graphic - Ultimate Configurability -->
+          <div
+            class="md:col-span-3 md:row-span-2 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden relative">
+            <img src="/images/feature-config.png" alt="Ultimate Configurability" class="w-full object-cover" />
+            <div class="p-8 space-y-4 flex-grow">
+                <h3 class="text-2xl font-bold">Ultimate Configurability</h3>
+                <p class="text-primaryFg/80 text-lg">Create your perfect input scheme by configuring up to three inputs
+                  with custom primary and secondary actions.</p>
+            </div>
+          </div>
+
+          <!-- Feature 3: Medium Card with Puzzle Graphic - Easy to Expert Puzzles -->
+          <div
+            class="md:col-span-2 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="/images/feature-puzzles.png" alt="Easy to Expert Puzzles" class="w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Easy to Expert Puzzles</h3>
+              <p class="text-primaryFg/80">Thousands of puzzles graded across multiple difficulty levels to
+                challenge and engage players at every stage.</p>
+            </div>
+          </div>
+
+          <!-- Feature 4: Small Card - Wide Numeral Support -->
+          <div
+            class="md:col-span-2 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="/images/feature-numerals.png" alt="Wide Numeral Support" class="w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Wide Numeral Support</h3>
+              <p class="text-primaryFg/80">Beyond Western digits — express yourself with a vast array of numeral styles
+                from around the world.</p>
+            </div>
+          </div>
+
+          <!-- Feature 5: Small Card - Intelligent Hints -->
+          <div
+            class="md:col-span-2 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="/images/feature-sync.png" alt="iCloud Sync" class="w-full object-cover" />
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-bold mb-2">iCloud Sync</h3>
+                  <p class="text-primaryFg/80 max-w-xs">Seamlessly continue your puzzles across iPhone, iPad, Mac, and
+                    Vision Pro.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 6: Wide Card (3 cols) with Device Icons - iCloud Sync -->
+          <div
+            class="md:col-span-3 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="/images/feature-hints.png" alt="Intelligent Hints" class="w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Intelligent Hints</h3>
+              <p class="text-primaryFg/80">Learn advanced techniques through contextual explanations that teach rather
+                than just solve.</p>
+            </div>
+          </div>
+
+          <!-- Feature 7: Wide Card (3 cols) with Trophy Icon - Leaderboards & Achievements -->
+          <div
+            class="md:col-span-3 bg-secondaryBg rounded-3xl p-0 shadow-lg hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="/images/feature-leaderboards.png" alt="Leaderboards & Achievements" class="w-full object-cover" />
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Leaderboards & Achievements</h3>
+                  <p class="text-primaryFg/80 max-w-xs">Compete with friends or globally and unlock achievements that
+                    showcase your Sudoku mastery.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small feature pills at the bottom -->
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Native Experience</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Dark Mode Support</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">No Intrusive Ads</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Privacy Focused</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Accessibility</span>
+          <span class="bg-secondaryBg px-4 py-2 rounded-full text-sm font-medium">Beautiful</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gradient-to-b from-secondaryBg to-primaryBg">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">Ready to Solve Some Puzzles?</h2>
+        <p class="text-lg md:text-xl text-primaryFg/70 mb-8 max-w-2xl mx-auto"
+          data-coming-soon="Magic Sudoku is coming soon: the most elegant way to solve Sudoku puzzles on your iOS device.">Download Magic Sudoku today and experience the most
+          elegant way to solve Sudoku puzzles on your iOS device.</p>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685"
+          class="btn-primary px-8 py-3">Get
+          Started</a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+
+  <!-- No redirects from the landing page - we'll let the Netlify redirect rules handle this -->
 </body>
+
 </html>

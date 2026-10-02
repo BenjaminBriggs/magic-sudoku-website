@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Singles - Learn Sudoku Strategies - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques. Learn when and how to apply these essential strategies.">
+  <meta name="keywords" content="naked singles, hidden singles, sudoku basics, sudoku techniques, beginner sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/singles.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/singles.html">
+  <meta property="og:title" content="Basic Singles - Essential Sudoku Techniques">
+  <meta property="og:description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/singles.html">
+  <meta name="twitter:title" content="Basic Singles - Essential Sudoku Techniques">
+  <meta name="twitter:description" content="Master Naked Singles and Hidden Singles - the fundamental Sudoku solving techniques.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Basic Singles</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-green"></span>Beginner</span>
+        <span class="text-sm text-primaryFg/60">Lesson 2 of 4</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Basic Singles</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-2xl">The foundation of all Sudoku solving. Master these two essential techniques and you'll be able to solve many easy and medium puzzles.</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#naked-singles" class="chip"><span class="chip-num">01</span>Naked Singles</a>
+        <a href="#hidden-singles" class="chip"><span class="chip-num">02</span>Hidden Singles</a>
+        <a href="#key-differences" class="chip">Key Differences</a>
+      </div>
+    </header>
+
+    <!-- Glossary Reference -->
+    <aside class="glass rounded-2xl px-5 py-4 mb-20 md:mb-24 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <p class="font-semibold">New to Sudoku terminology?</p>
+        <p class="text-sm text-primaryFg/70">Check our glossary for definitions of <em>candidates</em>, <em>houses</em>, and other key terms.</p>
+      </div>
+      <a href="/learn/glossary.html" class="btn-glass btn-sm whitespace-nowrap self-start sm:self-auto">View Glossary →</a>
+    </aside>
+
+    <!-- Naked Singles -->
+    <section id="naked-singles" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="cell-num">1</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Naked Singles</h2>
+      </div>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">A naked single occurs when a cell has only one possible candidate remaining. This is the most basic and important solving technique.</p>
+
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Naked Single in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000061000490000000005200700208109070007600320040500680003000400900004860050900003"
+            data-roles="..p.............................................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Cell Identification</h4>
+            </div>
+            <p class="hint mb-4">"This cell only has one candidate"</p>
+            <p class="text-primaryFg/70">Magic Sudoku highlights the cell that can only contain one number based on the current pencil marks.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000061000490000000005200700208109070007600320040500680003000400900004860050900003"
+            data-roles="sspsssssssss......sss........s........s........s........s........s........s......"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Constraint Analysis</h4>
+            </div>
+            <p class="hint mb-4">"We can rule out every other number by looking at the row, column, or box"</p>
+            <p class="text-primaryFg/70">Shows you exactly which placed numbers eliminate the other possibilities, leaving only one valid option.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="000061000490000000005200700208109070007600320040500680003000400900004860050900003"
+            data-added="002000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            data-roles="..g.............................................................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">Solution</h4>
+            </div>
+            <p class="hint mb-4">"Therefore, this cell must be [number]"</p>
+            <p class="text-primaryFg/70">Places the number and automatically updates pencil marks throughout the grid.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">When to use</h3>
+          <ul class="check-list space-y-3">
+            <li>Look for cells with only one <em>candidate</em> remaining</li>
+            <li>Check cells whose row, column, and box together already contain 8 different numbers</li>
+            <li>Always start with this technique—it's the most straightforward</li>
+          </ul>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">Vocabulary tip</h3>
+          <p class="text-primaryFg/80">Notice how we use <em>candidates</em> and <em>houses</em>? These key terms from our <a href="/learn/glossary.html" class="text-link">glossary</a> help describe exactly what's happening in each technique. Familiarizing yourself with these terms makes learning advanced strategies much easier!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hidden Singles -->
+    <section id="hidden-singles" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="flex items-center gap-4 mb-5">
+        <span class="cell-num">2</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Hidden Singles</h2>
+      </div>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">A hidden single occurs when a number can only go in one place within a row, column, or box, even if that cell has multiple candidates.</p>
+
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Hidden Single in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="800000000400200008005090000000000010002106300600003497000530700790000002000600000"
+            data-roles="....................................ppppppppp...................................."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Missing Number</h4>
+            </div>
+            <p class="hint mb-4">"We are missing a 9 in this row"</p>
+            <p class="text-primaryFg/70">Magic Sudoku highlights the entire unit that needs the missing number.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="800000000400200008005090000000000010002106300600003497000530700790000002000600000"
+            data-roles="......................s.............ppppppppp.......s...........s................"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Restriction Analysis</h4>
+            </div>
+            <p class="hint mb-4">"These 9's affect this row"</p>
+            <p class="text-primaryFg/70">Shows which placed numbers restrict where the missing number can go.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="800000000400200008005090000000000010002106300600003497000530700790000002000600000"
+            data-roles=".w..w..w..w..w..w..w..s..w..w..w.wwwpwwwwwwww.w..w.wsw.w..w..w..s..w..w..w..w..w."></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">Elimination</h4>
+            </div>
+            <p class="hint mb-4">"So, these cells cannot be 9"</p>
+            <p class="text-primaryFg/70">Eliminates the impossible locations, leaving only one option.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board"
+            data-givens="800000000400200008005090000000000010002106300600003497000530700790000002000600000"
+            data-added="000000000000000000000000000000000000900000000000000000000000000000000000000000000"
+            data-roles="....................................g............................................"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">4</span>
+              <h4 class="text-xl font-semibold">Solution</h4>
+            </div>
+            <p class="hint mb-4">"Therefore, this cell must be 9"</p>
+            <p class="text-primaryFg/70">Places the number in the only remaining valid position.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="glass rounded-[28px] p-6 md:p-8 mt-5">
+        <h3 class="eyebrow mb-5">When to use</h3>
+        <ul class="check-list grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3">
+          <li>Scan each row, column, and box for missing numbers</li>
+          <li>Check if a missing number can only fit in one cell of that unit</li>
+          <li>Often more powerful than naked singles in advanced puzzles</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Strategy Comparison -->
+    <section id="key-differences" class="scroll-mt-28 mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Side by side</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Key Differences</h2>
+      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-4">Naked Singles</h3>
+          <dl class="divide-y divide-primaryFg/10">
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Focus</dt><dd class="font-medium text-right">Individual cells</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Look for</dt><dd class="font-medium text-right">Cells with one candidate</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Spotting</dt><dd class="font-medium text-right">Usually easier</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Approach</dt><dd class="font-medium text-right">Bottom-up</dd></div>
+          </dl>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-4">Hidden Singles</h3>
+          <dl class="divide-y divide-primaryFg/10">
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Focus</dt><dd class="font-medium text-right">Missing numbers</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Look for</dt><dd class="font-medium text-right">Numbers with one location</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Spotting</dt><dd class="font-medium text-right">Requires systematic scanning</dd></div>
+            <div class="flex justify-between gap-4 py-3"><dt class="text-primaryFg/60">Approach</dt><dd class="font-medium text-right">Top-down</dd></div>
+          </dl>
+        </div>
+        <div class="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none">
+          <span class="cell-num rounded-full text-base">vs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">These two techniques form the foundation of all Sudoku solving. Master them, and you'll be ready to tackle more advanced strategies.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/how-to-play.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">How to Play</p>
+      </a>
+      <a href="/learn/locked-candidates.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">Locked Candidates</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>
