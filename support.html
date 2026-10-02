@@ -32,6 +32,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
 
   <!-- Favicons and App Icons -->
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
@@ -41,120 +43,80 @@
   <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            accent: {
-              DEFAULT: '#526270',
-              dark: '#BFD7C9'
-            },
-            primaryBg: {
-              DEFAULT: '#F9F9F7',
-              dark: '#424242'
-            },
-            secondaryBg: {
-              DEFAULT: '#F1F1ED',
-              dark: '#000000'
-            },
-            tertiaryBg: {
-              DEFAULT: '#E5E3E0',
-              dark: '#212121'
-            },
-            primaryFg: {
-              DEFAULT: '#212121',
-              dark: '#FEFEFF'
-            },
-            secondaryFg: {
-              DEFAULT: '#797979',
-              dark: '#EAEAEA'
-            },
-            highlight: {
-              blue: {
-                DEFAULT: '#BFD7C9',
-                dark: '#BFD7C9'
-              },
-              green: {
-                DEFAULT: '#B4BD55',
-                dark: '#B4BD55'
-              }
-            }
-          },
-          fontFamily: {
-            'rubik': ['Rubik', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
 </head>
 
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
   <span include-html="/includes/header.html"></span>
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-3xl font-bold mb-8">Support</h1>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <header class="mb-12 md:mb-16">
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Support</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-2xl">Answers to common questions, and how to reach us when you need a hand.</p>
+    </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-primaryBg p-6 rounded-xl shadow-md">
-        <div class="text-4xl mb-4">📧</div>
-        <h2 class="text-xl font-bold mb-2">Email Support</h2>
-        <p class="mb-4">Have a question or need help? Contact our support team directly.</p>
-        <a href="mailto:support@magic-sudoku.com" class="text-accent hover:underline font-medium">support@magic-sudoku.com</a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-20 md:mb-24">
+      <div class="glass glass-strong rounded-[28px] p-6 md:p-8 flex flex-col">
+        <p class="eyebrow mb-3">Email</p>
+        <h2 class="text-2xl font-bold tracking-tight mb-2">Email Support</h2>
+        <p class="text-primaryFg/70 mb-6 flex-grow">Have a question or need help? Contact our support team directly.</p>
+        <a href="mailto:support@magic-sudoku.com" class="btn-primary self-start">support@magic-sudoku.com</a>
       </div>
 
-      <div class="bg-primaryBg p-6 rounded-xl shadow-md">
-        <div class="text-4xl mb-4">🐦</div>
-        <h2 class="text-xl font-bold mb-2">Social Media</h2>
-        <p class="mb-4">Follow us for updates and reach out with questions.</p>
-        <a href="https://twitter.com/magicsudokuapp" class="text-accent hover:underline font-medium">@magicsudokuapp</a>
-      </div>
-    </div>
-
-    <div class="mb-12">
-      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-
-      <div class="space-y-6">
-        <div class="border-b border-tertiaryBg pb-4">
-          <h3 class="font-bold mb-2">How do I sync my progress across devices?</h3>
-          <p>Magic Sudoku automatically syncs your game progress through iCloud. Make sure you're signed in to the same iCloud account on all your devices and have iCloud enabled for the app in your device settings.</p>
-        </div>
-
-        <div class="border-b border-tertiaryBg pb-4">
-          <h3 class="font-bold mb-2">What is Magic Mode?</h3>
-          <p>Magic Mode is an input mode that works out whether you want to place a number, add a pencil mark, or remove one, based on the state of the puzzle. You spend less time switching tools, and it never solves the puzzle for you.</p>
-        </div>
-
-        <div class="border-b border-tertiaryBg pb-4">
-          <h3 class="font-bold mb-2">How do I customize the number styles?</h3>
-          <p>Open Settings and choose Preferred Numerals to pick from numeral systems used around the world.</p>
-        </div>
-
-        <div class="border-b border-tertiaryBg pb-4">
-          <h3 class="font-bold mb-2">Does Magic Sudoku have ads?</h3>
-          <p>No pop-up or video ads, and no tracking. Without a subscription you may see one small banner recommending another independent app. Magic Sudoku Unlimited subscribers never see it. See our <a href="/privacy.html" class="text-accent hover:underline">Privacy Policy</a> for details.</p>
-        </div>
-
-        <div class="border-b border-tertiaryBg pb-4">
-          <h3 class="font-bold mb-2">Is Magic Sudoku available on Android?</h3>
-          <p>Currently, Magic Sudoku is only available for iOS devices including iPhone, iPad, Mac, and Vision Pro.</p>
-        </div>
+      <div class="glass glass-strong rounded-[28px] p-6 md:p-8 flex flex-col">
+        <p class="eyebrow mb-3">Social</p>
+        <h2 class="text-2xl font-bold tracking-tight mb-2">Social Media</h2>
+        <p class="text-primaryFg/70 mb-6 flex-grow">Follow us for updates and reach out with questions.</p>
+        <a href="https://twitter.com/magicsudokuapp" class="btn-glass self-start">@magicsudokuapp</a>
       </div>
     </div>
 
-    <div>
-      <h2 class="text-2xl font-bold mb-6">Reporting Issues</h2>
-      <p class="mb-4">If you encounter any bugs or have suggestions for improvements, please contact us with the following information:</p>
-      <ul class="list-disc pl-8 space-y-2 mb-6">
-        <li>Your device model and iOS version</li>
-        <li>A detailed description of the issue</li>
-        <li>Steps to reproduce the problem (if applicable)</li>
-        <li>Screenshots (if possible)</li>
-      </ul>
-      <a href="mailto:support@magic-sudoku.com" class="inline-block bg-highlight-green hover:bg-highlight-blue text-primaryFg font-bold py-2 px-6 rounded-full transition duration-300">Contact Support</a>
-    </div>
-  </div>
+    <section class="mb-20 md:mb-24">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Frequently Asked Questions</h2>
+
+      <dl class="glass glass-strong rounded-[32px] px-6 md:px-10 divide-y divide-primaryFg/10">
+        <div class="py-6 md:py-7">
+          <dt class="text-lg font-semibold mb-2">How do I sync my progress across devices?</dt>
+          <dd class="text-primaryFg/70 leading-relaxed">Magic Sudoku automatically syncs your game progress through iCloud. Make sure you're signed in to the same iCloud account on all your devices and have iCloud enabled for the app in your device settings.</dd>
+        </div>
+
+        <div class="py-6 md:py-7">
+          <dt class="text-lg font-semibold mb-2">What is Magic Mode?</dt>
+          <dd class="text-primaryFg/70 leading-relaxed">Magic Mode is an input mode that works out whether you want to place a number, add a pencil mark, or remove one, based on the state of the puzzle. You spend less time switching tools, and it never solves the puzzle for you.</dd>
+        </div>
+
+        <div class="py-6 md:py-7">
+          <dt class="text-lg font-semibold mb-2">How do I customize the number styles?</dt>
+          <dd class="text-primaryFg/70 leading-relaxed">Open Settings and choose Preferred Numerals to pick from numeral systems used around the world.</dd>
+        </div>
+
+        <div class="py-6 md:py-7">
+          <dt class="text-lg font-semibold mb-2">Does Magic Sudoku have ads?</dt>
+          <dd class="text-primaryFg/70 leading-relaxed">No pop-up or video ads, and no tracking. Without a subscription you may see one small banner recommending another independent app. Magic Sudoku Unlimited subscribers never see it. See our <a href="/privacy.html" class="text-link text-primaryFg">Privacy Policy</a> for details.</dd>
+        </div>
+
+        <div class="py-6 md:py-7">
+          <dt class="text-lg font-semibold mb-2">Is Magic Sudoku available on Android?</dt>
+          <dd class="text-primaryFg/70 leading-relaxed">Currently, Magic Sudoku is only available for iOS devices including iPhone, iPad, Mac, and Vision Pro.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="glass glass-strong rounded-[32px] p-6 md:p-10">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:items-end">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Reporting Issues</h2>
+          <p class="text-primaryFg/70 mb-6">If you encounter any bugs or have suggestions for improvements, please contact us with the following information:</p>
+          <ul class="check-list space-y-3">
+            <li>Your device model and iOS version</li>
+            <li>A detailed description of the issue</li>
+            <li>Steps to reproduce the problem (if applicable)</li>
+            <li>Screenshots (if possible)</li>
+          </ul>
+        </div>
+        <a href="mailto:support@magic-sudoku.com" class="btn-primary self-start md:self-end">Contact Support</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="bg-tertiaryBg text-secondaryFg py-12">
     <div include-html="/includes/footer.html"></div>

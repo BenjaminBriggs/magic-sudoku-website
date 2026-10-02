@@ -27,6 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
 
   <!-- Favicons and App Icons -->
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
@@ -35,108 +37,83 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            accent: {
-              DEFAULT: '#526270',
-              dark: '#BFD7C9'
-            },
-            primaryBg: {
-              DEFAULT: '#F9F9F7',
-              dark: '#424242'
-            },
-            secondaryBg: {
-              DEFAULT: '#F1F1ED',
-              dark: '#000000'
-            },
-            tertiaryBg: {
-              DEFAULT: '#E5E3E0',
-              dark: '#212121'
-            },
-            primaryFg: {
-              DEFAULT: '#212121',
-              dark: '#FEFEFF'
-            },
-            secondaryFg: {
-              DEFAULT: '#797979',
-              dark: '#EAEAEA'
-            },
-            highlight: {
-              blue: {
-                DEFAULT: '#BFD7C9',
-                dark: '#BFD7C9'
-              }
-            }
-          },
-          fontFamily: {
-            'rubik': ['Rubik', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
 </head>
 
 <body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
   <span include-html="/includes/header.html"></span>
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-3xl font-bold mb-8">Terms of Use</h1>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <header class="mb-12 md:mb-16">
+      <span class="badge mb-6"><span class="dot bg-highlight-yellow"></span>Last updated: October 1, 2026</span>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02]">Terms of Use</h1>
+    </header>
 
-    <div class="space-y-8">
-      <section>
-        <h2 class="text-xl font-bold mb-4">Introduction</h2>
-        <p class="mb-4">These Terms of Use govern your use of the Magic Sudoku app and website ("Magic Sudoku", "we", "us", or "our"). By downloading or using Magic Sudoku, you agree to these terms.</p>
-        <p>Last updated: October 1, 2026</p>
-      </section>
+    <div class="grid grid-cols-1 lg:grid-cols-[13rem_1fr] gap-10 items-start">
+      <nav class="hidden lg:block sticky top-28">
+        <p class="eyebrow mb-4">On this page</p>
+        <ol class="space-y-2.5 text-sm">
+          <li><a href="#introduction" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Introduction</a></li>
+          <li><a href="#license" class="text-primaryFg/60 hover:text-primaryFg transition-colors">License</a></li>
+          <li><a href="#subscription" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Free Features and Unlimited</a></li>
+          <li><a href="#refunds" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Refunds</a></li>
+          <li><a href="#recommendations" class="text-primaryFg/60 hover:text-primaryFg transition-colors">App Recommendations</a></li>
+          <li><a href="#game-center" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Game Center</a></li>
+          <li><a href="#changes" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Changes to These Terms</a></li>
+          <li><a href="#contact" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Contact Us</a></li>
+        </ol>
+      </nav>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">License</h2>
-        <p>Magic Sudoku is licensed to you, not sold. Your use of the app is governed by Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" class="text-accent hover:underline">Licensed Application End User License Agreement</a>, which includes the warranty disclaimers and limitations of liability that apply to the app. These terms add to that agreement.</p>
-      </section>
+      <article class="glass glass-strong rounded-[32px] p-6 md:p-12 space-y-10 text-primaryFg/80 leading-relaxed">
+        <section id="introduction" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Introduction</h2>
+          <p>These Terms of Use govern your use of the Magic Sudoku app and website ("Magic Sudoku", "we", "us", or "our"). By downloading or using Magic Sudoku, you agree to these terms.</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">Free Features and Magic Sudoku Unlimited</h2>
-        <p class="mb-4">Daily puzzles are free. Magic Sudoku Unlimited is an optional auto-renewing subscription that unlocks unlimited puzzles. The price and billing period are shown in the app before you subscribe and may vary by region.</p>
-        <ul class="list-disc pl-8 space-y-2">
-          <li>Payment is charged to your Apple Account when you confirm your purchase.</li>
-          <li>Your subscription renews automatically unless you cancel it at least 24 hours before the end of the current period.</li>
-          <li>Your account is charged for renewal within 24 hours before the end of the current period.</li>
-          <li>You can manage or cancel your subscription at any time in your Apple Account settings. Cancelling stops future renewals; you keep access until the end of the current period.</li>
-          <li>If a free trial is offered, any unused portion of the trial is forfeited when you purchase a subscription.</li>
-        </ul>
-      </section>
+        <section id="license" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">License</h2>
+          <p>Magic Sudoku is licensed to you, not sold. Your use of the app is governed by Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" class="text-link text-primaryFg">Licensed Application End User License Agreement</a>, which includes the warranty disclaimers and limitations of liability that apply to the app. These terms add to that agreement.</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">Refunds</h2>
-        <p>Purchases are processed by Apple, and we can't issue refunds directly. You can request a refund from Apple at <a href="https://reportaproblem.apple.com" class="text-accent hover:underline">reportaproblem.apple.com</a>.</p>
-      </section>
+        <section id="subscription" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Free Features and Magic Sudoku Unlimited</h2>
+          <p class="mb-4">Daily puzzles are free. Magic Sudoku Unlimited is an optional auto-renewing subscription that unlocks unlimited puzzles. The price and billing period are shown in the app before you subscribe and may vary by region.</p>
+          <ul class="cell-list space-y-2">
+            <li>Payment is charged to your Apple Account when you confirm your purchase.</li>
+            <li>Your subscription renews automatically unless you cancel it at least 24 hours before the end of the current period.</li>
+            <li>Your account is charged for renewal within 24 hours before the end of the current period.</li>
+            <li>You can manage or cancel your subscription at any time in your Apple Account settings. Cancelling stops future renewals; you keep access until the end of the current period.</li>
+            <li>If a free trial is offered, any unused portion of the trial is forfeited when you purchase a subscription.</li>
+          </ul>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">App Recommendations</h2>
-        <p>Without a subscription, Magic Sudoku may show a small banner recommending another independent app. See our <a href="/privacy.html" class="text-accent hover:underline">Privacy Policy</a> for how this works. Subscribers don't see these recommendations.</p>
-      </section>
+        <section id="refunds" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Refunds</h2>
+          <p>Purchases are processed by Apple, and we can't issue refunds directly. You can request a refund from Apple at <a href="https://reportaproblem.apple.com" class="text-link text-primaryFg">reportaproblem.apple.com</a>.</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">Game Center</h2>
-        <p>Leaderboards and achievements are provided through Apple's Game Center and are subject to Apple's terms.</p>
-      </section>
+        <section id="recommendations" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">App Recommendations</h2>
+          <p>Without a subscription, Magic Sudoku may show a small banner recommending another independent app. See our <a href="/privacy.html" class="text-link text-primaryFg">Privacy Policy</a> for how this works. Subscribers don't see these recommendations.</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">Changes to These Terms</h2>
-        <p>We may update these terms from time to time. We will post the new terms on this page and update the "Last updated" date. Continuing to use Magic Sudoku after a change means you accept the updated terms.</p>
-      </section>
+        <section id="game-center" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Game Center</h2>
+          <p>Leaderboards and achievements are provided through Apple's Game Center and are subject to Apple's terms.</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-bold mb-4">Contact Us</h2>
-        <p>If you have any questions about these terms, please contact us at support@magic-sudoku.com.</p>
-      </section>
+        <section id="changes" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Changes to These Terms</h2>
+          <p>We may update these terms from time to time. We will post the new terms on this page and update the "Last updated" date. Continuing to use Magic Sudoku after a change means you accept the updated terms.</p>
+        </section>
+
+        <section id="contact" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Contact Us</h2>
+          <p class="mb-6">If you have any questions about these terms, please contact us at <a href="mailto:support@magic-sudoku.com" class="text-link text-primaryFg">support@magic-sudoku.com</a>.</p>
+          <a href="mailto:support@magic-sudoku.com" class="btn-primary">Email Support</a>
+        </section>
+      </article>
     </div>
-  </div>
+  </main>
 
   <footer class="bg-tertiaryBg text-secondaryFg py-12">
     <div include-html="/includes/footer.html"></div>
