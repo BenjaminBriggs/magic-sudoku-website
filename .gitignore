@@ -2,3 +2,7 @@
 .netlify
 *.*~lock~
 .DS_Store
+/Assets/Bento features.afdesign
+/docs/superpowers
+/.specify
+/.claude/commands
