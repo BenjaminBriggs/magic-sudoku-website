@@ -64,4 +64,11 @@
   status = 200
   force = true
 
+# Shared player-made puzzles carry the whole puzzle in the path; the page decodes it
+[[redirects]]
+  from = "/c/*"
+  to = "/shared.html"
+  status = 200
+  force = true
+
 # Unknown paths fall through to Netlify's 404.html

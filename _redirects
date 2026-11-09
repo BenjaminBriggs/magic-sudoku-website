@@ -8,3 +8,4 @@
 /terms /terms.html 200
 /support /support.html 200
 /puzzle/* /puzzle.html?id=:splat 200!
+/c/* /shared.html 200!
