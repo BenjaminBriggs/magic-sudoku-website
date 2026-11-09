@@ -4,12 +4,17 @@
       {
         "appID": "N29LW4SJ55.pro.briggs.sudoku",
         "paths": [
-          "/puzzle/*"
+          "/puzzle/*",
+          "/c/*"
         ],
         "components": [
           {
             "/": "/puzzle/*",
             "comment": "Matches any URL whose path starts with /puzzle/"
+          },
+          {
+            "/": "/c/*",
+            "comment": "Player-made puzzles shared from the builder"
           }
         ]
       }

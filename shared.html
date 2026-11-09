@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Sudoku Puzzle - Magic Sudoku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicons and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    <script>
+        // A player-made puzzle travels whole in the link: /c/<payload>. Netlify's rewrite isn't
+        // visible to the browser, so the payload comes from the path (or ?p= when opened directly).
+        function getSharedPayload() {
+            const queryPayload = new URLSearchParams(window.location.search).get('p');
+            if (queryPayload) return queryPayload.trim();
+
+            const path = window.location.pathname;
+            if (path.startsWith('/c/') === false) return null;
+            const payload = path.slice(3).replace(/\/+$/, '');
+            return payload === '' ? null : payload;
+        }
+
+        // Safari reads the Smart App Banner tag while parsing <head>, so add it here
+        (function () {
+            const payload = getSharedPayload();
+            const metaTag = document.createElement('meta');
+            metaTag.name = 'apple-itunes-app';
+            metaTag.content = payload && /^[A-Za-z0-9_-]+$/.test(payload)
+                ? `app-id=6742204685, app-argument=magic-sudoku://c/${payload}`
+                : 'app-id=6742204685';
+            document.head.appendChild(metaTag);
+        })();
+    </script>
+
+    <meta name="description" content="A Sudoku puzzle made by a Magic Sudoku player. Play it in the app or print it.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="A Sudoku puzzle made in Magic Sudoku">
+    <meta property="og:description" content="Play it with pencil marks, Magic Mode and hints, or print it.">
+    <meta property="og:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A Sudoku puzzle made in Magic Sudoku">
+    <meta name="twitter:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // From AccentColor.colorset
+                        accent: {
+                            DEFAULT: '#526270',
+                            dark: '#BFD7C9'
+                        },
+                        // From Grid/Cell Primary Background.colorset
+                        cellPrimary: {
+                            DEFAULT: '#F5F3F0',
+                            dark: '#262626'
+                        },
+                        // From Grid/Cell Alternate Background.colorset
+                        cellAlternate: {
+                            DEFAULT: '#F5F3F0',
+                            dark: '#262626'
+                        },
+                        // From Grid/Cell Prefilled Background.colorset
+                        cellPrefilled: {
+                            DEFAULT: '#EBEAE6',
+                            dark: '#000000'
+                        },
+                        // From Grid/Number.colorset
+                        number: {
+                            DEFAULT: '#121212',
+                            dark: '#F6F6F6'
+                        },
+                        // From Grid/Lines.colorset
+                        gridLines: {
+                            DEFAULT: '#BABABA',
+                            dark: '#7F7F7F'
+                        },
+                        // From Primary Background Color.colorset
+                        primaryBg: {
+                            DEFAULT: '#F9F9F7',
+                            dark: '#424242'
+                        },
+                        // From Secondary Background Color.colorset
+                        secondaryBg: {
+                            DEFAULT: '#F1F1ED',
+                            dark: '#000000'
+                        },
+                        // From Tertiary Background Color.colorset
+                        tertiaryBg: {
+                            DEFAULT: '#E5E3E0',
+                            dark: '#212121'
+                        },
+                        // From Primary Foreground Color.colorset
+                        primaryFg: {
+                            DEFAULT: '#212121',
+                            dark: '#FEFEFF'
+                        },
+                        // From Secondary Foreground Color.colorset
+                        secondaryFg: {
+                            DEFAULT: '#797979',
+                            dark: '#EAEAEA'
+                        },
+                        // From Input/Pen Color.colorset
+                        pen: {
+                            DEFAULT: '#5F717F',
+                            dark: '#DAF1F1'
+                        },
+                        // From Input/Pencil Color.colorset
+                        pencil: {
+                            DEFAULT: '#424242',
+                            dark: '#F1F1F1'
+                        },
+                        // Highlight colors from Highlight folder
+                        highlight: {
+                            blue: {
+                                DEFAULT: '#BFD7C9',
+                                dark: '#BFD7C9'
+                            },
+                            green: {
+                                DEFAULT: '#B4BD55',
+                                dark: '#B4BD55'
+                            },
+                            orange: {
+                                DEFAULT: '#F4C070',
+                                dark: '#F4C070'
+                            },
+                            red: {
+                                DEFAULT: '#F69B7B',
+                                dark: '#F69B7B'
+                            },
+                            yellow: {
+                                DEFAULT: '#F4D968',
+                                dark: '#F4D968'
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        'rubik': ['Rubik', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/css/site.css">
+    <style>
+        /* Board styled after the app: prefilled cells, grey box lines, rounded frame. */
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            grid-template-rows: repeat(9, minmax(0, 1fr));
+            aspect-ratio: 1;
+            width: 100%;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            border: 2px solid #BABABA;
+            background: #F5F3F0;
+            box-shadow: 0 18px 40px -20px rgb(33 33 33 / 0.35);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .puzzle-grid button {
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: clamp(1.1rem, 5.2vw, 2rem);
+            color: #121212;
+            background: #F5F3F0;
+            border-right: 1px solid rgb(33 33 33 / 0.1);
+            border-bottom: 1px solid rgb(33 33 33 / 0.1);
+            transition: background-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .puzzle-grid .given {
+            background: #EBEAE6;
+        }
+
+        .puzzle-grid .edge-r {
+            border-right: 2px solid #BABABA;
+        }
+
+        .puzzle-grid .edge-b {
+            border-bottom: 2px solid #BABABA;
+        }
+
+        .puzzle-grid .last-col {
+            border-right: 0;
+        }
+
+        .puzzle-grid .last-row {
+            border-bottom: 0;
+        }
+
+        .puzzle-grid .is-peer {
+            background: rgb(191 215 201 / 0.45);
+        }
+
+        .puzzle-grid .given.is-peer {
+            background: rgb(191 215 201 / 0.75);
+        }
+
+        .puzzle-grid .is-same {
+            background: rgb(244 217 104 / 0.55);
+        }
+
+        .puzzle-grid .is-focus {
+            background: #F4D968;
+        }
+    </style>
+
+    <style>
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #ECEBE7;
+            color: #3A3A37;
+        }
+
+        .chip.tone-green { background: rgb(180 189 85 / 0.3); color: #3E4413; }
+        .chip.tone-orange { background: rgb(244 192 112 / 0.35); color: #6B4310; }
+        .chip.tone-red { background: #FBDCD0; color: #7E321A; }
+        .chip.tone-purple { background: #E6DDF2; color: #4A2D73; }
+        .chip.tone-blue { background: rgb(191 215 201 / 0.6); color: #2A4436; }
+
+        /* Print just the puzzle: title, author, instructions and the grid in ink. */
+        @media print {
+            body { background: #FFFFFF !important; }
+            .no-print, header, footer, nav { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            #shared-view { display: block !important; }
+            #shared-view > div { max-width: 16cm !important; margin: 0 auto 0.6cm; }
+            .puzzle-grid { box-shadow: none; border: 2px solid #000; border-radius: 0; }
+            .puzzle-grid button { background: #FFFFFF !important; color: #000; border-color: rgb(0 0 0 / 0.35); }
+            .puzzle-grid .edge-r { border-right: 2px solid #000; }
+            .puzzle-grid .edge-b { border-bottom: 2px solid #000; }
+            #setter-box { border: 0; background: none; padding: 0; }
+        }
+    </style>
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+    <span include-html="/includes/header.html" class="no-print"></span>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-16 pb-24">
+        <section id="shared-view" class="hidden grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
+            <div class="w-full max-w-[540px] mx-auto lg:order-1 order-2">
+                <div id="sudoku-board" class="puzzle-grid"></div>
+                <p id="clue-count" class="text-sm text-primaryFg/60 mt-3 no-print"></p>
+            </div>
+
+            <div class="flex flex-col gap-5 lg:order-2 order-1">
+                <div id="chips" class="flex flex-wrap gap-2 no-print">
+                    <span class="chip">Community puzzle</span>
+                </div>
+                <div>
+                    <h1 id="puzzle-title" class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1]">A puzzle made in Magic Sudoku</h1>
+                    <p id="puzzle-author" class="text-lg text-primaryFg/75 mt-2 hidden"></p>
+                </div>
+                <div id="setter-box" class="hidden rounded-2xl border border-tertiaryBg bg-secondaryBg px-5 py-4">
+                    <p class="text-xs font-bold uppercase tracking-wider text-primaryFg/60 mb-1 no-print">From the setter</p>
+                    <p id="puzzle-instructions" class="text-lg leading-relaxed whitespace-pre-line"></p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 no-print">
+                    <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" id="open-in-app-btn" class="btn-primary">Play in Magic Sudoku</a>
+                    <button type="button" id="copy-string-btn" class="btn-glass">Copy puzzle string</button>
+                    <button type="button" id="print-btn" class="btn-glass">Print</button>
+                </div>
+                <p class="text-sm text-primaryFg/70 no-print">Don't have the app? <a class="underline" href="https://apps.apple.com/app/magic-sudoku/id6742204685">Get Magic Sudoku on the App Store</a> for iPhone, iPad, Mac and Vision Pro.</p>
+                <div class="border-t border-tertiaryBg pt-5 no-print">
+                    <p class="font-semibold mb-1">Make your own</p>
+                    <p class="text-primaryFg/75">Build puzzles in the app's Create tab, check they have one solution, see how hard they are, and share them or submit them for a Daily Puzzle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shown when the link doesn't contain a valid puzzle -->
+        <section id="invalid-view" class="hidden max-w-xl mx-auto text-center glass glass-strong rounded-[32px] p-8 md:p-12">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">This puzzle link doesn't look right</h1>
+            <p class="text-lg text-primaryFg/70 mb-8">It may have been cut off when it was shared. Ask for the link again, or find thousands more puzzles in Magic Sudoku.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary">Get Magic Sudoku</a>
+                <a href="/" class="btn-glass">Go to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-tertiaryBg text-secondaryFg py-12 no-print">
+        <div include-html="/includes/footer.html"></div>
+    </footer>
+
+    <script src="/js/includes.js"></script>
+    <script src="/js/app-store.js"></script>
+    <script src="/js/shared-puzzle.js"></script>
+
+    <script>
+        const APP_STORE_URL = 'https://apps.apple.com/app/magic-sudoku/id6742204685';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const payload = getSharedPayload();
+            if (payload === null) {
+                window.location.href = '/';
+                return;
+            }
+
+            const puzzle = decodeSharedPuzzle(payload);
+            if (puzzle === null) {
+                document.getElementById('shared-view').remove();
+                document.getElementById('invalid-view').classList.remove('hidden');
+                return;
+            }
+
+            const view = document.getElementById('shared-view');
+            view.classList.remove('hidden');
+            view.classList.add('grid');
+            showDetails(puzzle);
+            renderGrid(puzzle.givens);
+            setupButtons(payload, puzzle.givens);
+        });
+
+        // Everything the setter wrote goes in as text, never as markup.
+        function showDetails(puzzle) {
+            if (puzzle.title) {
+                document.getElementById('puzzle-title').textContent = puzzle.title;
+                document.title = `${puzzle.title} - Magic Sudoku`;
+            }
+            if (puzzle.author) {
+                const author = document.getElementById('puzzle-author');
+                author.textContent = `by ${puzzle.author}`;
+                author.classList.remove('hidden');
+            }
+            if (puzzle.instructions) {
+                document.getElementById('puzzle-instructions').textContent = puzzle.instructions;
+                document.getElementById('setter-box').classList.remove('hidden');
+            }
+
+            // The setter decides whether solvers see the rating before they start.
+            const chips = document.getElementById('chips');
+            if (puzzle.showsRatingBeforeSolving && puzzle.level) {
+                const level = document.createElement('span');
+                level.className = `chip tone-${puzzle.level.tone}`;
+                level.textContent = puzzle.level.name;
+                chips.prepend(level);
+                if (puzzle.estimatedMinutes) {
+                    const time = document.createElement('span');
+                    time.className = 'chip';
+                    time.textContent = `About ${puzzle.estimatedMinutes} minute${puzzle.estimatedMinutes === 1 ? '' : 's'}`;
+                    level.after(time);
+                }
+            }
+            if (puzzle.allowsHints === false) {
+                const noHints = document.createElement('span');
+                noHints.className = 'chip';
+                noHints.textContent = 'No hints';
+                chips.append(noHints);
+            }
+
+            const clues = puzzle.givens.split('').filter((c) => c !== '0').length;
+            document.getElementById('clue-count').textContent = `${clues} clues`;
+        }
+
+        function boxIndex(index) {
+            return Math.floor(Math.floor(index / 9) / 3) * 3 + Math.floor((index % 9) / 3);
+        }
+
+        function isPeer(a, b) {
+            return Math.floor(a / 9) === Math.floor(b / 9) || a % 9 === b % 9 || boxIndex(a) === boxIndex(b);
+        }
+
+        function renderGrid(givens) {
+            const board = document.getElementById('sudoku-board');
+            const cells = [];
+            let selected = null;
+
+            function select(index) {
+                selected = selected === index ? null : index;
+                const digit = selected === null ? '0' : givens.charAt(selected);
+                cells.forEach((cell, i) => {
+                    const isFocus = i === selected;
+                    const isSame = isFocus === false && digit !== '0' && givens.charAt(i) === digit;
+                    const isRelated = selected !== null && isFocus === false && isSame === false && isPeer(selected, i);
+                    cell.classList.toggle('is-focus', isFocus);
+                    cell.classList.toggle('is-same', isSame);
+                    cell.classList.toggle('is-peer', isRelated);
+                });
+            }
+
+            for (let i = 0; i < 81; i++) {
+                const row = Math.floor(i / 9);
+                const col = i % 9;
+                const value = givens.charAt(i);
+                const cell = document.createElement('button');
+                cell.type = 'button';
+                if (value !== '0') {
+                    cell.textContent = value;
+                    cell.classList.add('given');
+                }
+                if (col % 3 === 2) cell.classList.add(col === 8 ? 'last-col' : 'edge-r');
+                if (row % 3 === 2) cell.classList.add(row === 8 ? 'last-row' : 'edge-b');
+                cell.addEventListener('click', () => select(i));
+                board.appendChild(cell);
+                cells.push(cell);
+            }
+        }
+
+        function setupButtons(payload, givens) {
+            const copyButton = document.getElementById('copy-string-btn');
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(givens);
+                    copyButton.textContent = 'Copied!';
+                } catch (error) {
+                    window.prompt('Copy the puzzle string:', givens);
+                }
+                setTimeout(() => { copyButton.textContent = 'Copy puzzle string'; }, 2000);
+            });
+
+            document.getElementById('print-btn').addEventListener('click', () => window.print());
+
+            const appDeepLink = `magic-sudoku://c/${payload}`;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+                || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isMac = navigator.platform === 'MacIntel' && isIOS === false;
+            const openInAppBtn = document.getElementById('open-in-app-btn');
+
+            // Other platforms can't run the app: keep the App Store link
+            if (isIOS === false && isMac === false) {
+                openInAppBtn.textContent = 'Get Magic Sudoku';
+                return;
+            }
+
+            openInAppBtn.href = appDeepLink;
+            if (isIOS === false) return;
+
+            openInAppBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (APP_RELEASED === false) {
+                    window.location.href = appDeepLink;
+                    return;
+                }
+                const fallbackTimer = setTimeout(() => { window.location.href = APP_STORE_URL; }, 1500);
+                const cancelFallback = () => clearTimeout(fallbackTimer);
+                document.addEventListener('visibilitychange', cancelFallback, { once: true });
+                window.addEventListener('pagehide', cancelFallback, { once: true });
+                window.location.href = appDeepLink;
+            });
+        }
+    </script>
+</body>
+
+</html>
