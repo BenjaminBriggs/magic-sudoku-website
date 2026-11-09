@@ -64,6 +64,13 @@
   status = 200
   force = true
 
+# The short form of /puzzle/
+[[redirects]]
+  from = "/p/*"
+  to = "/puzzle.html?id=:splat"
+  status = 200
+  force = true
+
 # Shared player-made puzzles carry the whole puzzle in the path; the page decodes it
 [[redirects]]
   from = "/c/*"
