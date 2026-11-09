@@ -305,9 +305,9 @@
 
     <script src="/js/includes.js"></script>
     <script src="/js/app-store.js"></script>
-    <script src="/js/shared-puzzle.js"></script>
+    <script type="module">
+        import { decodeSharedPuzzle } from '/js/shared-puzzle.js';
 
-    <script>
         const APP_STORE_URL = 'https://apps.apple.com/app/magic-sudoku/id6742204685';
 
         document.addEventListener('DOMContentLoaded', function () {

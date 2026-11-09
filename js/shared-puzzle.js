@@ -1,5 +1,6 @@
 // Reads a player-made puzzle from a /c/<payload> link. The app writes the payload
 // (PuzzleDistribution/SharedPuzzle.swift in the app repo); change both together.
+// An ES module: shared.html imports it, and so do the link-preview edge functions.
 //
 // byte 0      version (1)
 // byte 1      flags: 0 title, 1 author, 2 instructions, 3 solved note, 4 link,
@@ -34,7 +35,7 @@ function base64UrlToBytes(text) {
 
 // Returns { givens, title, author, instructions, solvedNote, link, allowsHints,
 // showsRatingBeforeSolving, level, estimatedMinutes } or null when the payload isn't valid.
-function decodeSharedPuzzle(payload) {
+export function decodeSharedPuzzle(payload) {
     const bytes = base64UrlToBytes(payload);
     if (bytes === null) return null;
     let offset = 0;

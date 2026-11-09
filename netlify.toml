@@ -35,6 +35,13 @@
   status = 404
   force = true
 
+# Edge function source; the functions themselves run on /puzzle/*, /p/*, /c/* and /og/*
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # Don't redirect .well-known files
 [[redirects]]
   from = "/.well-known/*"
