@@ -44,9 +44,30 @@ Tailwind config is defined inline in each page's `<head>`. Colors mirror the iOS
 - `/.well-known/*` — served directly (app association files)
 - `/puzzle/*` — rewritten to `puzzle.html?id=:splat`
 - `/c/*` — rewritten to `shared.html` (the page reads the payload from the path)
+- `/og/*` — puzzle link pictures, drawn by an edge function (below)
 - `/*` — SPA fallback to `index.html`
 
 Configured in both `netlify.toml` and `_redirects` (Netlify uses both).
+
+### Link previews (Netlify Edge Functions)
+
+Link crawlers (WhatsApp, Slack, Discord, X, a link pasted into Messages) read `og:` tags without
+running the page's scripts, so two edge functions in `netlify/edge-functions/` give each puzzle
+link its own preview:
+
+- `puzzle-preview-tags.js` on `/puzzle/*`, `/p/*` and `/c/*` swaps the page's `og:`/`twitter:` tags
+  and `<title>` for the puzzle's: a created puzzle's name, otherwise "Sudoku · 26 clues" (the
+  app's own previews use the same words). Invalid puzzles keep the static tags.
+- `puzzle-preview-image.js` on `/og/*` draws the `og:image`, 1200 × 630: the givens on the app's
+  grid, the title, and the app icon. `/og/c/<payload>.png` is the picture for `/c/<payload>`.
+  It renders SVG with resvg-wasm (`netlify/edge-functions/vendor/`, wasm in `preview/`) and the
+  app's Rubik fonts in `preview/`, and caches each picture for good: the path is the puzzle.
+
+The words and the drawing are in `js/puzzle-preview.js`, which imports `js/shared-puzzle.js` (an
+ES module, also imported by `shared.html`). Only the givens are drawn, never a solution.
+
+Test them with `netlify dev` (`python3 -m http.server` doesn't run edge functions), then
+`curl http://localhost:8888/c/<payload>` and open `/og/c/<payload>.png`.
 
 ## Development
 

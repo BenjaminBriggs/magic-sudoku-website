@@ -3,6 +3,7 @@
 /Assets/* /404.html 404!
 /.specify/* /404.html 404!
 /.claude/* /404.html 404!
+/netlify/* /404.html 404!
 /.well-known/* /.well-known/:splat 200
 /privacy /privacy.html 200
 /terms /terms.html 200
