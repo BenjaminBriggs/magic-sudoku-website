@@ -19,16 +19,17 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
 
     <script>
-        // Netlify's /puzzle/* rewrite isn't visible to the browser, so the ID usually comes from the path
+        // Netlify's /puzzle/* and /p/* rewrites aren't visible to the browser, so the ID usually comes from the path
         function getPuzzleId() {
             const queryId = new URLSearchParams(window.location.search).get('id');
             if (queryId) return queryId.trim();
 
-            const path = window.location.pathname;
-            if (path.startsWith('/puzzle/') === false) return null;
+            // /p/ is the short form of /puzzle/
+            const match = window.location.pathname.match(/^\/(?:puzzle|p)\/(.*)$/);
+            if (match === null) return null;
 
             // Links pasted with a trailing slash should still resolve
-            const pathId = path.split('/puzzle/')[1].replace(/\/+$/, '');
+            const pathId = match[1].replace(/\/+$/, '');
             return pathId === '' ? null : pathId;
         }
 

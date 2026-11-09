@@ -5,12 +5,17 @@
         "appID": "N29LW4SJ55.pro.briggs.sudoku",
         "paths": [
           "/puzzle/*",
+          "/p/*",
           "/c/*"
         ],
         "components": [
           {
             "/": "/puzzle/*",
             "comment": "Matches any URL whose path starts with /puzzle/"
+          },
+          {
+            "/": "/p/*",
+            "comment": "The short form of /puzzle/"
           },
           {
             "/": "/c/*",

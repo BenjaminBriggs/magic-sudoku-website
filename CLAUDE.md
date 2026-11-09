@@ -42,7 +42,7 @@ Tailwind config is defined inline in each page's `<head>`. Colors mirror the iOS
 ### Routing (Netlify)
 
 - `/.well-known/*` — served directly (app association files)
-- `/puzzle/*` — rewritten to `puzzle.html?id=:splat`
+- `/puzzle/*` and its short form `/p/*` — rewritten to `puzzle.html?id=:splat`
 - `/c/*` — rewritten to `shared.html` (the page reads the payload from the path)
 - `/*` — SPA fallback to `index.html`
 
