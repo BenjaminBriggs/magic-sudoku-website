@@ -3,8 +3,8 @@
 // og: tags and draw the picture, since link crawlers don't run the page's scripts.
 //
 // The app hands Messages the same title for links it shares (PuzzleLinkPreview.swift in the app
-// repo): a created puzzle's name, otherwise "Expert Sudoku · 26 clues", the rating only where
-// the setter shows it before a solve. Keep the words alike. Only the givens are ever drawn.
+// repo): a created puzzle's name, otherwise "Expert Sudoku", the rating only where the setter
+// shows it before a solve. Keep the words alike. Only the givens are ever drawn.
 
 import { decodeSharedPuzzle } from './shared-puzzle.js';
 
@@ -14,19 +14,16 @@ export const PREVIEW_IMAGE_SIZE = { width: 1200, height: 630 };
 const PLAY_LINE = 'Play it in Magic Sudoku, with pencil marks, Magic Mode and hints.';
 const PLAY_OR_PRINT_LINE = 'Play it in Magic Sudoku, with pencil marks, Magic Mode and hints, or print it.';
 
-function clueCount(givens) {
-    return givens.split('').filter((digit) => digit !== '0').length;
-}
-
-function clueTitle(levelName, clues) {
-    return levelName ? `${levelName} Sudoku · ${clues} clues` : `Sudoku · ${clues} clues`;
+// An untitled puzzle's name: its rating where it's shown, otherwise just "Sudoku".
+function ratedTitle(levelName) {
+    return levelName ? `${levelName} Sudoku` : 'Sudoku';
 }
 
 // The preview for a page path: /puzzle/<81 digits>, its short form /p/<81 digits>, or
 // /c/<payload>. Returns { title, subtitle, description, givens, imagePath } for the tags, and
-// for the picture its own title without the clue count, pictureTitle, the rating's tag as
-// { name, color } or null, and the line under the title, byline. Returns null for any other
-// path or a puzzle that doesn't read.
+// for the picture its own title, pictureTitle ("Sudoku" for an untitled puzzle, whose rating
+// is on its tag), the rating's tag as { name, color } or null, and the line under the title,
+// byline. Returns null for any other path or a puzzle that doesn't read.
 export function describePuzzleLink(pathname) {
     const match = pathname.match(/^\/(puzzle|p|c)\/([^/]+)\/?$/);
     if (match === null) return null;
@@ -36,12 +33,11 @@ export function describePuzzleLink(pathname) {
     if (route === 'c') {
         const puzzle = decodeSharedPuzzle(id);
         if (puzzle === null) return null;
-        const clues = clueCount(puzzle.givens);
         const levelName = puzzle.showsRatingBeforeSolving && puzzle.level ? puzzle.level.name : null;
         const level = levelName === null ? null : { name: levelName, color: LEVEL_COLORS[puzzle.level.tone] };
         if (puzzle.title === '') {
             return {
-                title: clueTitle(levelName, clues),
+                title: ratedTitle(levelName),
                 subtitle: 'Made in Magic Sudoku',
                 description: PLAY_OR_PRINT_LINE,
                 givens: puzzle.givens,
@@ -51,13 +47,14 @@ export function describePuzzleLink(pathname) {
                 byline: 'Made in Magic Sudoku',
             };
         }
-        const subtitle = [puzzle.author ? `by ${puzzle.author}` : null, levelName, `${clues} clues`]
+        const subtitle = [puzzle.author ? `by ${puzzle.author}` : null, levelName]
             .filter((part) => part !== null)
             .join(' · ');
+        const instructions = puzzle.instructions || PLAY_OR_PRINT_LINE;
         return {
             title: puzzle.title,
             subtitle,
-            description: `${subtitle}. ${puzzle.instructions || PLAY_OR_PRINT_LINE}`,
+            description: subtitle === '' ? instructions : `${subtitle}. ${instructions}`,
             givens: puzzle.givens,
             imagePath,
             pictureTitle: puzzle.title,
@@ -68,7 +65,7 @@ export function describePuzzleLink(pathname) {
 
     if (/^[0-9]{81}$/.test(id) === false) return null;
     return {
-        title: clueTitle(null, clueCount(id)),
+        title: ratedTitle(null),
         subtitle: 'Play it in Magic Sudoku',
         description: PLAY_LINE,
         givens: id,
@@ -107,7 +104,7 @@ export function withPreviewTags(html, preview, pageURL) {
         ['property', 'og:image', image],
         ['property', 'og:image:width', String(PREVIEW_IMAGE_SIZE.width)],
         ['property', 'og:image:height', String(PREVIEW_IMAGE_SIZE.height)],
-        ['property', 'og:image:alt', `A Sudoku grid with ${clueCount(preview.givens)} clues`],
+        ['property', 'og:image:alt', 'Part of the puzzle\'s Sudoku grid with its given numbers'],
         ['name', 'twitter:card', 'summary_large_image'],
         ['name', 'twitter:title', preview.title],
         ['name', 'twitter:description', description],
@@ -247,7 +244,6 @@ const TITLE_SIZES = [[84, 2], [68, 3], [56, 3]];
 
 // The picture: the board tilted and running off the right edge, so it shows the puzzle without
 // giving all of it away, beside the rating, the title, who made it and the Magic Sudoku mark.
-// The clue count stays in the link's words, not the picture.
 // The app's own picture for Messages is drawn alike. `iconDataURL` is the app icon as a data: URL.
 export function previewSVG(preview, iconDataURL) {
     const { width, height } = PREVIEW_IMAGE_SIZE;

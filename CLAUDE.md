@@ -56,8 +56,8 @@ running the page's scripts, so two edge functions in `netlify/edge-functions/` g
 link its own preview:
 
 - `puzzle-preview-tags.js` on `/puzzle/*`, `/p/*` and `/c/*` swaps the page's `og:`/`twitter:` tags
-  and `<title>` for the puzzle's: a created puzzle's name, otherwise "Sudoku · 26 clues" (the
-  app's own previews use the same words). Invalid puzzles keep the static tags.
+  and `<title>` for the puzzle's: a created puzzle's name, otherwise "Expert Sudoku", or just
+  "Sudoku" where the rating isn't shown (the app's own previews use the same words). Invalid puzzles keep the static tags.
 - `puzzle-preview-image.js` on `/og/*` draws the `og:image`, 1200 × 630: the givens on the app's
   board, tilted and running off the right edge so it doesn't show the whole puzzle, the rating,
   the title, and the app icon. `/og/c/<payload>.png` is the picture for `/c/<payload>`.
