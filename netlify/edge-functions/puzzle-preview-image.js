@@ -1,5 +1,5 @@
-// Draws a puzzle link's og:image: its givens on the app's grid beside its title and the Magic
-// Sudoku mark, as a 1200 × 630 PNG. The path mirrors the page's: /og/c/<payload>.png is the
+// Draws a puzzle link's og:image: its givens on the app's board, tilted and running off the
+// right edge, beside its title and the Magic Sudoku mark, as a 1200 × 630 PNG. The path mirrors the page's: /og/c/<payload>.png is the
 // picture for /c/<payload>. The path is the puzzle, so each picture is drawn once and cached.
 
 import { initWasm, Resvg } from './vendor/resvg-wasm.mjs';
@@ -23,14 +23,15 @@ function loadAssets(origin) {
             if (response.ok === false) throw new Error(`${path} answered ${response.status}`);
             return new Uint8Array(await response.arrayBuffer());
         };
-        const [wasm, bold, medium, icon] = await Promise.all([
+        const [wasm, black, bold, medium, icon] = await Promise.all([
             bytes('/preview/resvg.wasm'),
+            bytes('/preview/Rubik-Black.ttf'),
             bytes('/preview/Rubik-Bold.ttf'),
             bytes('/preview/Rubik-Medium.ttf'),
             bytes('/images/apple-touch-icon.png'),
         ]);
         await initWasm(wasm);
-        return { fonts: [bold, medium], iconDataURL: `data:image/png;base64,${base64(icon)}` };
+        return { fonts: [black, bold, medium], iconDataURL: `data:image/png;base64,${base64(icon)}` };
     })();
     // A failed load is tried again by the next request.
     assets.catch(() => {
