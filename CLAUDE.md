@@ -16,6 +16,7 @@ Static marketing website for Magic Sudoku, an iOS/iPad/Mac/Vision Pro Sudoku app
 - `index.html` — Landing page with feature bento grid
 - `puzzle.html` — Puzzle viewer with deep linking to iOS app via `magic-sudoku://puzzle/{id}`
 - `shared.html` — Player-made puzzle page for `/c/<payload>` links: decodes title, author, instructions and grid from the link (`js/shared-puzzle.js`, mirrors the app's `SharedPuzzle.swift`), deep links to `magic-sudoku://c/<payload>`
+- `daily.html` — Daily puzzle page for `/daily/<yyyy-MM-dd>` links: names the day and deep links to `magic-sudoku://daily/<date>`. Never shows the grid, so a day that hasn't started can't be given away
 - `learn.html` — Hub linking to technique guides in `learn/` subdirectory
 - `learn/*.html` — Individual technique pages with step-by-step image carousels
 - `privacy.html`, `support.html` — Standard pages
@@ -44,6 +45,7 @@ Tailwind config is defined inline in each page's `<head>`. Colors mirror the iOS
 - `/.well-known/*` — served directly (app association files)
 - `/puzzle/*` and its short form `/p/*` — rewritten to `puzzle.html?id=:splat`
 - `/c/*` — rewritten to `shared.html` (the page reads the payload from the path)
+- `/daily/*` — rewritten to `daily.html` (the page reads the date from the path)
 - `/og/*` — puzzle link pictures, drawn by an edge function (below)
 - `/*` — SPA fallback to `index.html`
 

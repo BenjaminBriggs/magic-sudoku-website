@@ -6,7 +6,8 @@
         "paths": [
           "/puzzle/*",
           "/p/*",
-          "/c/*"
+          "/c/*",
+          "/daily/*"
         ],
         "components": [
           {
@@ -20,6 +21,10 @@
           {
             "/": "/c/*",
             "comment": "Player-made puzzles shared from the builder"
+          },
+          {
+            "/": "/daily/*",
+            "comment": "A day's daily puzzle, as /daily/2026-11-10"
           }
         ]
       }

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Puzzle - Magic Sudoku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/tailwind-theme.js"></script>
+
+    <!-- Favicons and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    <script>
+        // A daily puzzle link names its day, /daily/2026-11-10, and every player gets the same
+        // puzzle for a day. The page never shows the grid: the app decides whether the day has
+        // come, so a link to a day that hasn't started can't give its puzzle away.
+        // Returns { year, month, day, string } for a real date, otherwise null.
+        function getDailyDate() {
+            const match = window.location.pathname.match(/^\/daily\/(\d{4})-(\d{2})-(\d{2})\/?$/);
+            if (match === null) return null;
+            const [, year, month, day] = match.map(Number);
+            const date = new Date(year, month - 1, day);
+            if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+            return { year, month, day, string: match.slice(1, 4).join('-') };
+        }
+
+        // Safari reads the Smart App Banner tag while parsing <head>, so add it here
+        (function () {
+            const date = getDailyDate();
+            const metaTag = document.createElement('meta');
+            metaTag.name = 'apple-itunes-app';
+            metaTag.content = date
+                ? `app-id=6742204685, app-argument=magic-sudoku://daily/${date.string}`
+                : 'app-id=6742204685';
+            document.head.appendChild(metaTag);
+        })();
+    </script>
+
+    <meta name="description" content="A new Sudoku every day, the same one for every player. Play it in Magic Sudoku.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Today's Daily Puzzle in Magic Sudoku">
+    <meta property="og:description" content="A new Sudoku every day, the same one for every player. Can you keep your streak?">
+    <meta property="og:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Today's Daily Puzzle in Magic Sudoku">
+    <meta name="twitter:image" content="https://magic-sudoku.com/images/puzzle-preview.jpg">
+
+    <link rel="stylesheet" href="/css/site.css">
+    <style>
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgb(244 192 112 / 0.35);
+            color: #6B4310;
+        }
+    </style>
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+    <span include-html="/includes/header.html"></span>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-16 pb-24">
+        <section id="daily-view" class="hidden max-w-xl mx-auto text-center glass glass-strong rounded-[32px] p-8 md:p-12">
+            <span class="chip mb-5">Daily Puzzle</span>
+            <h1 id="daily-title" class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1]">Daily Puzzle</h1>
+            <p id="daily-date" class="text-lg text-primaryFg/70 mt-2"></p>
+            <p id="daily-status" class="text-lg leading-relaxed mt-6"></p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+                <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" id="open-in-app-btn" class="btn-primary">Play in Magic Sudoku</a>
+            </div>
+            <p class="text-sm text-primaryFg/70 mt-6">Don't have the app? <a class="underline" href="https://apps.apple.com/app/magic-sudoku/id6742204685">Get Magic Sudoku on the App Store</a></p>
+        </section>
+
+        <!-- Shown when the link doesn't name a real day -->
+        <section id="invalid-view" class="hidden max-w-xl mx-auto text-center glass glass-strong rounded-[32px] p-8 md:p-12">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">This daily puzzle link doesn't look right</h1>
+            <p class="text-lg text-primaryFg/70 mb-8">It may have been cut off when it was shared. Ask for the link again, or play today's puzzle in Magic Sudoku.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary">Get Magic Sudoku</a>
+                <a href="/" class="btn-glass">Go to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-tertiaryBg text-secondaryFg py-12">
+        <div include-html="/includes/footer.html"></div>
+    </footer>
+
+    <script src="/js/includes.js"></script>
+    <script src="/js/app-store.js"></script>
+    <script>
+        const APP_STORE_URL = 'https://apps.apple.com/app/magic-sudoku/id6742204685';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const date = getDailyDate();
+            if (date === null) {
+                document.getElementById('daily-view').remove();
+                document.getElementById('invalid-view').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('daily-view').classList.remove('hidden');
+            showDay(date);
+        });
+
+        // Each day's puzzle runs from 6 AM on its date until 6 AM the next day, the viewer's time,
+        // as in the app. On its day it plays as the daily puzzle; after it, as an ordinary game;
+        // before it, the app opens nothing, so the page offers no button.
+        function showDay(date) {
+            const start = new Date(date.year, date.month - 1, date.day, 6);
+            const end = new Date(date.year, date.month - 1, date.day + 1, 6);
+            const now = new Date();
+            const weekday = start.toLocaleDateString('en-GB', { weekday: 'long' });
+            const dayAndMonth = start.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+
+            document.getElementById('daily-title').textContent = `${weekday}'s Puzzle`;
+            document.getElementById('daily-date').textContent =
+                start.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            document.title = `${weekday}'s Puzzle - Magic Sudoku`;
+
+            const status = document.getElementById('daily-status');
+            if (now < start) {
+                status.textContent = `This puzzle isn't out yet. It comes out at 6 AM on ${weekday} ${dayAndMonth}, the same puzzle for every player.`;
+                document.getElementById('open-in-app-btn').remove();
+                return;
+            }
+            status.textContent = now < end
+                ? 'Every player gets the same puzzle today. Play it before 6 AM tomorrow to count it towards your streak.'
+                : 'This day is over, but you can still play its puzzle. It won\'t count towards your streak.';
+            setupPlayButton(date.string);
+        }
+
+        function setupPlayButton(dateString) {
+            const appDeepLink = `magic-sudoku://daily/${dateString}`;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+                || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isMac = navigator.platform === 'MacIntel' && isIOS === false;
+            const openInAppBtn = document.getElementById('open-in-app-btn');
+
+            // Other platforms can't run the app: keep the App Store link
+            if (isIOS === false && isMac === false) {
+                openInAppBtn.textContent = 'Get Magic Sudoku';
+                return;
+            }
+
+            openInAppBtn.href = appDeepLink;
+            if (isIOS === false) return;
+
+            openInAppBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (APP_RELEASED === false) {
+                    window.location.href = appDeepLink;
+                    return;
+                }
+                const fallbackTimer = setTimeout(() => { window.location.href = APP_STORE_URL; }, 1500);
+                const cancelFallback = () => clearTimeout(fallbackTimer);
+                document.addEventListener('visibilitychange', cancelFallback, { once: true });
+                window.addEventListener('pagehide', cancelFallback, { once: true });
+                window.location.href = appDeepLink;
+            });
+        }
+    </script>
+</body>
+
+</html>
