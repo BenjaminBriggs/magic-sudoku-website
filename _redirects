@@ -11,3 +11,4 @@
 /puzzle/* /puzzle.html?id=:splat 200!
 /p/* /puzzle.html?id=:splat 200!
 /c/* /shared.html 200!
+/daily/* /daily.html 200!

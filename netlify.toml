@@ -85,4 +85,11 @@
   status = 200
   force = true
 
+# A day's daily puzzle names its date, /daily/2026-11-10; the page reads it from the path
+[[redirects]]
+  from = "/daily/*"
+  to = "/daily.html"
+  status = 200
+  force = true
+
 # Unknown paths fall through to Netlify's 404.html
