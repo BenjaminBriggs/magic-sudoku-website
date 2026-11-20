@@ -233,7 +233,9 @@ function boardSVG(givens, side) {
         // Rubik's digits are 0.7 em tall: centre them on the square.
         digits.push(`<text x="${x + cell / 2}" y="${y + cell / 2 + fontSize * 0.35}" font-size="${fontSize}" font-weight="700" fill="${COLORS.digit}" text-anchor="middle">${digit}</text>`);
     }
-    return `<clipPath id="board"><rect width="${side}" height="${side}" rx="${radius}"/></clipPath>
+    // The squares round off inside the border, so the border keeps its width around the corners.
+    // Clipped to the board's own corner, the corner squares reach past the border there and cover it.
+    return `<clipPath id="board"><rect x="${box}" y="${box}" width="${side - 2 * box}" height="${side - 2 * box}" rx="${radius - box}"/></clipPath>
     <rect width="${side}" height="${side}" rx="${radius}" fill="${COLORS.lines}" filter="url(#shadow)"/>
     <g clip-path="url(#board)">${squares.join('')}${digits.join('')}</g>`;
 }
@@ -318,7 +320,9 @@ export function previewSVG(preview, iconDataURL) {
       <stop offset="0.88" stop-color="${COLORS.background}"/>
       <stop offset="1" stop-color="${COLORS.background}" stop-opacity="0"/>
     </linearGradient>
-    <clipPath id="icon"><rect x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" rx="${markSize * 0.23}"/></clipPath>
+    <filter id="iconShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="${COLORS.shadow}" flood-opacity="0.85"/>
+    </filter>
   </defs>
   <rect width="${width}" height="${height}" fill="${COLORS.background}"/>
   <g transform="translate(${boardCentre.x} ${boardCentre.y}) rotate(${boardTilt}) translate(${-boardSide / 2} ${-boardSide / 2})">
@@ -326,7 +330,7 @@ export function previewSVG(preview, iconDataURL) {
   </g>
   <rect width="${panelWidth}" height="${height}" fill="url(#panel)"/>
   ${words.join('\n  ')}
-  <image href="${iconDataURL}" x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" clip-path="url(#icon)"/>
+  <image href="${iconDataURL}" x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" filter="url(#iconShadow)"/>
   <text x="${markTextX}" y="${markBaseline}" font-size="24" font-weight="700" fill="${COLORS.ink}">Magic Sudoku</text>
   <text x="${markTextX + textWidth('Magic Sudoku', 24, 700) + 14}" y="${markBaseline}" font-size="24" font-weight="500" fill="${COLORS.slate}">magic-sudoku.com</text>
 </svg>`;
