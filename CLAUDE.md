@@ -65,6 +65,8 @@ link its own preview:
   the title, and the app icon. `/og/c/<payload>.png` is the picture for `/c/<payload>`.
   It renders SVG with resvg-wasm (`netlify/edge-functions/vendor/`, wasm in `preview/`) and the
   app's Rubik fonts in `preview/`, and caches each picture for good: the path is the puzzle.
+  The icon is `preview/app-icon.png`, 96 px from the app's `Icon Exports/Icon-iOS-Default`
+  export in sRGB, not the touch icons in `images/`, which crop it to fill a square.
 
 The words and the drawing are in `js/puzzle-preview.js`, which imports `js/shared-puzzle.js` (an
 ES module, also imported by `shared.html`). Only the givens are drawn, never a solution.

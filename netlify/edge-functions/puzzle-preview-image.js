@@ -15,7 +15,8 @@ function base64(bytes) {
     return btoa(binary);
 }
 
-// The renderer, the fonts and the app icon, fetched from the site once per instance.
+// The renderer, the fonts and the app icon, fetched from the site once per instance. The icon is
+// the app's own export with its rounded corners; the site's touch icons crop it to fill a square.
 function loadAssets(origin) {
     assets ??= (async () => {
         const bytes = async (path) => {
@@ -28,7 +29,7 @@ function loadAssets(origin) {
             bytes('/preview/Rubik-Black.ttf'),
             bytes('/preview/Rubik-Bold.ttf'),
             bytes('/preview/Rubik-Medium.ttf'),
-            bytes('/images/apple-touch-icon.png'),
+            bytes('/preview/app-icon.png'),
         ]);
         await initWasm(wasm);
         return { fonts: [black, bold, medium], iconDataURL: `data:image/png;base64,${base64(icon)}` };

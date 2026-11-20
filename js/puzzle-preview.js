@@ -320,7 +320,9 @@ export function previewSVG(preview, iconDataURL) {
       <stop offset="0.88" stop-color="${COLORS.background}"/>
       <stop offset="1" stop-color="${COLORS.background}" stop-opacity="0"/>
     </linearGradient>
-    <clipPath id="icon"><rect x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" rx="${markSize * 0.23}"/></clipPath>
+    <filter id="iconShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="${COLORS.shadow}" flood-opacity="0.85"/>
+    </filter>
   </defs>
   <rect width="${width}" height="${height}" fill="${COLORS.background}"/>
   <g transform="translate(${boardCentre.x} ${boardCentre.y}) rotate(${boardTilt}) translate(${-boardSide / 2} ${-boardSide / 2})">
@@ -328,7 +330,7 @@ export function previewSVG(preview, iconDataURL) {
   </g>
   <rect width="${panelWidth}" height="${height}" fill="url(#panel)"/>
   ${words.join('\n  ')}
-  <image href="${iconDataURL}" x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" clip-path="url(#icon)"/>
+  <image href="${iconDataURL}" x="${margin}" y="${markTop}" width="${markSize}" height="${markSize}" filter="url(#iconShadow)"/>
   <text x="${markTextX}" y="${markBaseline}" font-size="24" font-weight="700" fill="${COLORS.ink}">Magic Sudoku</text>
   <text x="${markTextX + textWidth('Magic Sudoku', 24, 700) + 14}" y="${markBaseline}" font-size="24" font-weight="500" fill="${COLORS.slate}">magic-sudoku.com</text>
 </svg>`;
