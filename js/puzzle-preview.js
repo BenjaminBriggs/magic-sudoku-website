@@ -233,7 +233,9 @@ function boardSVG(givens, side) {
         // Rubik's digits are 0.7 em tall: centre them on the square.
         digits.push(`<text x="${x + cell / 2}" y="${y + cell / 2 + fontSize * 0.35}" font-size="${fontSize}" font-weight="700" fill="${COLORS.digit}" text-anchor="middle">${digit}</text>`);
     }
-    return `<clipPath id="board"><rect width="${side}" height="${side}" rx="${radius}"/></clipPath>
+    // The squares round off inside the border, so the border keeps its width around the corners.
+    // Clipped to the board's own corner, the corner squares reach past the border there and cover it.
+    return `<clipPath id="board"><rect x="${box}" y="${box}" width="${side - 2 * box}" height="${side - 2 * box}" rx="${radius - box}"/></clipPath>
     <rect width="${side}" height="${side}" rx="${radius}" fill="${COLORS.lines}" filter="url(#shadow)"/>
     <g clip-path="url(#board)">${squares.join('')}${digits.join('')}</g>`;
 }
