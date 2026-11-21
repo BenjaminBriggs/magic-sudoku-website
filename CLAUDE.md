@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-Static marketing website for Magic Sudoku, an iOS/iPad/Mac/Vision Pro Sudoku app. No build process — edit HTML/CSS/JS directly.
+Static marketing website for Magic Sudoku, an iPhone, iPad and Mac Sudoku app. No build process — edit HTML/CSS/JS directly.
 
 - **TailwindCSS** via CDN with custom color theme matching the iOS app
 - **Vanilla JavaScript** for interactivity

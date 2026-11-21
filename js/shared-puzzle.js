@@ -7,18 +7,25 @@
 //             5 allows hints, 6 shows rating before solving, 7 rating follows
 // 11 bytes    which of the 81 cells are given, cell 0 in the high bit of the first byte
 // n/2 bytes   the given digits, two to a byte, high nibble first
-// 2 bytes     if flag 7: level index (easy, medium, hard, expert, professional, custom), minutes
+// 2 bytes     if flag 7: the level's code in SHARED_PUZZLE_LEVELS, then minutes
 // then        each text field whose flag is set, in flag order: a LEB128 length, then UTF-8
 //
 // The whole is base64url without padding.
+//
+// Room to grow within version 1: bytes after the last field are ignored, and a level code this
+// doesn't know reads as no rating, so a later app can add a level or a field without its links
+// failing here.
 
+// Each level by its code in a payload (the app's levelCodes), with the app's colour for it as a
+// tone. The codes are fixed: a new level takes the next one.
 const SHARED_PUZZLE_LEVELS = [
-    { name: 'Beginner', tone: 'green' },
-    { name: 'Intermediate', tone: 'orange' },
-    { name: 'Advanced', tone: 'red' },
-    { name: 'Expert', tone: 'purple' },
-    { name: 'Master', tone: 'blue' },
-    { name: 'Custom', tone: 'purple' },
+    { name: 'Beginner', tone: 'green' }, // 0 easy
+    { name: 'Intermediate', tone: 'orange' }, // 1 medium
+    { name: 'Advanced', tone: 'red' }, // 2 hard
+    { name: 'Expert', tone: 'sky' }, // 3 expert
+    { name: 'Master', tone: 'blue' }, // 4 professional
+    { name: 'Custom', tone: 'purple' }, // 5 custom
+    { name: 'Grandmaster', tone: 'purple' }, // 6 grandmaster
 ];
 
 function base64UrlToBytes(text) {
@@ -70,11 +77,13 @@ export function decodeSharedPuzzle(payload) {
     let level = null;
     let estimatedMinutes = null;
     if (has(7)) {
-        const index = next();
+        const code = next();
         const minutes = next();
-        if (index === null || minutes === null || index >= SHARED_PUZZLE_LEVELS.length) return null;
-        level = SHARED_PUZZLE_LEVELS[index];
-        estimatedMinutes = minutes === 0 ? null : minutes;
+        if (code === null || minutes === null) return null;
+        if (code < SHARED_PUZZLE_LEVELS.length) {
+            level = SHARED_PUZZLE_LEVELS[code];
+            estimatedMinutes = minutes === 0 ? null : minutes;
+        }
     }
 
     const decoder = new TextDecoder('utf-8', { fatal: true });
@@ -100,7 +109,7 @@ export function decodeSharedPuzzle(payload) {
     };
 
     const fields = [0, 1, 2, 3, 4].map(readText);
-    if (fields.includes(null) || offset !== bytes.length) return null;
+    if (fields.includes(null)) return null;
     const [title, author, instructions, solvedNote, link] = fields;
 
     return {
