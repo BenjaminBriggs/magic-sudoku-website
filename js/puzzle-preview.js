@@ -141,6 +141,7 @@ const LEVEL_COLORS = {
     red: '#F69B7B',
     purple: '#B1ABA1',
     blue: '#BFD7C9',
+    sky: '#9DBFE4',
 };
 
 // Rubik covers Latin, Cyrillic and Hebrew. Other scripts would draw as blanks, so the picture
