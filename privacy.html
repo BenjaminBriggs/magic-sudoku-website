@@ -46,7 +46,7 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
     <header class="mb-12 md:mb-16">
       <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-4">Privacy Policy</h1>
-      <p class="text-sm text-primaryFg/60">Last updated: October 1, 2026</p>
+      <p class="text-sm text-primaryFg/60">Last updated: November 21, 2026</p>
     </header>
 
     <div class="grid grid-cols-1 lg:grid-cols-[13rem_1fr] gap-10 items-start">
@@ -57,6 +57,9 @@
           <li><a href="#information-we-collect" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Information We Collect</a></li>
           <li><a href="#how-we-use" class="text-primaryFg/60 hover:text-primaryFg transition-colors">How We Use Your Information</a></li>
           <li><a href="#storage" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Data Storage and Security</a></li>
+          <li><a href="#submissions" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Puzzle Submissions</a></li>
+          <li><a href="#downloads" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Puzzle Downloads</a></li>
+          <li><a href="#website" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Our Website</a></li>
           <li><a href="#third-parties" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Third-Party Services</a></li>
           <li><a href="#your-rights" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Your Rights</a></li>
           <li><a href="#changes" class="text-primaryFg/60 hover:text-primaryFg transition-colors">Changes to This Policy</a></li>
@@ -75,6 +78,8 @@
           <p class="mb-4">We collect the most minimal information to provide and improve our service:</p>
           <ul class="cell-list space-y-2">
             <li>Game progress and settings (stored locally on your device and optionally synced through iCloud if you choose to enable this feature)</li>
+            <li>Puzzles you choose to submit for review, with the details described under <a href="#submissions" class="text-link text-primaryFg">Puzzle Submissions</a></li>
+            <li>Counts of how often puzzles are downloaded, which don't identify you or your device (see <a href="#downloads" class="text-link text-primaryFg">Puzzle Downloads</a>)</li>
             <li>If you contact us for support, we may collect your email address and any information you provide about your issue</li>
           </ul>
         </section>
@@ -84,19 +89,53 @@
           <ul class="cell-list space-y-2">
             <li>To provide and maintain our service</li>
             <li>To save your game progress and settings</li>
+            <li>To review puzzles you submit, and to publish the ones we pick, credited to the author name you gave</li>
+            <li>To see how many puzzles of each level are downloaded, so we know which levels to make more of</li>
             <li>To respond to your support requests</li>
           </ul>
         </section>
 
         <section id="storage" class="scroll-mt-28">
           <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Data Storage and Security</h2>
-          <p class="mb-4">Game data is stored locally on your device. If you enable iCloud synchronization, your game data will be stored in your personal iCloud account, which is governed by Apple's privacy policy.</p>
+          <p class="mb-4">Game data is stored locally on your device. If you enable iCloud synchronization, your game data will be stored in your personal iCloud account, which is governed by Apple's privacy policy. We can't see it.</p>
+          <p class="mb-4">Puzzles you submit for review are the one exception: they're stored in Magic Sudoku's public iCloud database, not your private one, so that we can review them. See <a href="#submissions" class="text-link text-primaryFg">Puzzle Submissions</a>.</p>
           <p>We implement appropriate security measures to protect your personal information.</p>
+        </section>
+
+        <section id="submissions" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Puzzle Submissions</h2>
+          <p class="mb-4">If you make a puzzle in Magic Sudoku and choose Submit for Review, the app saves it to Magic Sudoku's public database in Apple's CloudKit (part of iCloud). Nothing is sent unless you submit. The submission contains:</p>
+          <ul class="cell-list space-y-2 mb-4">
+            <li>The puzzle's starting numbers, a fingerprint (hash) of its solution, and its difficulty as the app rated it</li>
+            <li>The title, author name, instructions, solved note and link you entered</li>
+            <li>Which clues you placed and which the app chose</li>
+            <li>An identifier for your iCloud account that CloudKit attaches to every record you create, and the date you submitted. The identifier is specific to Magic Sudoku and is the same for all your submissions. It doesn't tell us your name, email address or Apple Account.</li>
+          </ul>
+          <p class="mb-4">We use the identifier only to see which submissions came from the same person. Our reviewers see everything listed above and may edit the text; we keep a copy of the text as you sent it. The app reads back your own submissions to show how their review is going. It never shows your submissions to other players: when anyone submits, the app only checks whether the same puzzle has been sent before.</p>
+          <p class="mb-4">If we publish your puzzle, every Magic Sudoku player sees it with its title, credited to the author name you gave (as reviewed). Choose an author name you're happy to be public; it doesn't need to be your real name.</p>
+          <p>Submissions stay in the database until we delete them. Deleting the puzzle or the app doesn't remove a submission. To have one withdrawn, email us; see <a href="/terms.html#submissions" class="text-link text-primaryFg">Puzzle Submissions in our Terms of Use</a> for what happens to a puzzle that's already been published.</p>
+        </section>
+
+        <section id="downloads" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Puzzle Downloads</h2>
+          <p class="mb-4">The app downloads new puzzles and the Daily Puzzles from our server at api.magic-sudoku.app, which runs on Cloudflare. Each time a batch of puzzles is downloaded in full, the server adds one to a count for that batch and its level. That's all it records: no IP address, no device or user identifier, and nothing else about the request.</p>
+          <p>Like any web server, Cloudflare handles your IP address to deliver the download, under <a href="https://www.cloudflare.com/privacypolicy/" class="text-link text-primaryFg">Cloudflare's privacy policy</a>. We don't record or see it.</p>
+        </section>
+
+        <section id="website" class="scroll-mt-28">
+          <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Our Website</h2>
+          <p class="mb-4">magic-sudoku.com is hosted by Netlify. It sets no cookies and runs no analytics or tracking scripts. Its pages load:</p>
+          <ul class="cell-list space-y-2 mb-4">
+            <li>Tailwind CSS, which styles the pages, from cdn.tailwindcss.com</li>
+            <li>The Rubik font from Google Fonts (fonts.googleapis.com and fonts.gstatic.com), under <a href="https://policies.google.com/privacy" class="text-link text-primaryFg">Google's privacy policy</a></li>
+          </ul>
+          <p class="mb-4">As with any web request, your browser sends these services and Netlify your IP address and basic browser details when it loads a page.</p>
+          <p>A shared puzzle link (magic-sudoku.com/c/…) carries the puzzle and its title, author and notes in the link itself; we don't store them. Your browser reads the puzzle from the link, and our site reads it too, to give the page a title and a preview picture for messaging apps. Netlify keeps that picture in its cache for up to a year.</p>
         </section>
 
         <section id="third-parties" class="scroll-mt-28">
           <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Third-Party Services</h2>
-          <p class="mb-4">Our app uses Apple's Game Center for leaderboards and achievements. The use of this service is subject to Apple's privacy policy.</p>
+          <p class="mb-4">Our app uses Apple's Game Center for leaderboards and achievements, and Apple's iCloud to sync your games and to receive puzzle submissions. The use of these services is subject to Apple's privacy policy.</p>
           <p class="mb-4">Without a subscription, the app may show a small banner recommending another independent app, delivered by <a href="https://exchange.kickstart.tools/privacy" class="text-link text-primaryFg">Kickstart Exchange</a>. These are not targeted adverts and do not track you:</p>
           <ul class="cell-list space-y-2 mb-4">
             <li>To choose a recommendation, the app sends only app-level details: the app and SDK versions, platform, and App Store country. It does not send anything that identifies you or your device.</li>
@@ -104,12 +143,13 @@
             <li>No data is used to track you across other apps or websites.</li>
             <li>Magic Sudoku Unlimited subscribers never see these recommendations.</li>
           </ul>
-          <p>We do not share your personal information with any other third parties.</p>
+          <p>Apart from the services described in this policy, and the author credit on puzzles we publish, we do not share your personal information with any other third parties.</p>
         </section>
 
         <section id="your-rights" class="scroll-mt-28">
           <h2 class="text-xl md:text-2xl font-bold tracking-tight text-primaryFg mb-4">Your Rights</h2>
-          <p>You can request access to, correction of, or deletion of your personal information by contacting us at <a href="mailto:support@magic-sudoku.com" class="text-link text-primaryFg">support@magic-sudoku.com</a>.</p>
+          <p class="mb-4">You can request access to, correction of, or deletion of your personal information by contacting us at <a href="mailto:support@magic-sudoku.com" class="text-link text-primaryFg">support@magic-sudoku.com</a>.</p>
+          <p>That includes puzzles you've submitted. Because a submission doesn't carry your name or email address, tell us the puzzle's title, the author name you used and roughly when you submitted it, so we can find it.</p>
         </section>
 
         <section id="changes" class="scroll-mt-28">
