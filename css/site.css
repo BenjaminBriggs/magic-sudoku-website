@@ -292,3 +292,95 @@
   background: rgb(var(--yellow));
   box-shadow: inset 0 0 0 1px rgb(var(--ink) / 0.12);
 }
+
+/* ---------- Hero ---------- */
+/* The landing hero: a warm cream wash, one coral word, and three devices running off the
+   hero's bottom edge. On wide screens the two iPhones rise either side of the call to action and
+   the iPhone Duo stands in front of them, under the text.
+
+   The devices are Apple's product bezels (Apple Design Resources) with the app's screenshots
+   in their screens, at correct relative sizes. Apple's marketing guidelines also ask that the
+   images are not cropped or obstructed; cropping them at the bottom edge and the Duo
+   overlapping the iPhones are deliberate exceptions. Don't add shadows, reflections or
+   highlights to them or tilt them, and keep text from crossing them. */
+
+.hero {
+  background: linear-gradient(180deg, rgb(241 241 237) 0%, rgb(246 242 235) 45%, rgb(238 228 212) 100%);
+}
+
+/* Everything in the scene is sized in cqw of the stage's width, so it scales as one picture.
+
+   Both bezel images are at the devices' native 460 ppi, so equal scale is a width ratio of
+   1470 : 3093 (iPhone 18 Pro Max : iPhone Duo open). --i is an iPhone's width, --overlap how
+   far the Duo reaches over each iPhone, --crop how much of every device the hero's bottom edge
+   cuts off, and --gap the space between the text and the top of the Duo, all in cqw. */
+.hero-stage {
+  container-type: inline-size;
+  display: flow-root;
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  --i: 20;
+  --overlap: 2.5;
+  --crop: 4.5;
+  --gap: 6.5;
+  --duo: calc(var(--i) * 3093 / 1470);
+  --iphone-h: calc(var(--i) * 1429 / 700);
+  --duo-h: calc(var(--duo) * 1018 / 1400);
+  --rise: calc(var(--iphone-h) - var(--duo-h));
+  --start: calc((100 - 2 * var(--i) - var(--duo) + 2 * var(--overlap)) / 2);
+}
+
+/* The scene's top is the iPhones' top. Pulling it up by --rise puts the Duo --gap below the
+   call to action and lifts the iPhones' tops level with the button's top. */
+.hero-scene {
+  position: relative;
+  height: calc((var(--iphone-h) - var(--crop)) * 1cqw);
+  margin-top: calc((var(--gap) - var(--rise)) * 1cqw);
+}
+
+.device {
+  position: absolute;
+  bottom: calc(var(--crop) * -1cqw);
+  height: auto;
+  max-width: none;
+}
+
+.device-iphone {
+  width: calc(var(--i) * 1cqw);
+}
+
+.device-left {
+  left: calc(var(--start) * 1cqw);
+}
+
+.device-duo {
+  left: calc((var(--start) + var(--i) - var(--overlap)) * 1cqw);
+  width: calc(var(--duo) * 1cqw);
+}
+
+.device-right {
+  left: calc((var(--start) + var(--i) - var(--overlap) + var(--duo) - var(--overlap)) * 1cqw);
+}
+
+/* Below 1024px the iPhones would crowd the button, so the devices sit wholly under the text
+   instead of rising beside it. */
+@media (max-width: 1023px) {
+  .hero-scene {
+    margin-top: calc(var(--gap) * 1cqw);
+  }
+}
+
+/* Phones: the Daily iPhone behind the Duo, both larger so they stay legible. */
+@media (max-width: 639px) {
+  .hero-stage {
+    --i: 34;
+    --overlap: 8;
+    --crop: 6;
+    --start: calc((100 - var(--i) - var(--duo) + var(--overlap)) / 2);
+  }
+
+  .device-right {
+    display: none;
+  }
+}
