@@ -42,8 +42,13 @@ html {
   display: none;
 }
 
+/* The board holds still between steps, as the app's does; only the text eases in, and the
+   numbers a step adds pop in on their own. */
 .stepper-slide.is-active {
   display: grid;
+}
+
+.stepper-slide.is-active > figcaption {
   animation: step-in 0.35s ease both;
 }
 
@@ -97,12 +102,13 @@ html {
   height: 3.5rem;
   padding: 0.3rem;
   border-radius: 0.7rem;
-  background: rgb(var(--yellow));
-  box-shadow: inset 0 0 0 1px rgb(var(--ink) / 0.08);
+  /* The app's selected square: Selection Primary #FAC842 at 60% over #F9F9F7. */
+  background: #fadc8a;
+  box-shadow: inset 0 0 0 1px #bababa;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
-  color: rgb(var(--ink) / 0.8);
+  color: #424242;
 }
 
 .mini-cell span {
@@ -118,136 +124,70 @@ html {
   text-decoration: line-through;
 }
 
-/* ---------- Hero sudoku box ---------- */
-
-.sudoku-box {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
-  aspect-ratio: 1;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  background: rgb(var(--cell));
-  border: 2.5px solid rgb(var(--ink) / 0.8);
-  box-shadow: 0 30px 60px -28px rgb(var(--ink) / 0.45);
-}
-
-.sudoku-box > div {
-  display: grid;
-  place-items: center;
-  border-right: 1px solid rgb(var(--ink) / 0.14);
-  border-bottom: 1px solid rgb(var(--ink) / 0.14);
-  font-weight: 700;
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  line-height: 1;
-}
-
-.sudoku-box > div:nth-child(3n) {
-  border-right: 0;
-}
-
-.sudoku-box > div:nth-child(n + 7) {
-  border-bottom: 0;
-}
-
-.sudoku-box .given {
-  background: rgb(var(--given));
-}
-
-.sudoku-box .focus {
-  background: rgb(var(--yellow));
-}
-
-.pencil {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  width: 78%;
-  height: 78%;
-  font-size: clamp(0.65rem, 1.6vw, 0.9rem);
-  font-weight: 500;
-  color: rgb(var(--ink) / 0.75);
-}
-
-.pencil span {
-  display: grid;
-  place-items: center;
-}
-
-.focus .pencil,
-.focus .pen {
-  grid-area: 1 / 1;
-}
-
-.focus .pencil {
-  width: 78%;
-  height: 78%;
-  animation: pencil-out 5s ease-in-out infinite;
-}
-
-.focus .pen {
-  color: rgb(var(--pen));
-  animation: pen-in 5s ease-in-out infinite;
-}
-
-@keyframes pencil-out {
-  0%, 40% { opacity: 1; }
-  50%, 90% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes pen-in {
-  0%, 40% { opacity: 0; transform: scale(0.6); }
-  50%, 90% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.6); }
-}
-
 /* ---------- Demo boards (rendered by learn.js) ---------- */
 
-/* A full board styled after the app; font size follows the board's width. */
+/* A full board drawn to the app's spec, as css/app-board.css documents: #BABABA lines on top of
+   the squares, thin between squares and thick between boxes, no outer border, a 30pt radius,
+   squares alternating #F9F9F7 and #F7F7F4, givens #F5F3F0, Rubik Bold numbers at about half the
+   square's height. Sizes follow the board's width (a square is 100/9 cqi). */
 .demo-board {
+  --line: #bababa;
+  --thin: max(1px, 0.19cqi);
+  --thick: max(2px, 0.56cqi);
   container-type: inline-size;
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(9, minmax(0, 1fr));
   aspect-ratio: 1;
   width: 100%;
-  border-radius: 1.25rem;
+  border-radius: 5.6%;
   overflow: hidden;
-  background: #f5f3f0;
-  border: 2px solid #bababa;
-  box-shadow: 0 18px 40px -20px rgb(var(--ink) / 0.35);
+  background: #f9f9f7;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.8),
+    0 18px 40px -20px rgb(var(--ink) / 0.35);
 }
 
+/* --r and --b are the widths of the lines on a square's right and bottom edges. Highlights are
+   background images, so they tint the square's own colour as the app's do. */
 .demo-board > span {
+  --r: var(--thin);
+  --b: var(--thin);
   display: grid;
   place-items: center;
-  font-size: 5.6cqi;
+  background-color: #f9f9f7;
+  box-shadow:
+    inset calc(var(--r) * -1) 0 0 0 var(--line),
+    inset 0 calc(var(--b) * -1) 0 0 var(--line);
+  font-size: 7.9cqi;
   font-weight: 700;
   line-height: 1;
   color: #121212;
-  border-right: 1px solid rgb(var(--ink) / 0.1);
-  border-bottom: 1px solid rgb(var(--ink) / 0.1);
+}
+
+/* Nine squares a row, so odd children are the squares whose row and column add up even. */
+.demo-board > span:nth-child(odd) {
+  background-color: #f7f7f4;
 }
 
 .demo-board > span.edge-r {
-  border-right: 2px solid #bababa;
+  --r: var(--thick);
 }
 
 .demo-board > span.edge-b {
-  border-bottom: 2px solid #bababa;
+  --b: var(--thick);
 }
 
 .demo-board > span.last-col {
-  border-right: 0;
+  --r: 0px;
 }
 
 .demo-board > span.last-row {
-  border-bottom: 0;
+  --b: 0px;
 }
 
-.demo-board .given {
-  background: rgb(var(--given));
+.demo-board > span.given {
+  background-color: #f5f3f0;
 }
 
 /* Numbers the player fills in, in the app's pen colour. */
@@ -255,33 +195,48 @@ html {
   color: rgb(var(--pen));
 }
 
-.stepper-slide.is-active .demo-board .added {
+.stepper-slide.is-active .demo-board .added .digit {
   animation: digit-in 0.35s ease both;
 }
 
 /* Same highlight colours as the app's tutorial: row yellow, column blue, box green. */
 .demo-board .hl-row {
-  background: rgb(var(--yellow) / 0.55);
+  background-image: linear-gradient(rgb(var(--yellow) / 0.55), rgb(var(--yellow) / 0.55));
 }
 
 .demo-board .hl-col {
-  background: rgb(var(--sage) / 0.8);
+  background-image: linear-gradient(rgb(var(--sage) / 0.8), rgb(var(--sage) / 0.8));
 }
 
 .demo-board .hl-box {
-  background: rgb(var(--olive) / 0.4);
+  background-image: linear-gradient(rgb(var(--olive) / 0.4), rgb(var(--olive) / 0.4));
 }
 
-/* Pencil marks: digit d sits at position d in a 3×3 grid, as in the app. */
+/* Pencil marks: digit d sits at position d in a 3×3 grid, in Rubik at the app's size and Pencil
+   #424242. Fewer marks read stronger, as in the app: full and bold with one or two left, 75%
+   with three or four, 60% with five or more. */
 .demo-board .marks {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
-  width: 86%;
-  height: 86%;
-  font-size: max(2.4cqi, 7px);
-  font-weight: 500;
-  color: rgb(var(--pencil) / 0.85);
+  width: 84%;
+  height: 84%;
+  font-size: max(2.6cqi, 7px);
+  font-weight: 400;
+  color: #424242;
+}
+
+.demo-board .marks.is-few {
+  font-weight: 700;
+}
+
+/* On each note rather than the grid, so a note crossed off can still be drawn at full strength. */
+.demo-board .marks.is-some > span {
+  opacity: 0.75;
+}
+
+.demo-board .marks.is-many > span {
+  opacity: 0.6;
 }
 
 .demo-board .marks span {
@@ -289,31 +244,150 @@ html {
   place-items: center;
 }
 
-/* Hint highlights, using the app's colour for each role. */
-.demo-board > .role-p {
+/* ---------- Technique pages' worked examples (renderGuideBoard in learn.js) ---------- */
+
+/* Outlines and links sit over the squares; a label sits in its square's corner. */
+.demo-board,
+.demo-board > span {
+  position: relative;
+}
+
+/* A note a step crosses off is the clearest thing on the board, as in the app: Remove #C75052, at
+   full strength and the weight of a lone note, and struck through. */
+.demo-board .marks > span.is-crossed {
+  opacity: 1;
+  font-weight: 700;
+  color: #c75052;
+  text-decoration: line-through;
+  text-decoration-thickness: 0.35cqi;
+}
+
+/* A square that spotlights some of its notes draws them bold and fades the rest, as the app's do. */
+.demo-board .marks > span.is-spotlit {
+  font-weight: 700;
+}
+
+.demo-board .marks > span.is-faded {
+  opacity: 0.35;
+}
+
+/* The example teaches from its notes, so the app draws a square's last one or two, and a note
+   crossed off, at 1.5×; a square that keeps notes beside one crossed off draws both at 1.15×,
+   so they don't touch. */
+.demo-board[data-frame] .marks.is-few > span:not(:empty),
+.demo-board[data-frame] .marks > span.is-crossed {
+  transform: scale(1.5);
+}
+
+.demo-board[data-frame] .marks.keeps-notes > span.is-crossed,
+.demo-board[data-frame] .marks.keeps-notes.is-few > span:not(:empty) {
+  transform: scale(1.15);
+}
+
+/* A selection: the app's Selection Primary #FAC842 at 60% on the square and 20% on its row, column
+   and house, as css/app-board.css draws it. */
+.demo-board > .is-selected {
+  background-image: linear-gradient(rgb(250 200 66 / 0.6), rgb(250 200 66 / 0.6));
+}
+
+.demo-board > .is-influenced {
+  background-image: linear-gradient(rgb(250 200 66 / 0.2), rgb(250 200 66 / 0.2));
+}
+
+.demo-board .cell-label {
+  position: absolute;
+  top: 6%;
+  left: 8%;
+  font-size: max(2.2cqi, 7px);
+  font-weight: 600;
+  color: rgb(var(--ink) / 0.7);
+}
+
+/* The app's accent colour, #52626E. */
+.demo-board .guide-marks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.demo-board .guide-marks .is-outline {
+  fill: none;
+  stroke: #52626e;
+  stroke-width: 0.08;
+}
+
+.demo-board .guide-marks .is-link {
+  stroke: #52626e;
+  stroke-width: 0.065;
+  stroke-linecap: round;
+  stroke-dasharray: 0.15 0.125;
+  opacity: 0.95;
+}
+
+/* A 1–9 strip under a hint: numbers the cell can already see are struck through on the
+   secondary colour, the one left over sits on the primary colour. */
+.digit-strip {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  max-width: 20rem;
+  border: 2px solid #bababa;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #f5f3f0;
+}
+
+.digit-strip span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-right: 1px solid rgb(var(--ink) / 0.1);
+}
+
+.digit-strip span:last-child {
+  border-right: 0;
+}
+
+.digit-strip .is-seen {
+  background: rgb(var(--sage) / 0.6);
+  color: rgb(var(--ink) / 0.4);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.digit-strip .is-missing {
   background: rgb(var(--yellow) / 0.85);
 }
 
+/* Hint highlights, using the app's colour for each role. */
+.demo-board > .role-p {
+  background-image: linear-gradient(rgb(var(--yellow) / 0.85), rgb(var(--yellow) / 0.85));
+}
+
 .demo-board > .role-s {
-  background: rgb(var(--sage) / 0.9);
+  background-image: linear-gradient(rgb(var(--sage) / 0.9), rgb(var(--sage) / 0.9));
 }
 
 .demo-board > .role-a {
-  background: rgb(var(--orange) / 0.85);
+  background-image: linear-gradient(rgb(var(--orange) / 0.85), rgb(var(--orange) / 0.85));
 }
 
 .demo-board > .role-w {
-  background: rgb(var(--coral) / 0.65);
+  background-image: linear-gradient(rgb(var(--coral) / 0.65), rgb(var(--coral) / 0.65));
 }
 
 .demo-board > .role-g {
-  background: rgb(var(--olive) / 0.55);
+  background-image: linear-gradient(rgb(var(--olive) / 0.55), rgb(var(--olive) / 0.55));
 }
 
+/* Grows in from 70%, as the app's numbers do. */
 @keyframes digit-in {
   from {
     opacity: 0;
-    transform: scale(0.4);
+    transform: scale(0.7);
   }
   to {
     opacity: 1;
@@ -323,37 +397,52 @@ html {
 
 /* ---------- Grid diagrams (rendered by learn.js) ---------- */
 
+/* An empty board in the app's lines and squares, with no numbers. */
 .grid-diagram {
+  --line: #bababa;
+  --thin: 1px;
+  --thick: 2px;
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(9, minmax(0, 1fr));
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 0.75rem;
+  border-radius: 5.6%;
   overflow: hidden;
-  background: rgb(var(--cell));
-  border: 2px solid rgb(var(--ink) / 0.7);
+  background: #f9f9f7;
+  /* No border, as in the app; a small lift gives the edge, as the boards' shadow does. */
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.8),
+    0 6px 14px -6px rgb(var(--ink) / 0.3);
 }
 
 .grid-diagram span {
-  border-right: 1px solid rgb(var(--ink) / 0.1);
-  border-bottom: 1px solid rgb(var(--ink) / 0.1);
+  --r: var(--thin);
+  --b: var(--thin);
+  background-color: #f9f9f7;
+  box-shadow:
+    inset calc(var(--r) * -1) 0 0 0 var(--line),
+    inset 0 calc(var(--b) * -1) 0 0 var(--line);
+}
+
+.grid-diagram span:nth-child(odd) {
+  background-color: #f7f7f4;
 }
 
 .grid-diagram span.edge-r {
-  border-right: 2px solid rgb(var(--ink) / 0.5);
+  --r: var(--thick);
 }
 
 .grid-diagram span.edge-b {
-  border-bottom: 2px solid rgb(var(--ink) / 0.5);
+  --b: var(--thick);
 }
 
 .grid-diagram span.last-col {
-  border-right: 0;
+  --r: 0px;
 }
 
 .grid-diagram span.last-row {
-  border-bottom: 0;
+  --b: 0px;
 }
 
 .grid-diagram span.is-soft {
@@ -369,14 +458,8 @@ html {
     scroll-behavior: auto;
   }
 
-  .stepper-slide.is-active,
-  .stepper-slide.is-active .demo-board .added,
-  .focus .pen {
+  .stepper-slide.is-active > figcaption,
+  .stepper-slide.is-active .demo-board .added .digit {
     animation: none;
-  }
-
-  .focus .pencil {
-    animation: none;
-    opacity: 0;
   }
 }

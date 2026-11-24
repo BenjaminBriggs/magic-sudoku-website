@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-Static marketing website for Magic Sudoku, an iPhone, iPad and Mac Sudoku app. No build process — edit HTML/CSS/JS directly.
+Static marketing website for Magic Sudoku, an iPhone, iPad and Mac Sudoku app. No build process — edit HTML/CSS/JS directly, except the Learn pages built from the app's guides (see Learn Pages below).
 
 - **TailwindCSS** via CDN with custom color theme matching the iOS app
 - **Vanilla JavaScript** for interactivity
@@ -17,8 +17,9 @@ Static marketing website for Magic Sudoku, an iPhone, iPad and Mac Sudoku app. N
 - `puzzle.html` — Puzzle viewer with deep linking to iOS app via `magic-sudoku://puzzle/{id}`
 - `shared.html` — Player-made puzzle page for `/c/<payload>` links: decodes title, author, instructions and grid from the link (`js/shared-puzzle.js`, mirrors the app's `SharedPuzzle.swift`), deep links to `magic-sudoku://c/<payload>`
 - `daily.html` — Daily puzzle page for `/daily/<yyyy-MM-dd>` links: names the day and deep links to `magic-sudoku://daily/<date>`. Never shows the grid, so a day that hasn't started can't be given away
-- `learn.html` — Hub linking to technique guides in `learn/` subdirectory
-- `learn/*.html` — Individual technique pages with step-by-step image carousels
+- `learn.html` — Hub linking to the lessons in `learn/`
+- `learn/how-to-play.html`, `learn/glossary.html` — Hand-written lessons
+- `learn/*.html` (the rest) — A page per technique guide, generated: don't edit by hand
 - `privacy.html`, `support.html` — Standard pages
 
 ### Shared Components
@@ -81,6 +82,23 @@ python3 -m http.server 8080
 ```
 
 Note: the include system uses `fetch()`, so you need an HTTP server (not `file://`).
+
+### Learn Pages
+
+The technique guides and rules are written once, in the app's `SudokuGuides` package, and exported to `data/guides.json`. `scripts/build-learn.py` builds the Learn pages from it:
+
+```bash
+# In ../magic-sudoku: export the guides
+swift run --package-path GuideExport guide-export ../Magic-Sudoku-Website/data/guides.json
+# Here: rebuild the pages
+python3 scripts/build-learn.py
+```
+
+- Each technique page is written whole from `scripts/learn/technique.html`; hand-written sections for a page go in `scripts/learn/extras/<slug>.html`.
+- In hand-written files, only the regions marked `<!-- guides:name -->` … `<!-- /guides:name -->` are generated: the lessons in `learn.html` and `sitemap.xml`, and How to Play's rules steps, lesson number and navigation.
+- A page's address is set in the script's `SLUGS`; a guide the app adds needs one there.
+- Worked examples are drawn by `renderGuideBoard` in `js/learn.js` from each board's `data-frame`.
+- To change a technique's copy, change it in the app and re-export.
 
 ### App Store ID
 

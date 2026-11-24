@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unique Rectangle Type 1 - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Four squares at the corners of a rectangle across two houses, three with only the same two notes: the fourth can&#x27;t be either number, or the puzzle would have two answers.">
+  <meta name="keywords" content="unique rectangle type 1, unique rectangle type 2, unique rectangle type 3, unique rectangle type 4, unique rectangle type 5, sudoku techniques, advanced sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/unique-rectangles.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/unique-rectangles.html">
+  <meta property="og:title" content="Unique Rectangle Type 1 - Sudoku Technique">
+  <meta property="og:description" content="Four squares at the corners of a rectangle across two houses, three with only the same two notes: the fourth can&#x27;t be either number, or the puzzle would have two answers.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/unique-rectangles.html">
+  <meta name="twitter:title" content="Unique Rectangle Type 1 - Sudoku Technique">
+  <meta name="twitter:description" content="Four squares at the corners of a rectangle across two houses, three with only the same two notes: the fourth can&#x27;t be either number, or the puzzle would have two answers.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Unique Rectangle Type 1</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+        <span class="text-sm text-primaryFg/60">Lesson 9 of 19</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Unique Rectangle Type 1</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">Four squares at the corners of a rectangle across two houses, three with only the same two notes: the fourth can't be either number, or the puzzle would have two answers.</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#worked-example" class="chip"><span class="chip-num">01</span>Worked Example</a>
+        <a href="#type-2" class="chip"><span class="chip-num">02</span>Type 2</a>
+        <a href="#type-3" class="chip"><span class="chip-num">03</span>Type 3</a>
+        <a href="#type-4" class="chip"><span class="chip-num">04</span>Type 4</a>
+        <a href="#type-5" class="chip"><span class="chip-num">05</span>Type 5</a>
+      </div>
+    </header>
+
+    <!-- Worked Example -->
+    <section id="worked-example" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Unique Rectangle Type 1 in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="004010200020500491105240630639400102248901370571020940410735809953682714000194503"
+            data-notes="378|69||38||69||58|578|38||67||67|38|||||89||||79|||78|||||57|78||58||||||56||||56||||38||368|||68|||26|||||26|||||||||||78|68|267|||||26|"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[6,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[6,7],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,7],&quot;role&quot;:&quot;primary&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Spot it</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">Three corners of this rectangle across two houses have only 2 and 6 as notes. The fourth has 7 as well.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="004010200020500491105240630639400102248901370571020940410735809953682714000194503"
+            data-notes="378|69||38||69||58|578|38||67||67|38|||||89||||79|||78|||||57|78||58||||||56||||56||||38||368|||68|||26|||||26|||||||||||78|68|267|||||26|"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[8,2],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[6,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[6,7],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,7],&quot;role&quot;:&quot;primary&quot;}],&quot;marks&quot;:[{&quot;link&quot;:[[6,2],[6,7]]},{&quot;link&quot;:[[6,7],[8,7]]},{&quot;link&quot;:[[8,7],[8,2]]},{&quot;link&quot;:[[8,2],[6,2]]},{&quot;square&quot;:[8,2]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Why it works</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">If the fourth were 2 or 6 too, the 2s and 6s could swap corners and the puzzle would have two answers.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="004010200020500491105240630639400102248901370571020940410735809953682714000194503"
+            data-notes="378|69||38||69||58|578|38||67||67|38|||||89||||79|||78|||||57|78||58||||||56||||56||||38||368|||68|||26|||||26|||||||||||78|68|267|||||26|"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[8,2],&quot;role&quot;:&quot;warning&quot;},{&quot;square&quot;:[6,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[6,7],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,7],&quot;role&quot;:&quot;primary&quot;}],&quot;crossedOff&quot;:[[8,2,2],[8,2,6]]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">What it does</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">A puzzle has only one answer, so the fourth corner can't be 2 or 6. That leaves it only 7.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">How to spot it</h3>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for squares with only the same two notes, in two rows and two columns, across two houses.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">If three corners of such a rectangle have only those two notes, look at the fourth.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">If the fourth were either number, the two numbers could swap round the rectangle, and the puzzle would have two answers.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">So cross both numbers off the fourth corner.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8 self-start">
+          <h3 class="eyebrow mb-4">What it does</h3>
+          <p class="text-primaryFg/80">Crosses notes off. It relies on the puzzle having only one answer, as every proper puzzle does.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Type 2 -->
+    <section id="type-2" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Type 2</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When two corners on one side have only the pair, and the other two each have the same one extra number, one of those two must be that number. Cross it off any square that sees both.</p>
+      <div class="grid grid-cols-1 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Unique Rectangle Type 2</h3>
+            <span class="badge"><span class="dot bg-highlight-yellow"></span>Master</span>
+          </div>
+          <p class="text-primaryFg/80">Four squares at the corners of a rectangle across two houses, where two on one side have only the same two notes and the other two have those plus the same one extra number. One of those two must be that number, or the puzzle would have two answers, so any square that sees both can't.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for four squares at the corners of a rectangle across two houses, where two corners on one side have only the same two notes.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Check that the other two corners each have those two notes plus the same one extra number.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">One of those two corners must hold that extra number, or the two numbers could swap corners and the puzzle would have two answers.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that extra number off any square that sees both corners.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Type 3 -->
+    <section id="type-3" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Type 3</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When two corners on one side have only the pair, the other two corners' extra notes act like one square. With other squares in a row, column or house they share, they can make a set, such as a Naked Pair. Cross the set's numbers off the rest of it.</p>
+      <div class="grid grid-cols-1 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Unique Rectangle Type 3</h3>
+            <span class="badge"><span class="dot bg-highlight-yellow"></span>Master</span>
+          </div>
+          <p class="text-primaryFg/80">Four squares at the corners of a rectangle across two houses, where two on one side have only the same two notes. The other two corners' extra notes act together like one square, and make a set with other squares in a row, column or house they share, so the set's numbers can be crossed off the rest of it.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for four squares at the corners of a rectangle across two houses, where two corners on one side have only the same two notes.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look at the extra notes in the other two corners. At least one must be placed there, so together the two corners act like one square.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">In a row, column or house those two corners share, find one or more other squares whose notes make a set with those extra notes, such as a Naked Pair.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross the set's numbers off every other square in that row, column or house.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Type 4 -->
+    <section id="type-4" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Type 4</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When two corners on one side have only the pair, and one of its numbers can only go in the other two corners of a row, column or house they share, one of them must be that number. If the other were the pair's second number, the two numbers could swap corners, so cross the second number off both.</p>
+      <div class="grid grid-cols-1 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Unique Rectangle Type 4</h3>
+            <span class="badge"><span class="dot bg-highlight-yellow"></span>Master</span>
+          </div>
+          <p class="text-primaryFg/80">Four squares at the corners of a rectangle across two houses, where two on one side have only the same two notes. If one of those numbers can only go in the other two corners of a row, column or house they share, the other number can be crossed off both.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for four squares at the corners of a rectangle across two houses, where two corners on one side have only the same two notes.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look at a row, column or house the other two corners share, and check whether one of the pair's two numbers can only go in those two corners.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">One of them must be that number. If the other were the pair's second number, the two numbers could swap corners and the puzzle would have two answers.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross the pair's second number off both corners.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Type 5 -->
+    <section id="type-5" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Type 5</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">When two opposite corners, or three, have the pair plus the same one extra number, one of them must be that number. Cross it off any square that sees them all.</p>
+      <div class="grid grid-cols-1 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Unique Rectangle Type 5</h3>
+            <span class="badge"><span class="dot bg-highlight-yellow"></span>Master</span>
+          </div>
+          <p class="text-primaryFg/80">Four squares at the corners of a rectangle across two houses, where two opposite corners, or three, have the same two notes plus the same one extra number, and the rest have only the two. One of them must be that number, so any square that sees them all can't.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for four squares at the corners of a rectangle across two houses whose notes all hold the same two numbers.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Check that two opposite corners, or three corners, have those two notes plus the same one extra number, and the rest have only the two.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">One of those corners must hold that extra number, or the two numbers could swap corners and the puzzle would have two answers.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that extra number off any square that sees them all.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read Next -->
+    <section class="mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Read next</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Related Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a href="/learn/bug.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">BUG+1</h3>
+            <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">Every empty square has two notes except one with three; the number that appears three times in that square's row, column and house goes there, or the puzzle would have two answers.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+        <a href="/learn/naked-pairs.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Naked Pair</h3>
+            <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">Two squares in a row, column or house with the same two notes and no others, so those numbers can't go anywhere else there.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">Magic Sudoku&#x27;s hints teach the Unique Rectangle Type 1 the moment it&#x27;s the next step in your puzzle: where to look, and why it works.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/x-wing.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">X-Wing</p>
+      </a>
+      <a href="/learn/swordfish.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">Swordfish</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

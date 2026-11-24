@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidden Pair - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Two numbers that can only go in the same two squares of a row, column or house, so those squares can&#x27;t be anything else.">
+  <meta name="keywords" content="hidden pair, hidden triple, hidden quad, sudoku techniques, intermediate sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/hidden-pairs.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/hidden-pairs.html">
+  <meta property="og:title" content="Hidden Pair - Sudoku Technique">
+  <meta property="og:description" content="Two numbers that can only go in the same two squares of a row, column or house, so those squares can&#x27;t be anything else.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/hidden-pairs.html">
+  <meta name="twitter:title" content="Hidden Pair - Sudoku Technique">
+  <meta name="twitter:description" content="Two numbers that can only go in the same two squares of a row, column or house, so those squares can&#x27;t be anything else.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Hidden Pair</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+        <span class="text-sm text-primaryFg/60">Lesson 6 of 19</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Hidden Pair</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">Two numbers that can only go in the same two squares of a row, column or house, so those squares can't be anything else.</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#worked-example" class="chip"><span class="chip-num">01</span>Worked Example</a>
+        <a href="#triples-and-quads" class="chip"><span class="chip-num">02</span>Triples and Quads</a>
+      </div>
+    </header>
+
+    <!-- Worked Example -->
+    <section id="worked-example" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Hidden Pair in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="534000806829300407716080203350000904690000302472938165265813749147295638983647521"
+            data-notes="|||17|27|129||19||||||56|16||15|||||45||49||59||||18|17|267|126||78||||18|45|57|14||78|||||||||||||||||||||||||||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,2],&quot;role&quot;:&quot;secondary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,3],&quot;role&quot;:&quot;secondary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,7],&quot;role&quot;:&quot;secondary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,0],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,1],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,6],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,8],&quot;role&quot;:&quot;secondary&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Spot it</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">In this row, 2 and 6 can only go in these two squares.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="534000806829300407716080203350000904690000302472938165265813749147295638983647521"
+            data-notes="|||17|27|129||19||||||56|16||15|||||45||49||59||||18|17|267|126||78||||18|45|57|14||78|||||||||||||||||||||||||||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;26&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;26&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Why it works</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">So these two squares hold the 2 and the 6, one each, and can't be anything else.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="534000806829300407716080203350000904690000302472938165265813749147295638983647521"
+            data-notes="|||17|27|129||19||||||56|16||15|||||45||49||59||||18|17|267|126||78||||18|45|57|14||78|||||||||||||||||||||||||||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;warning&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;warning&quot;},{&quot;square&quot;:[3,0],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,1],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,2],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,3],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,6],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,7],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[3,8],&quot;role&quot;:&quot;secondary&quot;}],&quot;crossedOff&quot;:[[3,4,7],[3,5,1]]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">What it does</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">Cross their other notes off: 7 from one and 1 from the other. Each is left with only 2 and 6.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">How to spot it</h3>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Pick a row, column or house, and for each number it still needs, find the squares it can go in.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look for two numbers that can only go in the same two squares.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">Those squares must hold those two numbers, so cross every other note off them.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8 self-start">
+          <h3 class="eyebrow mb-4">What it does</h3>
+          <p class="text-primaryFg/80">Crosses notes off. What's left is a Naked Pair, which may cross off more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Triples and Quads -->
+    <section id="triples-and-quads" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Triples and Quads</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">Three numbers that can only go in the same three squares work the same way, and so do four in four. A number needn't be a note in every one of the squares, as long as it can't go anywhere else.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Hidden Triple</h3>
+            <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+          </div>
+          <p class="text-primaryFg/80">Three numbers that can only go in the same three squares of a row, column or house, so those squares can't be anything else.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Pick a row, column or house, and for each number it still needs, find the squares it can go in.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look for three numbers that can only go in the same three squares. Each number needn't be a note in all three.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">Those squares must hold those three numbers, so cross every other note off them.</span></li>
+          </ol>
+          <h4 class="eyebrow mt-7 mb-3">What it does</h4>
+          <p class="text-primaryFg/80">Crosses notes off. What's left is a Naked Triple, which may cross off more.</p>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Hidden Quad</h3>
+            <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+          </div>
+          <p class="text-primaryFg/80">Four numbers that can only go in the same four squares of a row, column or house, so those squares can't be anything else.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Pick a row, column or house, and for each number it still needs, find the squares it can go in.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look for four numbers that can only go in the same four squares. Each number needn't be a note in all four.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">Those squares must hold those four numbers, so cross every other note off them.</span></li>
+          </ol>
+          <h4 class="eyebrow mt-7 mb-3">What it does</h4>
+          <p class="text-primaryFg/80">Crosses notes off. What's left is a Naked Quad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read Next -->
+    <section class="mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Read next</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Related Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a href="/learn/naked-pairs.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Naked Pair</h3>
+            <span class="badge"><span class="dot bg-highlight-blue"></span>Intermediate</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">Two squares in a row, column or house with the same two notes and no others, so those numbers can't go anywhere else there.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+        <a href="/learn/hidden-single.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Hidden Single</h3>
+            <span class="badge"><span class="dot bg-highlight-green"></span>Beginner</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">A number with only one square left in a row, column or house, so it goes there, whatever else that square could hold. It's hidden because you find it by looking at the number, not at the square.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">Magic Sudoku&#x27;s hints teach the Hidden Pair the moment it&#x27;s the next step in your puzzle: where to look, and why it works.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/naked-pairs.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">Naked Pair</p>
+      </a>
+      <a href="/learn/bug.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">BUG+1</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>
