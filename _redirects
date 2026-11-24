@@ -4,10 +4,14 @@
 /.specify/* /404.html 404!
 /.claude/* /404.html 404!
 /netlify/* /404.html 404!
+/scripts/* /404.html 404!
+/data/* /404.html 404!
 /.well-known/* /.well-known/:splat 200
 /privacy /privacy.html 200
 /terms /terms.html 200
 /support /support.html 200
+/learn/singles.html /learn/naked-single.html 301
+/learn/naked-sets.html /learn/naked-pairs.html 301
 /puzzle/* /puzzle.html?id=:splat 200!
 /p/* /puzzle.html?id=:splat 200!
 /c/* /shared.html 200!

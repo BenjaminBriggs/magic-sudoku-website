@@ -81,22 +81,23 @@
           <span id="box" class="block scroll-mt-28"></span>
           <div class="grid-diagram w-28 mb-6" data-strong="box:5"></div>
           <h3 class="text-xl font-bold mb-2">House</h3>
-          <p class="text-primaryFg/70 mb-4">One of the nine 3×3 boxes in the grid. Each house must contain digits 1-9 exactly once. Rows, columns, and houses together are called units.</p>
+          <p class="text-primaryFg/70 mb-4">One of the nine 3×3 boxes in the grid. Each house holds the numbers 1 to 9, each just once.</p>
           <p class="text-sm text-primaryFg/60">Also called: box, block, nonet</p>
         </article>
 
         <article id="line" class="scroll-mt-28 glass rounded-[28px] p-6">
           <div class="grid-diagram w-28 mb-6" data-strong="row:4 col:7"></div>
           <h3 class="text-xl font-bold mb-2">Line</h3>
-          <p class="text-primaryFg/70 mb-4">A row or column spanning the entire 9×9 grid. Each line must contain digits 1-9 exactly once.</p>
+          <p class="text-primaryFg/70 mb-4">A row or column, running the full width or height of the grid. Each holds the numbers 1 to 9, each just once.</p>
           <p class="text-sm text-primaryFg/60">Lines can be horizontal (rows) or vertical (columns)</p>
         </article>
 
-        <article id="cell" class="scroll-mt-28 glass rounded-[28px] p-6">
+        <article id="square" class="scroll-mt-28 glass rounded-[28px] p-6">
+          <span id="cell" class="block scroll-mt-28"></span>
           <div class="grid-diagram w-28 mb-6" data-strong="cell:5,5"></div>
-          <h3 class="text-xl font-bold mb-2">Cell</h3>
-          <p class="text-primaryFg/70 mb-4">An individual square within the 9×9 grid where a single digit will be placed. Each cell belongs to exactly one row, one column, and one house.</p>
-          <p class="text-sm text-primaryFg/60">Also called: square, position</p>
+          <h3 class="text-xl font-bold mb-2">Square</h3>
+          <p class="text-primaryFg/70 mb-4">One of the 81 places for a number in the grid. Each square belongs to one row, one column and one house.</p>
+          <p class="text-sm text-primaryFg/60">Also called: cell, position</p>
         </article>
       </div>
     </section>
@@ -109,27 +110,30 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <article id="candidates" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
-          <h3 class="text-xl font-bold mb-2">Candidates</h3>
-          <p class="text-primaryFg/70 mb-4">The possible numbers that could be placed in a cell based on current constraints. As the puzzle progresses, candidates are eliminated until only one remains.</p>
-          <p class="text-sm text-primaryFg/60">Also called: possibilities, options</p>
+        <article id="notes" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <span id="candidates" class="block scroll-mt-28"></span>
+          <span id="pencil-marks" class="block scroll-mt-28"></span>
+          <h3 class="text-xl font-bold mb-2">Notes</h3>
+          <p class="text-primaryFg/70 mb-4">The small numbers you write in a square for the numbers that could still go there. As you rule numbers out, you cross their notes off, until one is left.</p>
+          <p class="text-sm text-primaryFg/60">Also called: candidates, pencil marks</p>
         </article>
 
-        <article id="pencil-marks" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
-          <h3 class="text-xl font-bold mb-2">Pencil Marks</h3>
-          <p class="text-primaryFg/70 mb-4">Small notation showing which candidates are possible in each cell. Essential for tracking possibilities and applying advanced techniques.</p>
-          <p class="text-sm text-primaryFg/60">Also called: notation, candidate marks</p>
+        <article id="ruling-out" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <h3 class="text-xl font-bold mb-2">Ruling Out</h3>
+          <p class="text-primaryFg/70 mb-4">A number is ruled out of a square when its row, column or house already has it. If eight numbers are ruled out, the ninth goes in the square.</p>
+          <p class="text-sm text-primaryFg/60">How every number is found in the end</p>
         </article>
 
-        <article id="elimination" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
-          <h3 class="text-xl font-bold mb-2">Elimination</h3>
-          <p class="text-primaryFg/70 mb-4">The process of removing impossible candidates from cells based on Sudoku constraints and logical deductions.</p>
-          <p class="text-sm text-primaryFg/60">The core mechanism of most solving techniques</p>
+        <article id="crossing-off" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
+          <span id="elimination" class="block scroll-mt-28"></span>
+          <h3 class="text-xl font-bold mb-2">Crossing Off</h3>
+          <p class="text-primaryFg/70 mb-4">Taking a note out of a square once a technique shows the number can't go there. Most techniques cross notes off rather than place a number.</p>
+          <p class="text-sm text-primaryFg/60">Also called: elimination</p>
         </article>
 
         <article id="given" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8">
           <h3 class="text-xl font-bold mb-2">Given</h3>
-          <p class="text-primaryFg/70 mb-4">A number that is already placed in the puzzle at the start. Givens provide the initial constraints that make the puzzle solvable.</p>
+          <p class="text-primaryFg/70 mb-4">A number in the puzzle from the start. Some are given to start you off, and they can't be changed.</p>
           <p class="text-sm text-primaryFg/60">Also called: clue, starting number</p>
         </article>
       </div>
@@ -145,41 +149,39 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <article id="singles" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
           <h3 class="text-xl font-bold mb-2">Singles</h3>
-          <p class="text-primaryFg/70 mb-5">Techniques that identify cells where only one number can be placed. The foundation of all Sudoku solving.</p>
+          <p class="text-primaryFg/70 mb-5">Techniques that place a number. The foundation of all Sudoku solving.</p>
           <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
-            <div class="py-3"><dt class="font-semibold">Naked Single</dt><dd class="text-primaryFg/70">A cell with only one candidate remaining</dd></div>
-            <div class="py-3"><dt class="font-semibold">Hidden Single</dt><dd class="text-primaryFg/70">A number that can only go in one place within a row, column, or house</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/naked-single.html" class="text-link">Naked Single</a></dt><dd class="text-primaryFg/70">A square with only one number left that fits, because its row, column and house already use the other eight.</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/hidden-single.html" class="text-link">Hidden Single</a></dt><dd class="text-primaryFg/70">A number with only one square left in a row, column or house, so it goes there, whatever else that square could hold.</dd></div>
           </dl>
-          <a href="/learn/singles.html" class="text-link self-start mt-5">Basic Singles lesson</a>
         </article>
 
         <article id="intersection" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
           <h3 class="text-xl font-bold mb-2">Intersection</h3>
-          <p class="text-primaryFg/70 mb-5">Techniques that use the overlap between a house and a row or column to make eliminations.</p>
+          <p class="text-primaryFg/70 mb-5">Locked Candidates: techniques that use the squares where a house and a row or column overlap to cross notes off.</p>
           <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
-            <div class="py-3"><dt class="font-semibold">Locked Candidates</dt><dd class="text-primaryFg/70">When candidates are confined to specific intersections</dd></div>
-            <div class="py-3"><dt class="font-semibold">Pointing/Claiming</dt><dd class="text-primaryFg/70">Specific types of locked candidate patterns</dd></div>
+            <div class="py-3"><dt class="font-semibold">Pointing</dt><dd class="text-primaryFg/70">A number whose squares in one house all sit in one row or column, so it can't go anywhere else in that line.</dd></div>
+            <div class="py-3"><dt class="font-semibold">Claiming</dt><dd class="text-primaryFg/70">A number whose squares in a row or column all sit in one house, so it can't go anywhere else in that house.</dd></div>
           </dl>
           <a href="/learn/locked-candidates.html" class="text-link self-start mt-5">Locked Candidates lesson</a>
         </article>
 
         <article id="sets" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
           <h3 class="text-xl font-bold mb-2">Sets</h3>
-          <p class="text-primaryFg/70 mb-5">Techniques based on groups of cells that share the same limited candidates.</p>
+          <p class="text-primaryFg/70 mb-5">Techniques built on a few squares of a row, column or house and the numbers they share. Triples and quads work the same way as pairs.</p>
           <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
-            <div class="py-3"><dt class="font-semibold">Naked Sets</dt><dd class="text-primaryFg/70">When cells contain the same visible candidates</dd></div>
-            <div class="py-3"><dt class="font-semibold">Hidden Sets</dt><dd class="text-primaryFg/70">When numbers are confined to the same group of cells</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/naked-pairs.html" class="text-link">Naked Pair</a></dt><dd class="text-primaryFg/70">Two squares in a row, column or house with the same two notes and no others, so those numbers can't go anywhere else there.</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/hidden-pairs.html" class="text-link">Hidden Pair</a></dt><dd class="text-primaryFg/70">Two numbers that can only go in the same two squares of a row, column or house, so those squares can't be anything else.</dd></div>
           </dl>
-          <a href="/learn/naked-sets.html" class="text-link self-start mt-5">Naked Sets lesson</a>
         </article>
 
         <article id="fish" class="scroll-mt-28 glass rounded-[28px] p-6 md:p-8 flex flex-col">
           <h3 class="text-xl font-bold mb-2">Fish Patterns</h3>
-          <p class="text-primaryFg/70 mb-5">Advanced techniques based on rectangular arrangements of candidates.</p>
+          <p class="text-primaryFg/70 mb-5">Advanced techniques built on one number's places across several rows and columns.</p>
           <dl class="divide-y divide-primaryFg/10 text-sm flex-grow">
-            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">X-Wing</dt><dd class="text-primaryFg/70">2×2 fish pattern</dd></div>
-            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">Swordfish</dt><dd class="text-primaryFg/70">3×3 fish pattern</dd></div>
-            <div class="py-3 flex justify-between gap-4"><dt class="font-semibold">Jellyfish</dt><dd class="text-primaryFg/70">4×4 fish pattern</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/x-wing.html" class="text-link">X-Wing</a></dt><dd class="text-primaryFg/70">A number with exactly two places in each of two rows, in the same two columns, so it can't go anywhere else in those columns. The same works with rows and columns swapped.</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/swordfish.html" class="text-link">Swordfish</a></dt><dd class="text-primaryFg/70">The X-Wing idea with three rows: the number's places in three rows all sit in the same three columns, so it can't go anywhere else in those columns.</dd></div>
+            <div class="py-3"><dt class="font-semibold"><a href="/learn/jellyfish.html" class="text-link">Jellyfish</a></dt><dd class="text-primaryFg/70">The X-Wing idea with four rows: the number's places in four rows all sit in the same four columns, so it can't go anywhere else in those columns.</dd></div>
           </dl>
         </article>
       </div>
@@ -199,11 +201,11 @@
             </div>
             <div class="flex justify-between gap-4 py-3">
               <dt class="font-mono font-semibold">B1</dt>
-              <dd class="text-primaryFg/70">Box 1 (top-left)</dd>
+              <dd class="text-primaryFg/70">House 1 (top-left); B for box</dd>
             </div>
             <div class="flex justify-between gap-4 py-3">
               <dt class="font-mono font-semibold">{1,2,3}</dt>
-              <dd class="text-primaryFg/70">Candidate set notation</dd>
+              <dd class="text-primaryFg/70">A square's notes</dd>
             </div>
           </dl>
         </div>
@@ -212,7 +214,7 @@
           <ul class="check-list space-y-3 pt-3">
             <li>Rows numbered 1-9 from top to bottom</li>
             <li>Columns numbered 1-9 from left to right</li>
-            <li>Boxes numbered 1-9 from top-left to bottom-right</li>
+            <li>Houses numbered 1-9 from top-left to bottom-right</li>
           </ul>
         </div>
       </div>

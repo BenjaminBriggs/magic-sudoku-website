@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skyscraper - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="A number with only two places in each of two rows, where one place in each shares a column; one of the other two places must hold it, so any square that sees both can&#x27;t. The same works with rows and columns swapped.">
+  <meta name="keywords" content="skyscraper, sudoku techniques, expert sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/skyscraper.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/skyscraper.html">
+  <meta property="og:title" content="Skyscraper - Sudoku Technique">
+  <meta property="og:description" content="A number with only two places in each of two rows, where one place in each shares a column; one of the other two places must hold it, so any square that sees both can&#x27;t. The same works with rows and columns swapped.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/skyscraper.html">
+  <meta name="twitter:title" content="Skyscraper - Sudoku Technique">
+  <meta name="twitter:description" content="A number with only two places in each of two rows, where one place in each shares a column; one of the other two places must hold it, so any square that sees both can&#x27;t. The same works with rows and columns swapped.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Skyscraper</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-red"></span>Expert</span>
+        <span class="text-sm text-primaryFg/60">Lesson 13 of 19</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Skyscraper</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">A number with only two places in each of two rows, where one place in each shares a column; one of the other two places must hold it, so any square that sees both can't. The same works with rows and columns swapped.</p>
+
+    </header>
+
+    <!-- Worked Example -->
+    <section id="worked-example" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Skyscraper in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="125978634680023001703610280937856142218749356006132800371290068062087913800361020"
+            data-notes="|||||||||||4|4|||||||4||||4||||||||||||||||||||||4|4|||||||||||||4|4|||4|||4|||||||4|4||||4||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[1,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[7,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[1,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[7,0],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[1,0],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,1],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,6],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,7],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[1,8],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,1],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,2],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,6],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,7],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,8],&quot;role&quot;:&quot;secondary&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Spot it</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">4 has only two places in each of these two rows, so each has its 4 at one end or the other. Only the 4s are shown.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="125978634680023001703610280937856142218749356006132800371290068062087913800361020"
+            data-notes="|||||||||||4|4|||||||4||||4||||||||||||||||||||||4|4|||||||||||||4|4|||4|||4|||||||4|4||||4||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[1,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[7,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[1,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[7,0],&quot;role&quot;:&quot;primary&quot;}],&quot;marks&quot;:[{&quot;link&quot;:[[1,3],[7,3]]},{&quot;square&quot;:[1,2]},{&quot;square&quot;:[7,0]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Why it works</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">The two ends joined by the dashed line share a column, so they can't both be 4. So one of the outlined far ends must be.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="125978634680023001703610280937856142218749356006132800371290068062087913800361020"
+            data-notes="|||||||||||4|4|||||||4||||4||||||||||||||||||||||4|4|||||||||||||4|4|||4|||4|||||||4|4||||4||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[1,2],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[7,0],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,2],&quot;role&quot;:&quot;warning&quot;}],&quot;crossedOff&quot;:[[8,2,4]],&quot;marks&quot;:[{&quot;square&quot;:[1,2]},{&quot;square&quot;:[7,0]},{&quot;link&quot;:[[1,2],[8,2]]},{&quot;link&quot;:[[7,0],[8,2]]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">What it does</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">This square sees both far ends, so it can't be 4. Cross it off.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">How to spot it</h3>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Pick a number and find two rows where it has only two places each.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Check that one end of each row's pair sits in the same column, and the other ends don't.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">Those two ends can't both hold the number, so one of the far ends must.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross the number off any square that sees both far ends.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8 self-start">
+          <h3 class="eyebrow mb-4">What it does</h3>
+          <p class="text-primaryFg/80">Crosses notes off, usually just one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read Next -->
+    <section class="mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Read next</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Related Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a href="/learn/two-string-kite.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Two-String Kite</h3>
+            <span class="badge"><span class="dot bg-highlight-red"></span>Expert</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">A number with only two places in a row and two in a column, with one end of each in the same house; one of the far ends must hold it, so any square that sees both can't.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+        <a href="/learn/x-wing.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">X-Wing</h3>
+            <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">A number with exactly two places in each of two rows, in the same two columns, so it can't go anywhere else in those columns. The same works with rows and columns swapped.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">Magic Sudoku&#x27;s hints teach the Skyscraper the moment it&#x27;s the next step in your puzzle: where to look, and why it works.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/xyz-wing.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">XYZ-Wing</p>
+      </a>
+      <a href="/learn/two-string-kite.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">Two-String Kite</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

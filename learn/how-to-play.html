@@ -58,24 +58,23 @@
     <header class="mb-12">
       <div class="flex flex-wrap items-center gap-3 mb-6">
         <span class="badge"><span class="dot bg-highlight-green"></span>Beginner</span>
-        <span class="text-sm text-primaryFg/60">Lesson 1 of 4</span>
+        <span class="text-sm text-primaryFg/60"><!-- guides:lesson -->Lesson 1 of 19<!-- /guides:lesson --></span>
       </div>
       <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">How to Play Sudoku</h1>
       <p class="text-lg md:text-xl text-primaryFg/70 max-w-2xl">Sudoku is a number puzzle with only three rules. Learn them here, then move on to the techniques that help you solve any puzzle.</p>
       <div class="mt-8 flex flex-wrap gap-2.5">
         <a href="#the-rules" class="chip"><span class="chip-num">01</span>The Rules</a>
-        <a href="#recap" class="chip"><span class="chip-num">02</span>Rules at a Glance</a>
-        <a href="#first-puzzle" class="chip"><span class="chip-num">03</span>Your First Puzzle</a>
+        <a href="#first-puzzle" class="chip"><span class="chip-num">02</span>Your First Puzzle</a>
       </div>
     </header>
 
-    <!-- The rules, as in the app's first-launch tutorial -->
+    <!-- The rules, one at a time: the steps are SudokuGuides' How to Play, built in by scripts/build-learn.py. The app's onboarding shows players who say they're new the same six steps. -->
     <section id="the-rules" class="scroll-mt-28 mb-20 md:mb-28">
       <div class="flex items-center gap-4 mb-5">
         <span class="cell-num">1</span>
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight">The Rules</h2>
       </div>
-      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">The grid is 9 cells wide and 9 cells tall, split into nine 3×3 boxes called houses. Each cell holds one number from 1 to 9.</p>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">The grid is 9 squares wide and 9 squares tall, split into nine 3×3 houses. Each square holds one number from 1 to 9.</p>
 
       <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
         <div class="flex flex-wrap items-center justify-between gap-4">
@@ -91,6 +90,7 @@
         </div>
         <div class="stepper-track mt-4 mb-6" data-track></div>
 
+        <!-- guides:rules -->
         <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
           <div class="demo-board"></div>
           <figcaption>
@@ -103,7 +103,8 @@
         </figure>
 
         <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
-          <div class="demo-board" data-highlight="row:5"
+          <div class="demo-board"
+            data-highlight="row:5"
             data-added="000000000000000000000000000000000000123456789000000000000000000000000000000000000"></div>
           <figcaption>
             <div class="flex items-center gap-3 mb-4">
@@ -115,7 +116,8 @@
         </figure>
 
         <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
-          <div class="demo-board" data-highlight="col:5"
+          <div class="demo-board"
+            data-highlight="col:5"
             data-added="000010000000020000000030000000040000000050000000060000000070000000080000000090000"></div>
           <figcaption>
             <div class="flex items-center gap-3 mb-4">
@@ -127,7 +129,8 @@
         </figure>
 
         <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
-          <div class="demo-board" data-highlight="box:5"
+          <div class="demo-board"
+            data-highlight="box:5"
             data-added="000000000000000000000000000000123000000456000000789000000000000000000000000000000"></div>
           <figcaption>
             <div class="flex items-center gap-3 mb-4">
@@ -154,7 +157,7 @@
         <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
           <div class="demo-board"
             data-givens="009010030050009000000004020901000702030000100280060000020300609000090000000157004"
-            data-added="479812536352679841816534927961483752734925168285761493527348619148296375693157284"></div>
+            data-added="470802506302670841816530907060483050704925068005701493507048010148206375693000280"></div>
           <figcaption>
             <div class="flex items-center gap-3 mb-4">
               <span class="cell-num cell-num-sm">6</span>
@@ -163,41 +166,14 @@
             <p class="text-lg text-primaryFg/80">Your goal is to complete the grid without breaking the three rules.</p>
           </figcaption>
         </figure>
+        <!-- /guides:rules -->
       </div>
-    </section>
-
-    <!-- Recap -->
-    <section id="recap" class="scroll-mt-28 mb-20 md:mb-28">
-      <div class="flex items-center gap-4 mb-8">
-        <span class="cell-num">2</span>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Rules at a Glance</h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div class="glass rounded-[28px] p-6">
-          <div class="grid-diagram w-28 mb-6" data-strong="row:5"></div>
-          <h3 class="text-lg font-bold mb-1">Rows</h3>
-          <p class="text-primaryFg/70">Each of the 9 rows contains 1 to 9 exactly once.</p>
-        </div>
-        <div class="glass rounded-[28px] p-6">
-          <div class="grid-diagram w-28 mb-6" data-strong="col:5"></div>
-          <h3 class="text-lg font-bold mb-1">Columns</h3>
-          <p class="text-primaryFg/70">Each of the 9 columns contains 1 to 9 exactly once.</p>
-        </div>
-        <div class="glass rounded-[28px] p-6">
-          <div class="grid-diagram w-28 mb-6" data-strong="box:5"></div>
-          <h3 class="text-lg font-bold mb-1">Houses</h3>
-          <p class="text-primaryFg/70">Each of the 9 houses (3×3 boxes) contains 1 to 9 exactly once.</p>
-        </div>
-      </div>
-
-      <p class="callout mt-5"><strong>That's it.</strong> There's no maths involved. The numbers could just as easily be letters or colours; what matters is that each one appears once per row, column, and house.</p>
     </section>
 
     <!-- First puzzle tips -->
     <section id="first-puzzle" class="scroll-mt-28 mb-20 md:mb-28">
       <div class="flex items-center gap-4 mb-8">
-        <span class="cell-num">3</span>
+        <span class="cell-num">2</span>
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Your First Puzzle</h2>
       </div>
 
@@ -206,7 +182,7 @@
           <h3 class="eyebrow mb-5">Getting started</h3>
           <ul class="check-list space-y-3">
             <li>Start with rows, columns, or houses that are already nearly full</li>
-            <li>For each empty cell, ask which numbers are still possible</li>
+            <li>For each empty square, ask which numbers still fit</li>
             <li>When only one number fits, place it and look again</li>
           </ul>
         </div>
@@ -214,7 +190,7 @@
           <h3 class="eyebrow mb-5">Good habits</h3>
           <ul class="check-list space-y-3">
             <li>Don't guess: every number can be found with logic</li>
-            <li>Use pencil marks to note the <a href="/learn/glossary.html#candidates" class="text-link">candidates</a> for a cell</li>
+            <li>Use <a href="/learn/glossary.html#notes" class="text-link">notes</a> to keep track of the numbers that could go in a square</li>
             <li>If you get stuck, move to a different part of the grid</li>
           </ul>
         </div>
@@ -225,22 +201,24 @@
     <section class="glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6 md:flex md:items-center md:justify-between gap-10">
       <div class="max-w-xl">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Try?</h2>
-        <p class="text-lg text-primaryFg/70">Magic Sudoku walks you through these rules the first time you open it, and its hints explain the next step whenever you get stuck.</p>
+        <p class="text-lg text-primaryFg/70">Choose “I'm New to Sudoku” when you first open Magic Sudoku and it walks you through these rules. Its hints explain the next step whenever you get stuck.</p>
       </div>
       <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0">Play Magic Sudoku</a>
     </section>
 
     <!-- Lesson Navigation -->
+    <!-- guides:navigation -->
     <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <a href="/learn.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
         <p class="eyebrow mb-2">← All lessons</p>
         <p class="text-xl font-bold">Learn Sudoku</p>
       </a>
-      <a href="/learn/singles.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+      <a href="/learn/naked-single.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
         <p class="eyebrow mb-2">Next lesson →</p>
-        <p class="text-xl font-bold">Basic Singles</p>
+        <p class="text-xl font-bold">Naked Single</p>
       </a>
     </nav>
+    <!-- /guides:navigation -->
   </main>
 
   <footer class="bg-tertiaryBg text-secondaryFg py-12">

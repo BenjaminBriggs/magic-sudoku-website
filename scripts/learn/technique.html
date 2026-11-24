@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="{{description}}">
+  <meta name="keywords" content="{{keywords}}">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/{{slug}}.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/{{slug}}.html">
+  <meta property="og:title" content="{{title}} - Sudoku Technique">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/{{slug}}.html">
+  <meta name="twitter:title" content="{{title}} - Sudoku Technique">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">{{title}}</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        {{level}}
+        <span class="text-sm text-primaryFg/60">Lesson {{lesson}} of {{lessons}}</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">{{title}}</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">{{definition}}</p>
+{{chips}}
+    </header>
+
+{{sections}}
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">{{practice}}</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+{{navigation}}
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

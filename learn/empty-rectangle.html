@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empty Rectangle - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="A number whose places in one house all sit in one row and one column of it, but not all in one line, working with a row or column that doesn&#x27;t cross the house and has only two places for it, to rule it out of one square.">
+  <meta name="keywords" content="empty rectangle, sudoku techniques, expert sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/empty-rectangle.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/empty-rectangle.html">
+  <meta property="og:title" content="Empty Rectangle - Sudoku Technique">
+  <meta property="og:description" content="A number whose places in one house all sit in one row and one column of it, but not all in one line, working with a row or column that doesn&#x27;t cross the house and has only two places for it, to rule it out of one square.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/empty-rectangle.html">
+  <meta name="twitter:title" content="Empty Rectangle - Sudoku Technique">
+  <meta name="twitter:description" content="A number whose places in one house all sit in one row and one column of it, but not all in one line, working with a row or column that doesn&#x27;t cross the house and has only two places for it, to rule it out of one square.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">Empty Rectangle</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-red"></span>Expert</span>
+        <span class="text-sm text-primaryFg/60">Lesson 16 of 19</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">Empty Rectangle</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">A number whose places in one house all sit in one row and one column of it, but not all in one line, working with a row or column that doesn't cross the house and has only two places for it, to rule it out of one square.</p>
+
+    </header>
+
+    <!-- Worked Example -->
+    <section id="worked-example" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">Empty Rectangle in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="503600000208300600496820530601200000300018065700406000130062800807003006962080053"
+            data-notes="|7|||7|7|7|7|7||7|||7|7||7|7||||||7|||7|||||7|7|7|7|7||||7|||7|||||||||||||||7||||7|7|||||||||||||7||7|7||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[6,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[6,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[6,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,3],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[8,4],&quot;role&quot;:&quot;secondary&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Spot it</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">In this house, 7 can only go in these three squares, all in one row and one column of it. Only the 7s are shown.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="503600000208300600496820530601200000300018065700406000130062800807003006962080053"
+            data-notes="|7|||7|7|7|7|7||7|||7|7||7|7||||||7|||7|||||7|7|7|7|7||||7|||7|||||||||||||||7||||7|7|||||||||||||7||7|7||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[6,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[4,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[4,6],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[6,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[6,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,3],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[8,4],&quot;role&quot;:&quot;secondary&quot;}],&quot;marks&quot;:[{&quot;link&quot;:[[4,3],[4,6]]},{&quot;link&quot;:[[4,3],[6,3]]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Why it works</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">This row has only two places for 7. If the 7 is in the left one, the house can't have its 7 in that column, so it's in the house's bottom row.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="503600000208300600496820530601200000300018065700406000130062800807003006962080053"
+            data-notes="|7|||7|7|7|7|7||7|||7|7||7|7||||||7|||7|||||7|7|7|7|7||||7|||7|||||||||||||||7||||7|7|||||||||||||7||7|7||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[6,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[4,3],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[4,6],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[8,6],&quot;role&quot;:&quot;warning&quot;},{&quot;square&quot;:[6,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[6,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,3],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,4],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[7,5],&quot;role&quot;:&quot;secondary&quot;},{&quot;square&quot;:[8,4],&quot;role&quot;:&quot;secondary&quot;}],&quot;crossedOff&quot;:[[8,6,7]],&quot;marks&quot;:[{&quot;link&quot;:[[4,6],[8,6]]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">What it does</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">If it's in the right one, it's in this square's column. Either way, this square can't be 7. Cross it off.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">How to spot it</h3>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Pick a number and find a house where its places all sit in one row and one column of the house.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">Look for a row outside the house where the number has only two places, one of them in that column.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">Cross the number off the square where the other place's column meets that row of the house.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">It works the same with a column outside the house, lined up with the house's row.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8 self-start">
+          <h3 class="eyebrow mb-4">What it does</h3>
+          <p class="text-primaryFg/80">Crosses a note off one square.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read Next -->
+    <section class="mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Read next</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Related Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a href="/learn/two-string-kite.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Two-String Kite</h3>
+            <span class="badge"><span class="dot bg-highlight-red"></span>Expert</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">A number with only two places in a row and two in a column, with one end of each in the same house; one of the far ends must hold it, so any square that sees both can't.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+        <a href="/learn/crane.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">Crane</h3>
+            <span class="badge"><span class="dot bg-highlight-red"></span>Expert</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">A number with only two places in a house and two in a row or column, where one end of each sees the other; one of the far ends must hold it, so any square that sees both can't.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">Magic Sudoku&#x27;s hints teach the Empty Rectangle the moment it&#x27;s the next step in your puzzle: where to look, and why it works.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/crane.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">Crane</p>
+      </a>
+      <a href="/learn/w-wing.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">Next lesson →</p>
+        <p class="text-xl font-bold">W-Wing</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>

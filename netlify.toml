@@ -42,6 +42,18 @@
   status = 404
   force = true
 
+# The Learn pages' generator and the guides it reads
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/data/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # Don't redirect .well-known files
 [[redirects]]
   from = "/.well-known/*"
@@ -63,6 +75,16 @@
   from = "/support"
   to = "/support.html"
   status = 200
+
+# The Learn lessons a technique page per guide replaced
+[[redirects]]
+  from = "/learn/singles.html"
+  to = "/learn/naked-single.html"
+  status = 301
+[[redirects]]
+  from = "/learn/naked-sets.html"
+  to = "/learn/naked-pairs.html"
+  status = 301
 
 # Puzzle page redirects
 [[redirects]]

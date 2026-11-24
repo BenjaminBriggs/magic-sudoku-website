@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-Y-Wing - Learn Sudoku Techniques - Magic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tailwind-theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/learn.css">
+
+  <!-- Favicons and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+
+  <meta name="description" content="Four squares whose notes, between them, hold only four numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can&#x27;t have it.">
+  <meta name="keywords" content="4-y-wing, 5-y-wing, 6-y-wing, 7-y-wing, sudoku techniques, master sudoku">
+  <link rel="canonical" href="https://magic-sudoku.com/learn/y-wings.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://magic-sudoku.com/learn/y-wings.html">
+  <meta property="og:title" content="4-Y-Wing - Sudoku Technique">
+  <meta property="og:description" content="Four squares whose notes, between them, hold only four numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can&#x27;t have it.">
+  <meta property="og:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://magic-sudoku.com/learn/y-wings.html">
+  <meta name="twitter:title" content="4-Y-Wing - Sudoku Technique">
+  <meta name="twitter:description" content="Four squares whose notes, between them, hold only four numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can&#x27;t have it.">
+  <meta name="twitter:image" content="https://magic-sudoku.com/images/magic-sudoku-preview.jpg">
+</head>
+
+<body class="font-rubik bg-secondaryBg text-primaryFg antialiased">
+  <!-- Built by scripts/build-learn.py from data/guides.json, the guides the app's SudokuGuides
+       package exports. Change the copy there, or the template in scripts/learn/, not here. -->
+  <div class="board"></div>
+  <span include-html="/includes/header.html"></span>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-24">
+    <!-- Breadcrumb -->
+    <nav class="mb-10">
+      <ol class="badge text-primaryFg/60">
+        <li><a href="/learn.html" class="hover:text-primaryFg transition-colors">Learn Sudoku</a></li>
+        <li>/</li>
+        <li class="text-primaryFg">4-Y-Wing</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mb-12 md:mb-16">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="badge"><span class="dot bg-highlight-yellow"></span>Master</span>
+        <span class="text-sm text-primaryFg/60">Lesson 19 of 19</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.02] mb-6">4-Y-Wing</h1>
+      <p class="text-lg md:text-xl text-primaryFg/70 max-w-3xl">Four squares whose notes, between them, hold only four numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can't have it.</p>
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        <a href="#worked-example" class="chip"><span class="chip-num">01</span>Worked Example</a>
+        <a href="#with-more-squares" class="chip"><span class="chip-num">02</span>With More Squares</a>
+      </div>
+    </header>
+
+    <!-- Worked Example -->
+    <section id="worked-example" class="scroll-mt-28 mb-20 md:mb-28">
+      <div class="glass rounded-[32px] p-5 md:p-8" data-stepper>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-1">Worked example</p>
+            <h3 class="text-lg font-semibold">4-Y-Wing in Action</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-primaryFg/60 tabular-nums" data-counter></span>
+            <button type="button" class="btn-glass btn-sm" data-prev>←</button>
+            <button type="button" class="btn-primary btn-sm min-w-[7.5rem]" data-next>Next step</button>
+          </div>
+        </div>
+        <div class="stepper-track mt-4 mb-6" data-track></div>
+
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="364090512829541763715000948007900250008025079592070080473009125981050634256413897"
+            data-notes="|||78||78||||||||||||||||236|36|26||||16|34|||38|48|||16|16|34||16|||34||||||136||46|34||16||||68|68||||||||27||27||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[2,4],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[5,5],&quot;role&quot;:&quot;primary&quot;}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">1</span>
+              <h4 class="text-xl font-semibold">Spot it</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">These four squares hold only four numbers between them: 3, 4, 6 and 8.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="364090512829541763715000948007900250008025079592070080473009125981050634256413897"
+            data-notes="|||78||78||||||||||||||||236|36|26||||16|34|||38|48|||16|16|34||16|||34||||||136||46|34||16||||68|68||||||||27||27||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[2,4],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[5,5],&quot;role&quot;:&quot;primary&quot;}],&quot;marks&quot;:[{&quot;square&quot;:[2,4]},{&quot;square&quot;:[5,5]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">2</span>
+              <h4 class="text-xl font-semibold">Why it works</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">The 3s, the 4s and the 8s each sit in two squares that see each other, so each fills only one square. Four squares need four numbers, so one of the outlined squares must be 6.</p>
+          </figcaption>
+        </figure>
+        <figure class="stepper-slide md:grid-cols-2 gap-6 md:gap-10 items-center" data-slide>
+          <div class="demo-board" data-givens="364090512829541763715000948007900250008025079592070080473009125981050634256413897"
+            data-notes="|||78||78||||||||||||||||236|36|26||||16|34|||38|48|||16|16|34||16|||34||||||136||46|34||16||||68|68||||||||27||27||||||||||||"
+            data-frame="{&quot;highlights&quot;:[{&quot;square&quot;:[2,4],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;6&quot;},{&quot;square&quot;:[5,5],&quot;role&quot;:&quot;primary&quot;,&quot;spotlight&quot;:&quot;6&quot;},{&quot;square&quot;:[3,4],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[3,5],&quot;role&quot;:&quot;primary&quot;},{&quot;square&quot;:[2,5],&quot;role&quot;:&quot;warning&quot;}],&quot;crossedOff&quot;:[[2,5,6]],&quot;marks&quot;:[{&quot;square&quot;:[2,4]},{&quot;square&quot;:[5,5]}]}"></div>
+          <figcaption>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="cell-num cell-num-sm">3</span>
+              <h4 class="text-xl font-semibold">What it does</h4>
+            </div>
+            <p class="text-lg text-primaryFg/80">This square sees both outlined squares, so it can't be 6. That leaves it only 2.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <h3 class="eyebrow mb-5">How to spot it</h3>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for four squares, not all in one row, column or house, whose notes hold only four numbers between them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">For each number, check whether its places among the four all see each other. If they do, it can fill only one of them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">If that's true of all but one number, the four squares need the remaining one too.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that number off any square that sees all its places in the group.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8 self-start">
+          <h3 class="eyebrow mb-4">What it does</h3>
+          <p class="text-primaryFg/80">Crosses notes off, usually just one. An XY-Wing is the same idea with three squares.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- With More Squares -->
+    <section id="with-more-squares" class="scroll-mt-28 mb-20 md:mb-28">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">With More Squares</h2>
+      <p class="text-lg md:text-xl text-primaryFg/80 max-w-3xl mb-8">Five, six or seven squares work the same way, as long as their notes hold only as many numbers as there are squares, and all but one of the numbers can fill only one of them. Each size has its own name, from 5-Y-Wing to 7-Y-Wing.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">5-Y-Wing</h3>
+            <span class="badge"><span class="dot bg-primaryFg"></span>Grandmaster</span>
+          </div>
+          <p class="text-primaryFg/80">Five squares whose notes, between them, hold only five numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can't have it.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for five squares, not all in one row, column or house, whose notes hold only five numbers between them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">For each number, check whether its places among the five all see each other. If they do, it can fill only one of them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">If that's true of all but one number, the five squares need the remaining one too.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that number off any square that sees all its places in the group.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">6-Y-Wing</h3>
+            <span class="badge"><span class="dot bg-primaryFg"></span>Grandmaster</span>
+          </div>
+          <p class="text-primaryFg/80">Six squares whose notes, between them, hold only six numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can't have it.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for six squares, not all in one row, column or house, whose notes hold only six numbers between them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">For each number, check whether its places among the six all see each other. If they do, it can fill only one of them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">If that's true of all but one number, the six squares need the remaining one too.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that number off any square that sees all its places in the group.</span></li>
+          </ol>
+        </div>
+        <div class="glass rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">7-Y-Wing</h3>
+            <span class="badge"><span class="dot bg-primaryFg"></span>Grandmaster</span>
+          </div>
+          <p class="text-primaryFg/80">Seven squares whose notes, between them, hold only seven numbers, where all but one of the numbers can fill only one of the squares, because their places there all see each other. So the remaining number must go in one of them, and any square that sees every place it has there can't have it.</p>
+          <h4 class="eyebrow mt-7 mb-4">How to spot it</h4>
+          <ol class="space-y-4">
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">1</span><span class="pt-0.5">Look for seven squares, not all in one row, column or house, whose notes hold only seven numbers between them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">2</span><span class="pt-0.5">For each number, check whether its places among the seven all see each other. If they do, it can fill only one of them.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">3</span><span class="pt-0.5">If that's true of all but one number, the seven squares need the remaining one too.</span></li>
+            <li class="flex gap-3"><span class="cell-num cell-num-sm shrink-0">4</span><span class="pt-0.5">Cross that number off any square that sees all its places in the group.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read Next -->
+    <section class="mb-20 md:mb-28">
+      <p class="eyebrow mb-3">Read next</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">Related Techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <a href="/learn/xy-wing.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">XY-Wing</h3>
+            <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">Three squares with two notes each, a pivot and two wings, where whatever the pivot turns out to be, one wing gets the same number, so any square that sees both wings can't have it.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+        <a href="/learn/xyz-wing.html" class="glass glass-hover group flex flex-col rounded-[28px] p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-xl font-bold">XYZ-Wing</h3>
+            <span class="badge"><span class="dot bg-highlight-orange"></span>Advanced</span>
+          </div>
+          <p class="text-primaryFg/70 flex-grow">Like an XY-Wing, but the pivot also holds the wings' shared number, so it can only be crossed off squares that see all three.</p>
+          <span class="mt-6 font-semibold">Open lesson <span class="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="relative overflow-hidden glass glass-strong rounded-[36px] px-6 py-10 md:p-14 mb-6">
+      <div class="relative md:flex md:items-center md:justify-between gap-10">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Ready to Practice?</h2>
+          <p class="text-lg text-primaryFg/70">Magic Sudoku&#x27;s hints teach the 4-Y-Wing the moment it&#x27;s the next step in your puzzle: where to look, and why it works.</p>
+        </div>
+        <a href="https://apps.apple.com/app/magic-sudoku/id6742204685" class="btn-primary mt-8 md:mt-0 whitespace-nowrap">Practice with Magic Sudoku</a>
+      </div>
+    </section>
+
+    <!-- Lesson Navigation -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <a href="/learn/jellyfish.html" class="glass glass-hover rounded-[28px] p-6 md:p-8">
+        <p class="eyebrow mb-2">← Previous lesson</p>
+        <p class="text-xl font-bold">Jellyfish</p>
+      </a>
+      <a href="/learn.html" class="glass glass-hover rounded-[28px] p-6 md:p-8 sm:text-right">
+        <p class="eyebrow mb-2">All lessons →</p>
+        <p class="text-xl font-bold">Learn Sudoku</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="bg-tertiaryBg text-secondaryFg py-12">
+    <div include-html="/includes/footer.html"></div>
+  </footer>
+
+  <!-- Include the shared JavaScript -->
+  <script src="/js/includes.js"></script>
+  <script src="/js/app-store.js"></script>
+  <script src="/js/learn.js"></script>
+</body>
+
+</html>
